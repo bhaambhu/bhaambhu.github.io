@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export -o docs",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "static": "next build && next export -o docs && touch ./docs/.nojekyll && echo 'bhaambhu.com' > ./docs/CNAME"
   },
   "dependencies": {
     "next": "12.2.2",
