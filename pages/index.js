@@ -39,7 +39,7 @@ export default function Home() {
         {/* About Section */}
         <section id='about' className='min-h-screen flex flex-col justify-start'>
           {/* Margin for Navbar */}
-          <div className='w-full h-20' />
+          <div className='w-full h-28' />
           <div className='md:w-[60%]'>
             <SectionHeader title='About&nbsp;Me' />
           </div>
@@ -73,7 +73,7 @@ export default function Home() {
         {/* Projects Section */}
         <section id='projects' className='min-h-screen flex flex-col justify-start'>
           {/* Margin for Navbar */}
-          <div className='w-full h-20' />
+          <div className='w-full h-28' />
           <SectionHeader title='Some&nbsp;Of&nbsp;My&nbsp;Projects' />
 
           {/* CAPTAIN Project Tile */}
@@ -136,7 +136,7 @@ export default function Home() {
         {/* Contact Section */}
         <section id='contact' className='flex flex-col justify-start'>
           {/* Top Margin for Navbar */}
-          <div className='w-full h-20' />
+          <div className='w-full h-28' />
           <SectionHeader title='Get&nbsp;In&nbsp;Touch' />
 
           <Paragraph>Whether you have any work opportunity, a question, or just want to say hi, I&apos;ll try my best to get back to you!</Paragraph>
