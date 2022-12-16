@@ -1,5 +1,6 @@
-/** @type {import('tailwindcss').Config} */ 
+/** @type {import('tailwindcss').Config} */
 const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -7,8 +8,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: colors.red,
+      },
       fontSize: {
-        dynamic: "clamp(40px, 8vw, 80px)",
+        dynamic: ["clamp(40px, 8vw, 80px)", {
+          lineHeight: "0.9",
+        }],
       },
       lineHeight: {
         dynamic: "2.5rem",
@@ -16,8 +22,9 @@ module.exports = {
       },
     },
     screens: {
-      'mm': '321px',
-      'ml': '376px',
+      'xxxsm': '321px',
+      'xxsm': '376px',
+      'xsm': '480px',
       ...defaultTheme.screens,
     }
   },
