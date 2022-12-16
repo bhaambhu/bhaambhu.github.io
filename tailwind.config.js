@@ -13,12 +13,9 @@ module.exports = {
       },
       fontSize: {
         dynamic: ["clamp(40px, 8vw, 80px)", {
-          lineHeight: "0.9",
+          lineHeight: "1",
         }],
-      },
-      lineHeight: {
-        dynamic: "2.5rem",
-        // line-height: 2.5rem/* 40px */;
+        dynamicHeader: ["clamp(20px, 5vw, 26px)"],
       },
     },
     screens: {

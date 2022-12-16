@@ -46,7 +46,7 @@ const Navbar = () => {
                         <svg
                             onClick={() => setShowSidebar(!showSidebar)}
                             className="fixed z-30 flex items-center cursor-pointer right-5 top-6"
-                            fill="primary"
+                            fill="red"
                             viewBox="0 0 100 80"
                             width="32"
                             height="32"

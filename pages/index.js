@@ -27,48 +27,54 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* <Script src='./navbarScript.js' strategy="lazyOnload" /> */}
-      <main>
+      <main className='p-5 xsm:px-12 md:px-24 lg:px-44 max-w-7xl m-auto'>
         {/* Home Section */}
-        <section className='min-h-screen p-5 xsm:p-10 flex flex-col justify-center'>
-          <p className='font-mono tracking-wide text-primary-500 mb-2'>Hi, my name is</p>
+        <section className='min-h-screen flex flex-col justify-center'>
+          <p className='font-mono font-bold tracking-widest text-primary-500 mb-4'>Hi, my name is</p>
           <h1 className='text-dynamic font-bold text-slate-900 mb-3'>Sanjay Bhaambhu.</h1>
-          <p className='text-dynamic font-bold text-slate-600 mb-3'>I build things for computers.</p>
-          <Paragraph>I like making websites, mobile apps, and games, studying algorithms, concurrent programming (realtime multiplayer games), and building multi-platform products.</Paragraph>
+          <p className='text-dynamic font-bold text-slate-600 mb-5'>I build things.</p>
+          <Paragraph>I love making websites, apps, and games, studying new technologies, and building engaging multi-platform products.</Paragraph>
         </section>
 
         {/* About Section */}
-        <section id='about' className='min-h-screen p-5 flex flex-col justify-start'>
+        <section id='about' className='min-h-screen flex flex-col justify-start'>
           {/* Margin for Navbar */}
           <div className='w-full h-20' />
-          <SectionHeader title='About&nbsp;Me' />
-
-          <Paragraph>Hello! My creative journey started in 2009, when I 3d modeled our house and made mods for counter-strike. That transitioned to mobile app development as Android phones were getting introduced. My passion for video-games and 3D graphics led me toward making multi-player mobile games and university education got me into making web-projects. I also have an eye for good design and I try to align the design of my products to industry standards.<br/><br/>
-          Here are a few technologies I&apos;ve worked with recently:
-          </Paragraph>
-          <ul className='text-slate-700 text-xs text-justify font-mono grid grid-cols-2 gap-y-2 mt-4 gap-x-2'>
-            <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>JavaScript</li>
-            <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>React</li>
-            <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>Next JS</li>
-            <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>Django</li>
-            <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>Unity 3D</li>
-            <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>Mongo DB</li>
-            <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'><i>php</i></li>
-            <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>SQL</li>
-          </ul>
-          {/* Profile Picture Container */}
-          <div className='mt-8 flex justify-center pb-6'>
-            <picture className='relative group'>
-              <img className='rounded group-hover:grayscale-0 grayscale transition duration-500' alt='Sanjay Himself' src={'/close.jpg'} width={200} height={200} />
-              <div className='absolute w-full h-full bg-primary-500 top-0 left-0 opacity-30 group-hover:opacity-0 rounded transition duration-500 ' />
-              <div className='transition ease-in-out duration-500 group-hover:transition group-hover:duration-500 rounded group-hover:translate-x-3 group-hover:translate-y-3 border-primary-500 border-2 absolute w-full h-full top-0 left-0 translate-x-4 translate-y-4 -z-10' />
-            </picture>
+          <div className='md:w-[60%]'>
+            <SectionHeader title='About&nbsp;Me' />
+          </div>
+          <div className='flex flex-col md:flex-row justify-between'>
+            <div className='md:max-w-[60%]'>
+              <Paragraph>Hello! My creative journey started in 2009, when I 3D-modeled our house and made mods for counter-strike. That transitioned to mobile app development as Android phones were getting introduced. My passion for video-games and 3D graphics led me toward making multi-player mobile games and university education got me into making web-projects. I also have an eye for good design and I try to align the design of my products to industry standards.<br /><br />
+                Here are a few technologies I&apos;ve worked with recently:
+              </Paragraph>
+              <ul className='text-slate-700 text-xs text-justify font-mono grid grid-cols-2 gap-y-2 mt-4 mb-10 gap-x-2'>
+                <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>JavaScript</li>
+                <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>React</li>
+                <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>Next JS</li>
+                <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>Django</li>
+                <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>Unity 3D</li>
+                <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>Mongo DB</li>
+                <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'><i>php</i></li>
+                <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>SQL</li>
+              </ul>
+            </div>
+            {/* Profile Picture Container */}
+            <div className='max-w-xs mx-12 self-center md:self-start'>
+              <picture className='relative group h-fit'>
+                <img className='rounded group-hover:grayscale-0 grayscale transition duration-500' alt='Sanjay Himself' src={'/close.jpg'} />
+                <div className='absolute w-full h-full bg-primary-500 top-0 left-0 opacity-30 group-hover:opacity-0 rounded transition duration-500 ' />
+                <div className='transition ease-in-out duration-500 group-hover:transition group-hover:duration-500 rounded group-hover:translate-x-3 group-hover:translate-y-4 border-primary-500 border-2 absolute w-full h-full top-0 left-0 translate-x-4 translate-y-6 -z-10' />
+              </picture>
+            </div>
           </div>
         </section>
 
         {/* Projects Section */}
-        <section id='projects' className='min-h-screen p-5 flex flex-col justify-start'>
+        <section id='projects' className='min-h-screen flex flex-col justify-start'>
           {/* Margin for Navbar */}
           <div className='w-full h-20' />
+          <SectionHeader title='Some&nbsp;Of&nbsp;My&nbsp;Projects' />
 
           {/* CAPTAIN Project Tile */}
           <ProjectTile
@@ -128,16 +134,16 @@ export default function Home() {
         </section>
 
         {/* Contact Section */}
-        <section id='contact' className='p-5 flex flex-col justify-start'>
+        <section id='contact' className='flex flex-col justify-start'>
           {/* Top Margin for Navbar */}
           <div className='w-full h-20' />
-          <SectionHeader title='Contact&nbsp;Me' />
+          <SectionHeader title='Get&nbsp;In&nbsp;Touch' />
 
-          <p className='text-slate-700 font-mono text-xs mt-4'>Whether you have any work opportunity, a question, or just want to say hi, I&apos;ll try my best to get back to you!</p>
+          <Paragraph>Whether you have any work opportunity, a question, or just want to say hi, I&apos;ll try my best to get back to you!</Paragraph>
           <br />
           <button className='px-4 py-2 flex bg-white border-2 self-center border-primary-500 rounded font-mono font-bold tracking-widest text-primary-500'>SAY&nbsp;HELLO</button>
 
-          <p className='text-slate-700 font-mono text-xs mt-8 self-center'>Designed & Built by Sanjay Bhaambhu</p>
+          <p className='text-slate-700 font-mono text-xs mt-8 self-center'>Built by Sanjay Bhaambhu</p>
         </section>
       </main>
     </>
