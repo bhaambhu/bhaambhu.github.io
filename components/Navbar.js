@@ -12,13 +12,16 @@ const Navbar = () => {
             </div>}
 
             {/* Navbar */}
-            <header id='navbar' className='ease-in-out duration-300 z-10 flex left-0 top-0 items-center p-5 fixed w-full bg-white shadow-sm md:flex-row justify-between'>
+            <header id='navbar' className='ease-in-out duration-300 z-10 flex left-0 top-0 items-center p-5 fixed w-full bg-white shadow md:flex-row justify-between'>
 
                 {/* Bhaambhu Logo */}
                 <div className=''>
-                    <Link href='/'><a>
+                <button onClick={() => {
+                            setShowSidebar(false);
+                            window.location.href = "#";
+                        }}>
                         <Image alt='Bhaambhu Logo' width='32px' height='32px' src='/favicon.ico' />
-                    </a></Link>
+                    </button>
                 </div>
 
                 {/* Nav Buttons for Desktop Layout */}
@@ -35,9 +38,18 @@ const Navbar = () => {
                         }`}
                 >
                     <nav className=' flex flex-col text-xl font-mono gap-10 justify-between w-full h-[30vh] items-center'>
-                        <Link href='/#about'><a className='hover:text-black transition duration-500' >About</a></Link>
-                        <Link href='/#projects'><a className='hover:text-black transition duration-500' >Projects</a></Link>
-                        <Link href='/#contact'><a className='hover:text-black transition duration-500' >Contact</a></Link>
+                        <button onClick={() => {
+                            setShowSidebar(!showSidebar);
+                            window.location.href = "/#about";
+                        }} className='hover:text-black transition duration-500'>About</button>
+                        <button onClick={() => {
+                            setShowSidebar(!showSidebar);
+                            window.location.href = "/#projects";
+                        }} className='hover:text-black transition duration-500'>Projects</button>
+                        <button onClick={() => {
+                            setShowSidebar(!showSidebar);
+                            window.location.href = "/#contact";
+                        }} className='hover:text-black transition duration-500'>Contact</button>
                         <a className='text-white text-sm font-bold font-mono tracking-widest outline py-2 px-4 rounded outline-2 hover:bg-black transition duration-500' href=''>RESUMÉ</a>
                     </nav>
                 </div>

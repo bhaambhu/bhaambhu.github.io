@@ -1,17 +1,21 @@
 /* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
 var prevScrollpos = window.scrollY;
-var prevBoxShadow = document.getElementById("navbar").style.boxShadow;
+var navbar = document.getElementById("navbar");
+var prevBoxShadow = navbar.style.boxShadow;
+
 window.onscroll = function() {
   var currentScrollPos = window.scrollY;
   if (prevScrollpos > currentScrollPos) {
-    document.getElementById("navbar").style.top = "0";
-    document.getElementById("navbar").style.boxShadow = "#0002 0px 4px 12px";
-    // alert("at top");
+    // Below code shows the header on scroll down
+    // navbar.style.top = "0";
+    navbar.style.boxShadow = "#0002 0px 4px 12px";
   } else {
-    document.getElementById("navbar").style.top = "-14vh";
+    // Below code hides the header on scroll down
+    // navbar.style.top = "-14vh";
+    navbar.style.boxShadow = prevBoxShadow;
   }
   prevScrollpos = currentScrollPos;
   if(window.scrollY == 0){
-    document.getElementById("navbar").style.boxShadow = prevBoxShadow;
+    navbar.style.boxShadow = prevBoxShadow;
   }
 }
