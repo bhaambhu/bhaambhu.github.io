@@ -5,6 +5,7 @@ import Sidebar from './Sidebar'
 
 const Navbar = () => {
     const [showSidebar, setShowSidebar] = useState(false)
+    
     return (
         <>
             {/* Sidebar BG Blur */}

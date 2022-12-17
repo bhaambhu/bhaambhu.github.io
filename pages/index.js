@@ -74,14 +74,14 @@ export default function Home() {
 
         {/* Projects Section */}
         <section id='projects' className='min-h-screen flex flex-col justify-start'>
-          <H1Header title='Some Of My Projects' />
+          <H1Header title='Featured Projects' />
 
           {/* CAPTAIN Project Tile */}
           <ProjectTile
             title='CAPTAIN'
             tags={['Next JS', 'React JS', 'PostgreSQL', 'React Native', 'EXPO']}
             about='An intelligent tutoring system that can be used to teach any subject while adapting the course to the learner. The architecture is made in such a way that no piece of knowledge needs to repeat more than once.'
-          >
+          ><ButtonFilled href="/captain">DETAILS</ButtonFilled>
           </ProjectTile>
 
           {/* SHADES Project Tile */}
@@ -92,13 +92,25 @@ export default function Home() {
           ><ButtonFilled href="/shades">DETAILS</ButtonFilled>
             <ButtonOutline download>APK</ButtonOutline></ProjectTile>
 
+          {/* Unity Ludo Framework */}
+          <ProjectTile
+            title='Unity Ludo Framework'
+            tags={['UNITY 3D', 'C#']}
+            about='A working Unity project for creating any type of Ludo game. Currently setup as a mobile-based 2D Ludo game with working AI. Can be easily extended to a 3D game or a completely different Ludo game if needed.'
+          ><ButtonFilled href="/unity-ludo">DETAILS</ButtonFilled>
+            <ButtonOutline href='https://github.com/bhaambhu/Unity-Ludo-Framework' external>GITHUB</ButtonOutline></ProjectTile>
+
           {/* SANWIKI Project Tile */}
           <ProjectTile
-            title='SANWiki'
+            title='phpWikiCMS'
             tags={['PHP', 'MySQL']}
-            about='A framework through with anyone can create a hierarchical wiki - create pages on the fly that are inserted into a giant tree.'
-          />
+            about='A framework that allows you to easily create a wiki style page management system, supports tree-style relationships and their management and viewing.'
+          ><ButtonFilled href="/phpWikiCMS">DETAILS</ButtonFilled>
+            <ButtonOutline href='https://github.com/bhaambhu/phpWikiCMS' external>GITHUB</ButtonOutline></ProjectTile>
 
+
+
+          <H1Header title='More Projects' />
           {/* KUK Project Tile */}
           <ProjectTile
             title='KUK&nbsp;Student Notification & Information System'
@@ -113,7 +125,6 @@ export default function Home() {
             about='This was a beautifully designed Android adaptation of the Cheatbook encyclopedia of video game cheats - made with permission taken from creator of the original cheatbook. Upon installation, my app downloaded a database of video game cheats and guides to the phone for offline viewing and also used google sheets as a free online database - for back in the days when internet was expensive.'
           />
 
-          <H1Header title='Some Experiments' />
           {/* Rough Fight Project Tile */}
           <ProjectTile
             title='Rough Fight'

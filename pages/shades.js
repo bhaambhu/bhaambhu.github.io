@@ -66,14 +66,10 @@ export default function Shades() {
           be purchased using the in-game currency <b className="GoldText">Black Gold</b>.</Paragraph>
         <Video preload="none" controls loop muted src="/shades/WeaponMarket.mp4" />
         <H2Header title="Multiplayer" />
-        <Paragraph>The game supports Online Multiplayer and Local Multiplayer (through WiFi Hotspot) and three multiplayer modes -
-          <b>Deathmatch</b>, <b>Team Deathmatch</b>, and <b>Capture the Flag</b>.
-        </Paragraph>
+        <Paragraph>The game supports Online Multiplayer and Local Multiplayer (through WiFi Hotspot) and three multiplayer modes - <b>Deathmatch</b>, <b>Team Deathmatch</b>, and <b>Capture the Flag</b>. </Paragraph>
         <HorizontalScreenshot src="/shades/MultiplayerMenu.png" />
-        <Paragraph>Both of these technologies have many differences, for local multiplayer has less latency and packet loss than
-          online mutlplayer.</Paragraph>
-        <Paragraph>Following video shows the <b>LAN connectivity</b> and the <b>Map and Time Voting System</b>
-          through which all players can vote for their desired map and match time length.</Paragraph>
+        <Paragraph>Both of these technologies have many differences, for local multiplayer has less latency and packet loss than online mutlplayer.</Paragraph>
+        <Paragraph>Following video shows the <b>LAN connectivity</b> and the <b>Map and Time Voting System</b> through which all players can vote for their desired map and match time length.</Paragraph>
         <Video preload="none" loop muted controls src="/shades/LAN.mp4" type="video/mp4" />
         <Paragraph>Deathmatch and Team Deathmatch are very common, below is a demonstration of a 2-player <b>Capture the Flag</b> match. In this game mode, the game divides the players into two teams - <b className="text-blue-500">Team A</b> and <b className="text-red-500">Team B</b>, the map has 3 Flags and the players have to turn each flag into their team&apos;s color and make them stay like that for 30 seconds to win. If round timer runs out before that, the team with majority of flags wins. It is most fun when it turns into pure chaos - when both teams have multiple players.</Paragraph>
         <Video preload="none" controls loop muted src="/shades/LAN-CTF.mp4" />
