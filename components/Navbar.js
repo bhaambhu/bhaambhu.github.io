@@ -12,7 +12,7 @@ const Navbar = () => {
             </div>}
 
             {/* Navbar */}
-            <header id='navbar' className='z-10 flex left-0 top-0 items-center p-5 fixed w-full bg-white shadow-sm md:flex-row md:justify-between'>
+            <header id='navbar' className='ease-in-out duration-300 z-10 flex left-0 top-0 items-center p-5 fixed w-full bg-white shadow-sm md:flex-row justify-between'>
 
                 {/* Bhaambhu Logo */}
                 <div className=''>
@@ -20,6 +20,8 @@ const Navbar = () => {
                         <Image alt='Bhaambhu Logo' width='32px' height='32px' src='/favicon.ico' />
                     </a></Link>
                 </div>
+
+                {/* Nav Buttons for Desktop Layout */}
                 <nav className='hidden font-semibold gap-6 mt-4 justify-between w-full md:w-auto md:flex md:mt-0'>
                     <Link href='/#about'><a className='hover:text-primary-500 transition duration-500' >About</a></Link>
                     <Link href='/#projects'><a className='hover:text-primary-500 transition duration-500' >Projects</a></Link>
@@ -27,7 +29,20 @@ const Navbar = () => {
                     <a className='text-primary-500 text-sm font-bold font-mono tracking-widest outline py-1 px-2 rounded outline-2 hover:bg-primary-200 transition duration-500' href=''>RESUMÉ</a>
                 </nav>
 
-                {/* Sidebar Toggler */}
+                {/* Sidebar */}
+                <div
+                    className={`top-0 flex items-center drop-shadow-2xl right-0 w-[60vw] bg-primary-500 p-10 text-white fixed h-full z-40  ease-in-out duration-300 ${showSidebar ? "translate-x-0 " : "translate-x-full"
+                        }`}
+                >
+                    <nav className=' flex flex-col text-xl font-mono gap-10 justify-between w-full h-[30vh] items-center'>
+                        <Link href='/#about'><a className='hover:text-black transition duration-500' >About</a></Link>
+                        <Link href='/#projects'><a className='hover:text-black transition duration-500' >Projects</a></Link>
+                        <Link href='/#contact'><a className='hover:text-black transition duration-500' >Contact</a></Link>
+                        <a className='text-white text-sm font-bold font-mono tracking-widest outline py-2 px-4 rounded outline-2 hover:bg-black transition duration-500' href=''>RESUMÉ</a>
+                    </nav>
+                </div>
+
+                {/* Sidebar Toggle Button */}
                 <div className='md:hidden'>
                     {showSidebar ? (
                         <svg
@@ -45,7 +60,7 @@ const Navbar = () => {
                     ) : (
                         <svg
                             onClick={() => setShowSidebar(!showSidebar)}
-                            className="fixed z-30 flex items-center cursor-pointer right-5 top-6"
+                            className="z-30 flex items-center cursor-pointer right-5 top-6"
                             fill="red"
                             viewBox="0 0 100 80"
                             width="32"
@@ -56,21 +71,6 @@ const Navbar = () => {
                             <rect y="60" x='40' width="60" height="10"></rect>
                         </svg>
                     )}
-                </div>
-
-
-
-                {/* Sidebar */}
-                <div
-                    className={`top-0 flex items-center drop-shadow-2xl right-0 w-[60vw] bg-primary-500 p-10 text-white fixed h-full z-40  ease-in-out duration-300 ${showSidebar ? "translate-x-0 " : "translate-x-full"
-                        }`}
-                >
-                    <nav className=' flex flex-col text-xl font-mono gap-10 mt-20 justify-between w-full h-[30vh] items-center'>
-                        <Link href='/#about'><a className='hover:text-black transition duration-500' >About</a></Link>
-                        <Link href='/#projects'><a className='hover:text-black transition duration-500' >Projects</a></Link>
-                        <Link href='/#contact'><a className='hover:text-black transition duration-500' >Contact</a></Link>
-                        <a className='text-white text-sm font-bold font-mono tracking-widest outline py-2 px-4 rounded outline-2 hover:bg-black transition duration-500' href=''>RESUMÉ</a>
-                    </nav>
                 </div>
             </header>
         </>

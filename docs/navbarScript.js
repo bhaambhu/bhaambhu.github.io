@@ -1,5 +1,6 @@
 /* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
 var prevScrollpos = window.scrollY;
+var prevBoxShadow = document.getElementById("navbar").style.boxShadow;
 window.onscroll = function() {
   var currentScrollPos = window.scrollY;
   if (prevScrollpos > currentScrollPos) {
@@ -11,6 +12,6 @@ window.onscroll = function() {
   }
   prevScrollpos = currentScrollPos;
   if(window.scrollY == 0){
-    document.getElementById("navbar").style.boxShadow = "none";
+    document.getElementById("navbar").style.boxShadow = prevBoxShadow;
   }
 }

@@ -8,7 +8,7 @@ import SectionHeader from '../components/SectionHeader'
 
 export default function Home() {
   return (
-    <>
+    <div className='bg-slate-50'>
       <Head>
         <title>Sanjay Bhaambhu</title>
         <meta name="keywords" content="sanjay bhaambhu, sanjay bhambhu, bhambhu, shades, shades combat, shades combat militia, kuk, cdlu, sanjay shades, sanjay bhambhu shades, shades android, shades iphone, sirsa, sarjit, shades game, shades combat game" />
@@ -26,8 +26,8 @@ export default function Home() {
         <link rel="canonical" href="https://www.bhaambhu.com/" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <Script src='./navbarScript.js' strategy="lazyOnload" /> */}
-      <main className='p-5 xsm:px-12 md:px-24 lg:px-44 max-w-7xl m-auto'>
+      <Script src='./navbarScript.js' strategy="lazyOnload" />
+      <main className=' p-5 xsm:px-12 md:px-24 lg:px-44 max-w-7xl m-auto'>
         {/* Home Section */}
         <section className='min-h-screen flex flex-col justify-center'>
           <p className='font-mono font-bold tracking-widest text-primary-500 mb-4'>Hi, my name is</p>
@@ -62,9 +62,9 @@ export default function Home() {
             {/* Profile Picture Container */}
             <div className='max-w-xs mx-12 self-center md:self-start'>
               <picture className='relative group h-fit'>
-                <img className='rounded group-hover:grayscale-0 grayscale transition duration-500' alt='Sanjay Himself' src={'/close.jpg'} />
+                <div className='transition ease-in-out duration-500 group-hover:transition group-hover:duration-500 rounded group-hover:translate-x-3 group-hover:translate-y-4 border-primary-500 border-2 absolute w-full h-full top-0 left-0 translate-x-4 translate-y-6' />
+                <img className='rounded group-hover:grayscale-0 grayscale transition duration-500 z-10' alt='Sanjay Himself' src={'/close.jpg'} />
                 <div className='absolute w-full h-full bg-primary-500 top-0 left-0 opacity-30 group-hover:opacity-0 rounded transition duration-500 ' />
-                <div className='transition ease-in-out duration-500 group-hover:transition group-hover:duration-500 rounded group-hover:translate-x-3 group-hover:translate-y-4 border-primary-500 border-2 absolute w-full h-full top-0 left-0 translate-x-4 translate-y-6 -z-10' />
               </picture>
             </div>
           </div>
@@ -141,11 +141,11 @@ export default function Home() {
 
           <Paragraph>Whether you have any work opportunity, a question, or just want to say hi, I&apos;ll try my best to get back to you!</Paragraph>
           <br />
-          <button className='px-4 py-2 flex bg-white border-2 self-center border-primary-500 rounded font-mono font-bold tracking-widest text-primary-500'>SAY&nbsp;HELLO</button>
+          <button onClick={()=>window.location.href = 'mailto:bhaambhu@gmail.com'} className='px-4 py-2 flex bg-white border-2 self-center border-primary-500 rounded font-mono font-bold tracking-widest text-primary-500'>SAY&nbsp;HELLO</button>
 
           <p className='text-slate-700 font-mono text-xs mt-8 self-center'>Built by Sanjay Bhaambhu</p>
         </section>
       </main>
-    </>
+    </div>
   )
 }
