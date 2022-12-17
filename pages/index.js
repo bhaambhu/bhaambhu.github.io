@@ -1,10 +1,11 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import Script from 'next/script'
 import { FaExternalLinkAlt } from 'react-icons/fa'
+import ButtonFilled from '../components/ButtonFilled'
+import ButtonOutline from '../components/ButtonOutline'
 import Paragraph from '../components/Paragraph'
 import ProjectTile from '../components/ProjectTile'
-import SectionHeader from '../components/SectionHeader'
+import H1Header from '../components/H1Header'
 
 export default function Home() {
   return (
@@ -32,20 +33,21 @@ export default function Home() {
         <section className='min-h-screen flex flex-col justify-center'>
           <p className='font-mono font-bold tracking-widest text-primary-500 mb-4'>Hi, my name is</p>
           <h1 className='text-dynamic font-bold text-slate-900 mb-3'>Sanjay Bhaambhu.</h1>
-          <p className='text-dynamic font-bold text-slate-600 mb-5'>I build things.</p>
+          <p className='text-dynamic font-bold text-slate-600'>I build things.</p>
           <Paragraph>I love making websites, apps, and games, studying new technologies, and building engaging multi-platform products.</Paragraph>
         </section>
 
         {/* About Section */}
         <section id='about' className='min-h-screen flex flex-col justify-start'>
-          {/* Margin for Navbar */}
-          <div className='w-full h-28' />
+
           <div className='md:w-[60%]'>
-            <SectionHeader title='About&nbsp;Me' />
+            <H1Header title='About Me' />
           </div>
           <div className='flex flex-col md:flex-row justify-between'>
             <div className='md:max-w-[60%]'>
-              <Paragraph>Hello! My creative journey started in 2009, when I 3D-modeled our house and made mods for counter-strike. That transitioned to mobile app development as Android phones were getting introduced. My passion for video-games and 3D graphics led me toward making multi-player mobile games and university education got me into making web-projects. I also have an eye for good design and I try to align the design of my products to industry standards.<br /><br />
+              <Paragraph>Hello! My creative journey started in 2009, when I 3D-modeled our house and made mods for counter-strike. That transitioned to mobile app development as Android phones were getting introduced. My passion for video-games and 3D graphics led me toward making multi-player mobile games and university education got me into making web-projects. I also have an eye for good design and I try to align the design of my products to industry standards.
+              </Paragraph>
+              <Paragraph>
                 Here are a few technologies I&apos;ve worked with recently:
               </Paragraph>
               <ul className='text-slate-700 text-xs text-justify font-mono grid grid-cols-2 gap-y-2 mt-4 mb-10 gap-x-2'>
@@ -72,23 +74,23 @@ export default function Home() {
 
         {/* Projects Section */}
         <section id='projects' className='min-h-screen flex flex-col justify-start'>
-          {/* Margin for Navbar */}
-          <div className='w-full h-28' />
-          <SectionHeader title='Some&nbsp;Of&nbsp;My&nbsp;Projects' />
+          <H1Header title='Some Of My Projects' />
 
           {/* CAPTAIN Project Tile */}
           <ProjectTile
             title='CAPTAIN'
             tags={['Next JS', 'React JS', 'PostgreSQL', 'React Native', 'EXPO']}
             about='An intelligent tutoring system that can be used to teach any subject while adapting the course to the learner. The architecture is made in such a way that no piece of knowledge needs to repeat more than once.'
-          />
+          >
+          </ProjectTile>
 
           {/* SHADES Project Tile */}
           <ProjectTile
-            title='SHADES: Combat Militia'
+            title='SHADES: Combat'
             tags={['UNITY 3D', 'C#', 'Enemy AI', 'Realtime Multiplayer', 'In-App-Purchases', 'Google Play Services']}
             about='A top down shooter game I made for the android platform. The game was an instant hit with over 1 million downloads and an average rating of 4.5/5 stars.'
-          />
+          ><ButtonFilled href="/shades">DETAILS</ButtonFilled>
+            <ButtonOutline download>APK</ButtonOutline></ProjectTile>
 
           {/* SANWIKI Project Tile */}
           <ProjectTile
@@ -104,13 +106,6 @@ export default function Home() {
             about='A project I made for KUK DCSE. This contained of a php backend for staff and android app for the students. The most interesting part was the time table component.'
           />
 
-          {/* Rough Fight Project Tile */}
-          <ProjectTile
-            title='Rough Fight'
-            tags={['Unity 3D', 'C#']}
-            about='This was a brawl style game that included hand-combat AI that would fight and dodge player moves. It also featuprimary local multiplayer. This project was never released and remains incomplete.'
-          />
-
           {/* Cheatify Project Tile */}
           <ProjectTile
             title='Cheatify'
@@ -118,13 +113,19 @@ export default function Home() {
             about='This was a beautifully designed Android adaptation of the Cheatbook encyclopedia of video game cheats - made with permission taken from creator of the original cheatbook. Upon installation, my app downloaded a database of video game cheats and guides to the phone for offline viewing and also used google sheets as a free online database - for back in the days when internet was expensive.'
           />
 
+          <H1Header title='Some Experiments' />
+          {/* Rough Fight Project Tile */}
+          <ProjectTile
+            title='Rough Fight'
+            tags={['Unity 3D', 'C#']}
+            about='This was a brawl style game that included hand-combat AI that would fight and dodge player moves. It also featuprimary local multiplayer. This project was never released and remains incomplete.'
+          />
           {/* Clock Widget Project Tile */}
           <ProjectTile
             title='Minimal Clock Widget'
             tags={['Android', 'Java']}
             about='In the early days of android every provider like HTC, Samsung, etc. had their own different looking user interfaces and clock widget. With this widget I tried to provide users with a simple, minimal and elegant time viewing experience on their homescreens.'
           />
-
           {/* Hummer Project Tile */}
           <ProjectTile
             title='Hummer&nbsp;3D&nbsp;Live&nbsp;Wallpaper'
@@ -135,13 +136,11 @@ export default function Home() {
 
         {/* Contact Section */}
         <section id='contact' className='flex flex-col justify-start'>
-          {/* Top Margin for Navbar */}
-          <div className='w-full h-28' />
-          <SectionHeader title='Get&nbsp;In&nbsp;Touch' />
+          <H1Header title='Get In Touch' />
 
           <Paragraph>Whether you have any work opportunity, a question, or just want to say hi, I&apos;ll try my best to get back to you!</Paragraph>
           <br />
-          <button onClick={()=>window.location.href = 'mailto:bhaambhu@gmail.com'} className='px-4 py-2 flex bg-white border-2 self-center border-primary-500 rounded font-mono font-bold tracking-widest text-primary-500'>SAY&nbsp;HELLO</button>
+          <button onClick={() => window.location.href = 'mailto:bhaambhu@gmail.com'} className='px-4 py-2 flex bg-white border-2 self-center border-primary-500 rounded font-mono font-bold tracking-widest text-primary-500'>SAY&nbsp;HELLO</button>
 
           <p className='text-slate-700 font-mono text-xs mt-8 self-center'>Built by Sanjay Bhaambhu</p>
         </section>
