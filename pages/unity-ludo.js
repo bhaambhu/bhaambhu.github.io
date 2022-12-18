@@ -13,6 +13,7 @@ import H1Header from '../components/H1Header'
 import Video from '../components/Video'
 import HorizontalScreenshot from '../components/HorizontalScreenshot'
 import VerticalVideo from '../components/VerticalVideo'
+import Navbar from '../components/Navbar'
 
 export default function UnityLudo() {
   return (
@@ -34,6 +35,7 @@ export default function UnityLudo() {
         <link rel="canonical" href="https://www.bhaambhu.com/" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Navbar title='LUDO' links={['ui', 'options', 'tech']} />
       <Script src='./navbarScript.js' strategy="lazyOnload" />
       <main className=' p-5 xsm:px-12 md:px-24 lg:px-44 max-w-7xl m-auto'>
         <H1Header title='Unity Ludo Framework' />
@@ -41,10 +43,14 @@ export default function UnityLudo() {
         <Paragraph>This is a Unity project for creating any type of Ludo game. The basic scenes are setup for a mobile-based 2D Ludo game with working AI. This can be easily extended to a 3D game or a completely different Ludo game if needed.</Paragraph>
         <VerticalVideo controls loop src="/unity-ludo/gameplay.mp4" />
 
+        <section id='ui'>
         <H1Header title="User Interface" />
         <Paragraph>It also features my own menu system which you can use for any game project.</Paragraph>
         <Paragraph>I needed a menu that is minimal, easy to navigate, has subtle animations and looks slick.</Paragraph>
         <VerticalVideo controls loop muted src="/unity-ludo/ui.mp4" />
+        </section>
+        
+        <section id='options'>
         <H1Header title="Options" />
         <Quote>Every provided asset is a placeholder - you should use your own images, sounds, etc.</Quote>
         <Paragraph>... with that out of the way, the project currently features basic options you can customize from the inspector, and everything else you can customize through the scripts provided.</Paragraph>
@@ -52,8 +58,12 @@ export default function UnityLudo() {
         <HorizontalScreenshot src="/unity-ludo/basic.jpeg" />
         <Paragraph>The basic graphics and sound options currently accessible through the inspector:</Paragraph>
         <HorizontalScreenshot src="/unity-ludo/graphics.jpeg" />
-        <H1Header title="Tech" />
+        </section>
+        
+        <section id='tech'>
+        <H1Header id='tech' title="Tech" />
         <Paragraph>Unity3D, C#.</Paragraph>
+        </section>
       </main>
     </div >
   )

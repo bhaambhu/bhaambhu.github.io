@@ -6,6 +6,7 @@ import ButtonOutline from '../components/ButtonOutline'
 import Paragraph from '../components/Paragraph'
 import ProjectTile from '../components/ProjectTile'
 import H1Header from '../components/H1Header'
+import Navbar from '../components/Navbar'
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
         <link rel="canonical" href="https://www.bhaambhu.com/" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Navbar links={['about', 'projects', 'contact']} />
       <Script src='./navbarScript.js' strategy="lazyOnload" />
       <main className=' p-5 xsm:px-12 md:px-24 lg:px-44 max-w-7xl m-auto'>
         {/* Home Section */}

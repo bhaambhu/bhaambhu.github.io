@@ -3,9 +3,17 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Sidebar from './Sidebar'
 
-const Navbar = () => {
+const Navbar = ({ title = '', links }) => {
     const [showSidebar, setShowSidebar] = useState(false)
-    
+
+    // Convert links array to elements
+    const linkButtons = links.map(oneLink =>
+        <button key={oneLink} onClick={() => {
+            setShowSidebar(false);
+            window.location.href = `#${oneLink}`;
+        }} className='hover:text-primary-500 transition duration-500 uppercase'>{oneLink}</button>
+    )
+
     return (
         <>
             {/* Sidebar BG Blur */}
@@ -15,21 +23,28 @@ const Navbar = () => {
             {/* Navbar */}
             <header id='navbar' className='ease-in-out duration-300 z-10 flex left-0 top-0 items-center p-5 fixed w-full bg-white shadow md:flex-row justify-between'>
 
-                {/* Bhaambhu Logo */}
-                <div className=''>
-                <button onClick={() => {
-                            setShowSidebar(false);
-                            window.location.href = "#";
-                        }}>
+                {/* Breadcrumbs */}
+                <div className='flex gap-5 items-center'>
+                    <button className='flex' onClick={() => {
+                        setShowSidebar(false);
+                        window.location.href = title ? "/" : "#";
+                    }}>{title && <div className='font-mono font-semibold text-2xl tracking-wider mr-3 -ml-2 text-red-500'>
+                        &lt;
+                    </div>}
                         <Image alt='Bhaambhu Logo' width='32px' height='32px' src='/favicon.ico' />
                     </button>
+                    {title && <button onClick={() => {
+                        setShowSidebar(false);
+                        window.location.href = "#";
+                    }} className='font-mono font-bold text-[36px] tracking-widest leading-9 -mb-1 text-gray-800'>
+                        {title}
+                    </button>}
                 </div>
+
 
                 {/* Nav Buttons for Desktop Layout */}
                 <nav className='hidden font-semibold gap-6 mt-4 justify-between w-full md:w-auto md:flex md:mt-0'>
-                    <Link href='/#about'><a className='hover:text-primary-500 transition duration-500' >About</a></Link>
-                    <Link href='/#projects'><a className='hover:text-primary-500 transition duration-500' >Projects</a></Link>
-                    <Link href='/#contact'><a className='hover:text-primary-500 transition duration-500' >Contact</a></Link>
+                    {linkButtons}
                     <a className='text-primary-500 text-sm font-bold font-mono tracking-widest outline py-1 px-2 rounded outline-2 hover:bg-primary-200 transition duration-500' href=''>RESUMÉ</a>
                 </nav>
 
@@ -39,18 +54,7 @@ const Navbar = () => {
                         }`}
                 >
                     <nav className=' flex flex-col text-xl font-mono gap-10 justify-between w-full h-[30vh] items-center'>
-                        <button onClick={() => {
-                            setShowSidebar(!showSidebar);
-                            window.location.href = "/#about";
-                        }} className='hover:text-black transition duration-500'>About</button>
-                        <button onClick={() => {
-                            setShowSidebar(!showSidebar);
-                            window.location.href = "/#projects";
-                        }} className='hover:text-black transition duration-500'>Projects</button>
-                        <button onClick={() => {
-                            setShowSidebar(!showSidebar);
-                            window.location.href = "/#contact";
-                        }} className='hover:text-black transition duration-500'>Contact</button>
+                        {linkButtons}
                         <a className='text-white text-sm font-bold font-mono tracking-widest outline py-2 px-4 rounded outline-2 hover:bg-black transition duration-500' href=''>RESUMÉ</a>
                     </nav>
                 </div>
