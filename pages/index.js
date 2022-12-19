@@ -78,12 +78,20 @@ export default function Home() {
         <section id='projects' className='min-h-screen flex flex-col justify-start'>
           <H1Header title='Featured Projects' />
 
+          {/* Sarkari Academy Project Tile */}
+          <ProjectTile
+            title='Sarkari Academy'
+            tags={['Next JS', 'Prisma', 'PostgreSQL']}
+            about='A curated job portal combined with an intelligent tutoring system.'
+          ><ButtonOutline dashed>COMING SOON</ButtonOutline>
+          </ProjectTile>
+
           {/* CAPTAIN Project Tile */}
           <ProjectTile
             title='CAPTAIN'
-            tags={['Next JS', 'React JS', 'PostgreSQL', 'React Native', 'EXPO']}
+            tags={['django', 'React JS', 'PostgreSQL', 'React Native', 'EXPO']}
             about='An intelligent tutoring system that can be used to teach any subject while adapting the course to the learner. The architecture is made in such a way that no piece of knowledge needs to repeat more than once.'
-          ><ButtonFilled href="/captain">DETAILS</ButtonFilled>
+          ><ButtonOutline dashed>COMING SOON</ButtonOutline>
           </ProjectTile>
 
           {/* SHADES Project Tile */}
