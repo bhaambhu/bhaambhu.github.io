@@ -92,7 +92,7 @@ export default function Home() {
             tags={['UNITY 3D', 'C#', 'Enemy AI', 'Realtime Multiplayer', 'In-App-Purchases', 'Google Play Services']}
             about='A top down shooter game I made for the android platform. The game was an instant hit with over 1 million downloads and an average rating of 4.5/5 stars.'
           ><ButtonFilled href="/shades">DETAILS</ButtonFilled>
-            <ButtonOutline download>APK</ButtonOutline></ProjectTile>
+            <ButtonOutline href='/shades/shades.apk' download>APK</ButtonOutline></ProjectTile>
 
           {/* Unity Ludo Framework */}
           <ProjectTile

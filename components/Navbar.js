@@ -45,7 +45,7 @@ const Navbar = ({ title = '', links }) => {
                 {/* Nav Buttons for Desktop Layout */}
                 <nav className='hidden font-semibold gap-6 mt-4 justify-between w-full md:w-auto md:flex md:mt-0'>
                     {linkButtons}
-                    <a className='text-primary-500 text-sm font-bold font-mono tracking-widest outline py-1 px-2 rounded outline-2 hover:bg-primary-200 transition duration-500' href=''>RESUMÉ</a>
+                    <a className='text-primary-500 text-sm font-bold font-mono tracking-widest outline py-1 px-2 rounded outline-2 hover:bg-primary-200 transition duration-500' href='/resume.pdf'>RESUMÉ</a>
                 </nav>
 
                 {/* Sidebar */}
@@ -55,7 +55,7 @@ const Navbar = ({ title = '', links }) => {
                 >
                     <nav className=' flex flex-col text-xl font-mono gap-10 justify-between w-full h-[30vh] items-center'>
                         {linkButtons}
-                        <a className='text-white text-sm font-bold font-mono tracking-widest outline py-2 px-4 rounded outline-2 hover:bg-black transition duration-500' href=''>RESUMÉ</a>
+                        <a className='text-white text-sm font-bold font-mono tracking-widest outline py-2 px-4 rounded outline-2 hover:bg-black transition duration-500' href='/resume.pdf'>RESUMÉ</a>
                     </nav>
                 </div>
 
