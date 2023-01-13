@@ -24,3 +24,9 @@ export interface NavbarProps {
   title?: string;
   links: string[];
 }
+
+export interface SEOProps {
+  pageTitle?: string;
+  pageDesc?: string;
+  keywords?: string[];
+}

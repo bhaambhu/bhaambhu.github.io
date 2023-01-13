@@ -1,5 +1,5 @@
 import Navbar from '../../components/Navbar'
-import HeadMeta from '../../components/HeadMeta'
+import SEO from '../../components/SEO'
 import { H1, Paragraph, Quote } from '../../components/TextComponents'
 import { HorizontalScreenshot } from '../../components/ImageComponents'
 import {VerticalVideo} from '../../components/VideoPlayers'
@@ -7,7 +7,7 @@ import {VerticalVideo} from '../../components/VideoPlayers'
 export default function UnityLudo() {
   return (
     <div className='bg-slate-50'>
-      <HeadMeta />
+      <SEO pageTitle='Unity Ludo Framework' pageDesc='A framework that allows you to easily create a ludo-style game.' keywords={['game', 'unity', 'unity3d', 'mobile game', 'unityproject']}/>
       <Navbar title='LUDO' links={['ui', 'options', 'tech']} />
       <main className=' p-5 xsm:px-12 md:px-24 lg:px-44 max-w-7xl m-auto'>
         <H1>Unity Ludo Framework</H1>

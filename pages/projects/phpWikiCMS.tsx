@@ -1,12 +1,12 @@
 import { H1, H2, Paragraph } from '../../components/TextComponents'
 import { HorizontalScreenshot } from '../../components/ImageComponents'
 import Navbar from '../../components/Navbar'
-import HeadMeta from '../../components/HeadMeta'
+import SEO from '../../components/SEO'
 
 export default function PhpWikiCMS() {
   return (
     <div className='bg-slate-50'>
-      <HeadMeta />
+      <SEO pageTitle='PHP Wiki CMS' keywords={['mysql', 'php', 'wiki', 'project', 'fullstack']} pageDesc='A framework that allows you to easily create a wiki-style page management system, supports tree-style relationships, adding questions to pages and tags to questions.'/>
       <Navbar title='WikiCMS' links={['features', 'why', 'tech', 'design']} />
       <main className=' p-5 xsm:px-12 md:px-24 lg:px-44 max-w-7xl m-auto'>
         <H1>php Wiki CMS</H1>

@@ -1,13 +1,14 @@
 import { H1, H2, Paragraph } from '../../components/TextComponents'
 import Navbar from '../../components/Navbar'
-import HeadMeta from '../../components/HeadMeta'
+import SEO from '../../components/SEO'
 import { Video } from '../../components/VideoPlayers'
 import { HorizontalScreenshot, ScreenshotContainer, Screenshot } from '../../components/ImageComponents'
 
 export default function Shades() {
+  let seoKeywords = ['shades', 'shades combat', 'shades combat militia', 'sanjay shades', 'sanjay bhambhu shades', 'shades android', 'shades iphone', 'shades combat game', 'shades game']
   return (
     <div className='bg-slate-50'>
-      <HeadMeta />
+      <SEO pageTitle='Shades: Combat Militia' pageDesc='A top down shooter game I made for the android platform. This game is not open-source yet but I plan to make it.' keywords={seoKeywords}/>
       <Navbar title='SHADES' links={['features', 'maps', 'note']} />
       <main className=' p-5 xsm:px-12 md:px-24 lg:px-44 max-w-7xl m-auto'>
         <H1>SHADES: Combat</H1>
