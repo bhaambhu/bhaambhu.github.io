@@ -1,23 +1,44 @@
+import Link from "next/link";
 import { ComponentProps } from "react";
-import { Text } from "../config/interfaces";
+import { twMerge } from "tailwind-merge";
+import { DivTextProps, SLinkProps, SpanTextProps } from "../config/interfaces";
 
-export function Paragraph(props : ComponentProps<'div'>) {
+export function P(props: ComponentProps<'div'>) {
   return (
-    <div className='text-slate-700 my-5 text-sm tracking-wider leading-relaxed xsm:text-base'>
+    <div className={twMerge('text-slate-700 my-5 text-sm tracking-wider leading-relaxed xsm:text-base text-justify '+props.className)}>
       {props.children}
     </div>
   )
 }
 
-export function Quote(props : ComponentProps<'p'>) {
+export function Quote(props: ComponentProps<'span'>) {
   return (
-    <p className='text-slate-700 font-bold text-sm tracking-wider leading-relaxed xsm:text-base'>
+    <span className='text-slate-700 font-bold text-sm tracking-wider leading-relaxed xsm:text-base'>
       &ldquo;{props.children}&rdquo;
-    </p>
+    </span>
   )
 }
 
-export function H1(props : Text) {
+export function SLink({ href = '#', ...otherProps }: SLinkProps) {
+  return (
+    <span
+      onClick={() => {
+        window.location.href = href;
+      }}
+      className='text-purple-500 font-bold cursor-pointer'
+    >
+      {otherProps.children}
+    </span>
+  )
+}
+
+export function EM(props: SpanTextProps) {
+  return (
+    <span className="text-primary-500 font-bold">{props.children}</span>
+  )
+}
+
+export function H1(props: DivTextProps) {
   return (
     <>
       {/* Margin for Navbar */}
@@ -32,7 +53,7 @@ export function H1(props : Text) {
   )
 }
 
-export function H2(props : Text) {
+export function H2(props: DivTextProps) {
   return (
     <>
       {/* Top Margin */}

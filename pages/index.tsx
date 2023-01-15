@@ -3,7 +3,7 @@ import Script from 'next/script'
 import ProjectCard from '../components/ProjectCard'
 import Navbar from '../components/Navbar'
 import { Button } from '../components/Buttons'
-import { H1, Paragraph } from '../components/TextComponents'
+import { H1, P } from '../components/TextComponents'
 
 export default function Home() {
   return (
@@ -33,7 +33,7 @@ export default function Home() {
           <p className='font-mono font-bold tracking-widest text-primary-500 mb-4'>Hi, my name is</p>
           <h1 className='text-dynamic font-bold text-slate-900 mb-3'>Sanjay Bhaambhu.</h1>
           <p className='text-dynamic font-bold text-slate-600'>I build things.</p>
-          <Paragraph>I love making websites, apps, and games, studying new technologies, and building engaging multi-platform products.</Paragraph>
+          <P>I love making websites, apps, and games, studying new technologies, and building engaging multi-platform products.</P>
         </section>
 
         {/* About Section */}
@@ -44,11 +44,11 @@ export default function Home() {
           </div>
           <div className='flex flex-col md:flex-row justify-between'>
             <div className='md:max-w-[60%]'>
-              <Paragraph>Hello! My creative journey started in 2009, when I 3D-modeled our house and made mods for counter-strike. That transitioned to mobile app development as Android phones were getting introduced. My passion for video-games and 3D graphics led me toward making multi-player mobile games and university education got me into making web-projects. I also have an eye for good design and I try to align the design of my products to industry standards.
-              </Paragraph>
-              <Paragraph>
+              <P>Hello! My creative journey started in 2009, when I 3D-modeled our house and made mods for counter-strike. That transitioned to mobile app development as Android phones were getting introduced. My passion for video-games and 3D graphics led me toward making multi-player mobile games and university education got me into making web-projects. I also have an eye for good design and I try to align the design of my products to industry standards.
+              </P>
+              <P>
                 Here are a few technologies I&apos;ve worked with recently:
-              </Paragraph>
+              </P>
               <ul className='text-slate-700 text-xs text-justify font-mono grid grid-cols-2 gap-y-2 mt-4 mb-10 gap-x-2'>
                 <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>JavaScript</li>
                 <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>React</li>
@@ -75,20 +75,21 @@ export default function Home() {
         <section id='projects' className='min-h-screen flex flex-col justify-start'>
           <H1>Featured Projects</H1>
 
-          {/* Sarkari Academy Project Tile */}
-          <ProjectCard
-            title='Sarkari Academy'
-            tags={['Next JS', 'Prisma', 'PostgreSQL']}
-            about='A curated job portal combined with an intelligent tutoring system.'
-          ><Button outline dashed>COMING SOON</Button>
-          </ProjectCard>
-
           {/* CAPTAIN Project Tile */}
           <ProjectCard
             title='CAPTAIN'
-            tags={['django', 'React JS', 'PostgreSQL', 'React Native', 'EXPO']}
-            about='An intelligent tutoring system that can be used to teach any subject while adapting the course to the learner. The architecture is made in such a way that no piece of knowledge needs to repeat more than once.'
-          ><Button outline dashed>COMING SOON</Button>
+            tags={['Full Stack', 'django', 'React JS', 'PostgreSQL', 'Next JS', 'React Native', 'EXPO', 'Python', 'JavaScript', 'Tailwind CSS']}
+            about='An intelligent tutoring system that can be used to teach any subject while adapting the course to the learner. The architecture is made in such a way that no piece of knowledge needs to repeat.'
+          ><Button href="/projects/captain">DETAILS</Button>
+          <Button newTab outline href='https://captain-nextjs-bhaambhu.vercel.app' iconExternal>WEBSITE</Button>
+          </ProjectCard>
+
+          {/* Portfolio Project Tile */}
+          <ProjectCard
+            title='This Portfolio'
+            tags={['React JS', 'Next JS', 'JavaScript', 'TypeScript', 'Tailwind CSS']}
+            about='My personal website/portfolio project. It is a Next JS project that utilizes TypeScript, Tailwind CSS and static export. It has responsive design. Feel free to use it and make your own portfolio with it.'
+          ><Button newTab href='https://github.com/bhaambhu/bhaambhu.github.io' iconGitHub>SOURCE CODE</Button>
           </ProjectCard>
 
           {/* SHADES Project Tile */}
@@ -105,15 +106,15 @@ export default function Home() {
             tags={['UNITY 3D', 'C#']}
             about='A working Unity project for creating any type of Ludo game. Currently setup as a mobile-based 2D Ludo game with working AI. Can be easily extended to a 3D game or a completely different Ludo game if needed.'
           ><Button href="/projects/unity-ludo">DETAILS</Button>
-            <Button outline href='https://github.com/bhaambhu/Unity-Ludo-Framework' iconExternal>GITHUB</Button></ProjectCard>
+            <Button newTab outline href='https://github.com/bhaambhu/Unity-Ludo-Framework' iconGitHub>SOURCE CODE</Button></ProjectCard>
 
           {/* SANWIKI Project Tile */}
           <ProjectCard
             title='phpWikiCMS'
-            tags={['PHP', 'MySQL']}
+            tags={['Full Stack', 'PHP', 'MySQL']}
             about='A framework that allows you to easily create a wiki style page management system, supports tree-style relationships and their management and viewing.'
           ><Button href="/projects/phpWikiCMS">DETAILS</Button>
-            <Button outline href='https://github.com/bhaambhu/phpWikiCMS' iconExternal>GITHUB</Button></ProjectCard>
+            <Button newTab outline href='https://github.com/bhaambhu/phpWikiCMS' iconGitHub>SOURCE CODE</Button></ProjectCard>
 
 
 
@@ -156,7 +157,7 @@ export default function Home() {
         <section id='contact' className='flex flex-col justify-start'>
           <H1>Get In Touch</H1>
 
-          <Paragraph>Whether you have any work opportunity, a question, or just want to say hi, I&apos;ll try my best to get back to you!</Paragraph>
+          <P>Whether you have any work opportunity, a question, or just want to say hi, I&apos;ll try my best to get back to you!</P>
           <br />
           <button onClick={() => window.location.href = 'mailto:bhaambhu@gmail.com'} className='px-4 py-2 flex bg-white border-2 self-center border-primary-500 rounded font-mono font-bold tracking-widest text-primary-500'>SAY&nbsp;HELLO</button>
 

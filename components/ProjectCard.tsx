@@ -5,7 +5,7 @@ export default function ProjectCard(props: ProjectCardProps) {
 
   // Convert tags array to elements
   const tags = props.tags?.map(oneTag =>
-    <div key={oneTag} className='bg-white text-primary-500 px-1 py-0.5 rounded font-mono outline-1 text-xs uppercase outline tracking-widest'>{oneTag}</div>
+    <div key={oneTag} className='bg-white text-primary-500 px-1 py-0.5 rounded font-mono outline-1 text-xs uppercase outline tracking-widest cursor-default'>{oneTag}</div>
   )
 
   return (
@@ -18,8 +18,8 @@ export default function ProjectCard(props: ProjectCardProps) {
       </div>
 
       <p className='text-slate-700 text-sm tracking-wider leading-relaxed xsm:text-base'>
-      {props.about}
-    </p>
+        {props.about}
+      </p>
       {props.children && <div className='flex gap-2 my-2'>
         {props.children}
       </div>}

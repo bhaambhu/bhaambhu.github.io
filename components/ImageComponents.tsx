@@ -1,4 +1,6 @@
-import { ComponentProps, ImgHTMLAttributes } from "react"
+import { ComponentProps } from "react"
+import { twMerge } from "tailwind-merge"
+import { screenshotProps } from "../config/interfaces"
 
 export function ScreenshotContainer(props: ComponentProps<'div'>) {
   return (
@@ -6,14 +8,14 @@ export function ScreenshotContainer(props: ComponentProps<'div'>) {
   )
 }
 
-export function Screenshot({ src }: ImgHTMLAttributes<HTMLImageElement>) {
+export function Screenshot({ src }: screenshotProps) {
   return (
     <img src={src} className="w-[48%] border border-gray-500" />
   )
 }
 
-export function HorizontalScreenshot({ src, alt = '' }: ImgHTMLAttributes<HTMLImageElement>) {
+export function HorizontalScreenshot({ src, className='', alt = '' }: screenshotProps) {
   return (
-    <img alt='' src={src} className="block my-5 w-full md:w-[80%]" />
+    <img alt='' src={src} className={twMerge(`block my-5 w-full md:w-[80%] `+className)} />
   )
 }
