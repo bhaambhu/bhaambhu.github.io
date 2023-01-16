@@ -141,13 +141,13 @@ export default function Home() {
 
         <WorkCard jobTitle='Senior Research Fellow' organization='Chaudhary Devi Lal University' period={'October 2018 to October 2022'}>
           <div className='tracking-wide text-sm font-mono mt-1 flex flex-col gap-1'>
-            <div className='flex gap-2 items-start'><div className='font-mono text-primary-500 font-bold inline-flex'>&gt;</div><div className='mt-[1px]'>
+            <div className='flex gap-2 items-start'><div className='font-mono text-primary-500 font-bold inline-flex'>&gt;</div><div>
               Taught Data Structures, Advanced Algorithms and Compiler Design classes to MTech and MCA.
             </div></div>
-            <div className='flex gap-2 items-start'><div className='font-mono text-primary-500 font-bold inline-flex'>&gt;</div><div className='mt-[1px]'>
+            <div className='flex gap-2 items-start'><div className='font-mono text-primary-500 font-bold inline-flex'>&gt;</div><div>
               Published 4 Research Papers in Indexed Journals and Presented 3 Research Papers in International Conferences.
             </div></div>
-            <div className='flex gap-2 items-start'><div className='font-mono text-primary-500 font-bold inline-flex'>&gt;</div><div className='mt-[1px]'>
+            <div className='flex gap-2 items-start'><div className='font-mono text-primary-500 font-bold inline-flex'>&gt;</div><div>
               Earned a PhD in Computer Science & Engineering for my work on Intelligent Tutoring Systems.
             </div></div>
           </div>
