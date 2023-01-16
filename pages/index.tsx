@@ -155,13 +155,13 @@ export default function Home() {
 
         <WorkCard jobTitle='Web Developer' organization='OOPS InfoSolutions' period='September 2016 to October 2018'>
           <div className='tracking-wide text-sm font-mono mt-1 flex flex-col gap-1'>
-            <div className='flex gap-2 items-start'><div className='font-mono text-primary-500 font-bold inline-flex'>&gt;</div><div className='mt-[1px]'>
+            <div className='flex gap-2 items-start'><div className='font-mono text-primary-500 font-bold inline-flex'>&gt;</div><div>
               Designed responsive websites and worked in php, MySQL, JavaScript, CSS, JQuery etc.
             </div></div>
-            <div className='flex gap-2 items-start'><div className='font-mono text-primary-500 font-bold inline-flex'>&gt;</div><div className='mt-[1px]'>
+            <div className='flex gap-2 items-start'><div className='font-mono text-primary-500 font-bold inline-flex'>&gt;</div><div>
               Planning, prototyping and designing architectures of applications, and illustrations for clients.
             </div></div>
-            <div className='flex gap-2 items-start'><div className='font-mono text-primary-500 font-bold inline-flex'>&gt;</div><div className='mt-[1px]'>
+            <div className='flex gap-2 items-start'><div className='font-mono text-primary-500 font-bold inline-flex'>&gt;</div><div>
               Meeting clients, understanding business needs and conceptualizing solutions.
             </div></div>
           </div>
