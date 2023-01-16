@@ -28,6 +28,13 @@ export interface ButtonProps {
   newTab?: boolean;
 }
 
+export interface WorkCardProps {
+  period?: string;
+  jobTitle?: string;
+  organization?: string;
+  children?: ReactNode
+}
+
 export interface ProjectCardProps {
   tags?: string[];
   title?: string;

@@ -1,9 +1,9 @@
-import React, { ComponentProps, ReactNode } from 'react'
+import React from 'react'
 import { ProjectPageProps } from '../config/interfaces'
 import Navbar from './Navbar'
 import SEO from './SEO'
 
-export default function ProjectPage({title='Sanjay Bhaambhu', links = [], seoKeywords = [], description='', children} : ProjectPageProps) {
+export default function Page({title='Sanjay Bhaambhu', links = [], seoKeywords = [], description='', children} : ProjectPageProps) {
   return (
     <div className='bg-slate-50'>
       <SEO pageTitle={title} keywords={seoKeywords} pageDesc={description}/>

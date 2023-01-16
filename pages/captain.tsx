@@ -1,12 +1,12 @@
 import React from 'react'
-import { Button } from '../../components/Buttons'
-import { HorizontalScreenshot } from '../../components/ImageComponents'
-import ProjectPage from '../../components/ProjectPage'
-import { EM, H1, H2, SLink, P, Quote } from '../../components/TextComponents'
+import { Button } from '../components/Buttons'
+import { HorizontalScreenshot } from '../components/ImageComponents'
+import Page from '../components/ProjectPage'
+import { EM, H1, H2, SLink, P, Quote } from '../components/TextComponents'
 
 export default function Captain() {
   return (
-    <ProjectPage title='CAPTAIN' description='An intelligent tutoring system that can be used to teach any subject while adapting the course to the learner.' seoKeywords={['captain', 'ITS', 'intelligent tutoring system', 'adaptive learning', 'intelligent tutoring']} links={['details', 'features', 'philosophy']}>
+    <Page title='CAPTAIN' description='An intelligent tutoring system that can be used to teach any subject while adapting the course to the learner.' seoKeywords={['captain', 'ITS', 'intelligent tutoring system', 'adaptive learning', 'intelligent tutoring']} links={['details', 'features', 'philosophy']}>
 
       <section id='details'>
         <H1>CAPTAIN</H1>
@@ -125,6 +125,6 @@ export default function Captain() {
           </div>
         </div>
       </section>
-    </ProjectPage>
+    </Page>
   )
 }

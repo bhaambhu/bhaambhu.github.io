@@ -1,10 +1,10 @@
-import { H1, H2, P } from '../../components/TextComponents'
-import { HorizontalScreenshot } from '../../components/ImageComponents'
-import ProjectPage from '../../components/ProjectPage'
+import { H1, H2, P } from '../components/TextComponents'
+import { HorizontalScreenshot } from '../components/ImageComponents'
+import Page from '../components/ProjectPage'
 
 export default function PhpWikiCMS() {
   return (
-    <ProjectPage title='WikiCMS' seoKeywords={['mysql', 'php', 'wiki', 'project', 'fullstack']} description='A framework that allows you to easily create a wiki-style page management system, supports tree-style relationships, adding questions to pages and tags to questions.' links={['features', 'why', 'tech', 'design']}>
+    <Page title='WikiCMS' seoKeywords={['mysql', 'php', 'wiki', 'project', 'fullstack']} description='A framework that allows you to easily create a wiki-style page management system, supports tree-style relationships, adding questions to pages and tags to questions.' links={['features', 'why', 'tech', 'design']}>
       <H1>php Wiki CMS</H1>
       <P>A framework that allows you to easily create a wiki-style page management system, supports tree-style relationships, adding questions to pages and tags to questions.</P>
       <HorizontalScreenshot src='/phpWikiCMS/screenshot.png' />
@@ -44,6 +44,6 @@ export default function PhpWikiCMS() {
         <H1>Design</H1>
         <P>It features a minimal design that is easy to navigate. It&apos;s built on a simple grey pallette that is easy on the eyes for long time reading.</P>
       </section>
-    </ProjectPage>
+    </Page>
   )
 }

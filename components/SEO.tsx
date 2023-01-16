@@ -4,6 +4,7 @@ import { SEOProps } from '../config/interfaces'
 
 export default function SEO({ pageTitle = 'Sanjay Bhaambhu', pageDesc = "A guy trying his best.", keywords=[] }: SEOProps) {
   const defaultKeywords = ['sanjay bhaambhu', 'sanjay bhambhu', 'bhambhu', 'bhaambhu', 'kuk', 'cdlu', 'sirsa', 'sarjit']
+  if (pageTitle == '') pageTitle = 'Sanjay Bhaambhu'
   return (
     <Head>
       <title>{pageTitle}</title>

@@ -1,12 +1,12 @@
-import { H1, H2, P } from '../../components/TextComponents'
-import { Video } from '../../components/VideoPlayers'
-import { HorizontalScreenshot, ScreenshotContainer, Screenshot } from '../../components/ImageComponents'
-import ProjectPage from '../../components/ProjectPage'
+import { H1, H2, P } from '../components/TextComponents'
+import { Video } from '../components/VideoPlayers'
+import { HorizontalScreenshot, ScreenshotContainer, Screenshot } from '../components/ImageComponents'
+import Page from '../components/ProjectPage'
 
 export default function Shades() {
   let seoKeywords = ['shades', 'shades combat', 'shades combat militia', 'sanjay shades', 'sanjay bhambhu shades', 'shades android', 'shades iphone', 'shades combat game', 'shades game']
   return (
-    <ProjectPage title='SHADES' seoKeywords={seoKeywords} links={['features', 'maps', 'note']} description='A top down shooter game I made for the android platform. This game is not open-source yet but I plan to make it.'>
+    <Page title='SHADES' seoKeywords={seoKeywords} links={['features', 'maps', 'note']} description='A top down shooter game I made for the android platform. This game is not open-source yet but I plan to make it.'>
       <H1>SHADES: Combat</H1>
       <P>A top down shooter game I made for the android platform. This game is not open-source yet but I plan to make it.
       </P>
@@ -91,6 +91,6 @@ export default function Shades() {
         <HorizontalScreenshot src="/shades/update-2.png" />
         <P>Regards,<br /><a href="https://bhaambhu.com"><b className="text-pink-500 ">Sanjay Bhaambhu</b></a>.</P>
       </section>
-    </ProjectPage>
+    </Page>
   )
 }

@@ -1,11 +1,11 @@
-import { H1, P, Quote } from '../../components/TextComponents'
-import { HorizontalScreenshot } from '../../components/ImageComponents'
-import { VerticalVideo } from '../../components/VideoPlayers'
-import ProjectPage from '../../components/ProjectPage'
+import { H1, P, Quote } from '../components/TextComponents'
+import { HorizontalScreenshot } from '../components/ImageComponents'
+import { VerticalVideo } from '../components/VideoPlayers'
+import Page from '../components/ProjectPage'
 
 export default function UnityLudo() {
   return (
-    <ProjectPage title='LUDO' links={['ui', 'options', 'tech']} description='A framework that allows you to easily create a ludo-style game.' seoKeywords={['game', 'unity', 'unity3d', 'mobile game', 'unityproject']}>
+    <Page title='LUDO' links={['ui', 'options', 'tech']} description='A framework that allows you to easily create a ludo-style game.' seoKeywords={['game', 'unity', 'unity3d', 'mobile game', 'unityproject']}>
       <H1>Unity Ludo Framework</H1>
       <P>A framework that allows you to easily create a ludo-style game.</P>
       <P>This is a Unity project for creating any type of Ludo game. The basic scenes are setup for a mobile-based 2D Ludo game with working AI. This can be easily extended to a 3D game or a completely different Ludo game if needed.</P>
@@ -32,7 +32,7 @@ export default function UnityLudo() {
         <H1 id='tech'>Tech</H1>
         <P>Unity3D, C#.</P>
       </section>
-    </ProjectPage>
+    </Page>
 
   )
 }
