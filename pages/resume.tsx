@@ -46,7 +46,7 @@ const resumeData = {
     {
       uniName: 'CDLU',
       period: '2018 - 2022',
-      about: 'Doctor of Philosophy (PhD) in Computer Science and Engineering for the thesis titled “On Development of a Framework for a Mobile Based Intelligent Tutoring System”.'
+      about: 'PhD in Computer Science for the thesis titled “On Development of a Framework for a Mobile Based Intelligent Tutoring System”.'
     },
     {
       uniName: 'Kurukshetra University',
@@ -54,10 +54,15 @@ const resumeData = {
       about: 'MCA Computer Science - 70.71%'
     },
     {
-      uniName: 'CDLU',
-      period: '2011-2014',
-      about: 'BSc Computer Science - 80.72%'
-    }
+      uniName: 'Under Graduation',
+      about: 'BSc CS (2014) - 80.72%'
+    },
+    {
+      about: '12th (Science) (2011) - 81.6%'
+    },
+    {
+      about: '10th (2009) - 81.6%'
+    },
   ],
   skills: [
     {
@@ -337,9 +342,9 @@ interface WorkInfo {
   keyPoints: string[]
 }
 interface EducationInfo {
-  uniName: string;
-  period: string;
-  about: string;
+  uniName?: string;
+  period?: string;
+  about?: string;
 }
 interface SkillInfo {
   heading: string;
