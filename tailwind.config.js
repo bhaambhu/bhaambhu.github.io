@@ -19,6 +19,7 @@ module.exports = {
       },
     },
     screens: {
+      'print': { 'raw': 'print' },
       'xxxsm': '321px',
       'xxsm': '376px',
       'xsm': '480px',

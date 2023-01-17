@@ -16,11 +16,12 @@ export interface screenshotProps extends ComponentProps<'img'> {
   src: string;
 }
 
-export interface ButtonProps {
+export interface ButtonProps extends ComponentProps<'button'> {
   href? : string | null;
   children?: React.ReactNode;
   iconExternal?: boolean;
   iconDownload?: boolean;
+  iconPrint?: boolean;
   iconGitHub?: boolean;
   dashed?: boolean;
   outline?: boolean;
@@ -44,7 +45,8 @@ export interface ProjectCardProps {
 
 export interface NavbarProps {
   title?: string;
-  links: string[];
+  links?: string[];
+  showResumeButton?: boolean;
 }
 
 export interface SEOProps {
@@ -53,10 +55,14 @@ export interface SEOProps {
   keywords?: string[];
 }
 
-export interface ProjectPageProps extends ComponentProps<'div'> {
-  title: string;
-  links: string[];
-  seoKeywords: string[];
-  description: string;
+export interface PageProps extends ComponentProps<'div'> {
+  title?: string;
+  links?: string[];
+  seoKeywords?: string[];
+  description?: string;
   children: ReactNode;
+}
+
+export interface SectionProps extends ComponentProps<'div'> {
+  navbarGap?: boolean;
 }

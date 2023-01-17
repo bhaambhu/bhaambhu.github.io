@@ -4,24 +4,24 @@ import ProjectCard from '../components/ProjectCard'
 import Navbar from '../components/Navbar'
 import { Button } from '../components/Buttons'
 import { H1, P } from '../components/TextComponents'
-import Page from '../components/ProjectPage'
+import Page from '../components/Page'
 import WorkCard from '../components/WorkCard'
+import Section from '../components/Section'
 
 export default function Home() {
   return (
-    <Page title='' links={['about', 'projects', 'work', 'contact']} seoKeywords={[]} description='A guy trying his best.' >
+    <Page links={['about', 'projects', 'work', 'contact']} >
 
       {/* Home Section */}
-      <section className='min-h-screen flex flex-col justify-center'>
+      <Section className='min-h-screen flex flex-col justify-center' navbarGap={false}>
         <p className='font-mono font-bold tracking-widest text-primary-500 mb-4'>Hi, my name is</p>
         <h1 className='text-dynamic font-bold text-slate-900 mb-3'>Sanjay Bhaambhu.</h1>
         <p className='text-dynamic font-bold text-slate-600'>I build things.</p>
         <P>I love making websites, apps, and games, studying new technologies, and building engaging multi-platform products.</P>
-      </section>
+      </Section>
 
       {/* About Section */}
-      <section id='about' className='min-h-screen flex flex-col justify-start'>
-
+      <Section id='about' className='min-h-screen flex flex-col justify-start'>
         <div className='md:w-[60%]'>
           <H1>About Me</H1>
         </div>
@@ -52,10 +52,10 @@ export default function Home() {
             </picture>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* Projects Section */}
-      <section id='projects' className='min-h-screen flex flex-col justify-start'>
+      <Section id='projects' className='min-h-screen flex flex-col justify-start'>
         <H1>Featured Projects</H1>
 
         {/* CAPTAIN Project Tile */}
@@ -134,9 +134,9 @@ export default function Home() {
           tags={['Android', 'Unity 3D', 'UnityScript']}
           about='Part of my early experiments with android development, this live wallpaper featuprimary a 3d model of the popular GMC Hummer that responded to touches.'
         />
-      </section>
+      </Section>
 
-      <section id='work'>
+      <Section id='work'>
         <H1>Work</H1>
 
         <WorkCard jobTitle='Senior Research Fellow' organization='Chaudhary Devi Lal University' period={'October 2018 to October 2022'}>
@@ -166,18 +166,18 @@ export default function Home() {
             </div></div>
           </div>
         </WorkCard>
-      </section>
+      </Section>
 
       {/* Contact Section */}
-      <section id='contact' className='flex flex-col justify-start'>
+      <Section id='contact' className='flex flex-col justify-start'>
         <H1>Get In Touch</H1>
 
         <P>Whether you have any work opportunity, a question, or just want to say hi, I&apos;ll try my best to get back to you!</P>
         <br />
         <button onClick={() => window.location.href = 'mailto:bhaambhu@gmail.com'} className='px-4 py-2 flex bg-white border-2 self-center border-primary-500 rounded font-mono font-bold tracking-widest text-primary-500'>SAY&nbsp;HELLO</button>
 
-        <p className='text-slate-700 font-mono text-xs mt-8 self-center'>Built by Sanjay Bhaambhu using NextJS</p>
-      </section>
+        <p className='text-slate-700 font-mono text-[10px] mt-8 self-center italic'>Made for you with <span className='text-primary-500 font-bold'>love</span>, like all my other projects.</p>
+      </Section>
     </Page>
   )
 }

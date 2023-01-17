@@ -1,14 +1,15 @@
 import React from 'react'
 import { Button } from '../components/Buttons'
 import { HorizontalScreenshot } from '../components/ImageComponents'
-import Page from '../components/ProjectPage'
+import Page from '../components/Page'
+import Section from '../components/Section'
 import { EM, H1, H2, SLink, P, Quote } from '../components/TextComponents'
 
 export default function Captain() {
   return (
     <Page title='CAPTAIN' description='An intelligent tutoring system that can be used to teach any subject while adapting the course to the learner.' seoKeywords={['captain', 'ITS', 'intelligent tutoring system', 'adaptive learning', 'intelligent tutoring']} links={['details', 'features', 'philosophy']}>
 
-      <section id='details'>
+      <Section id='details'>
         <H1>CAPTAIN</H1>
         {/* Explain it to a newbie */}
         <P><EM>CAPTAIN</EM> is an acronym for <EM>C</EM>omputer <EM>A</EM>ssisted <EM>P</EM>ersonal <EM>T</EM>utor with <EM>A</EM>daptive <EM>In</EM>struction. It is basically an open source learning app that is based on the philosophy that <Quote>knowledge can always be improved upon and reused indefinitely</Quote>. You create <b>topics</b> that are generalized and small enough that they can be independently improved again and again, and can be re-used in multiple study paths from various domains. A <b>study path</b> is a sequence of topics that are arranged to train a student for a particular goal. More about this has been explained in the <SLink href='#philosophy'>philosophy</SLink> section.
@@ -41,8 +42,8 @@ export default function Captain() {
             <Button newTab disabled outline iconExternal>DEPLOYMENT</Button>
           </div>
         </P>
-      </section>
-      <section id='features'>
+      </Section>
+      <Section id='features'>
         <H1>Features</H1>
         <P>The features that have been implemented are listed below.</P>
         <H2>Path & Topic Editor</H2>
@@ -81,8 +82,8 @@ export default function Captain() {
           </ul>
 
         </P>
-      </section>
-      <section id='philosophy'>
+      </Section>
+      <Section id='philosophy'>
         <H1>Philosophy</H1>
         <P>The structure of a <b>topic</b> in the system is depicted through the following diagram. A topic has content in the form of steps - theory step, question step, more type of steps, and it has an evaluation activity, which could be a question or any activity that can be used to evaluate anyone&apos;s knowledge on the topic. Since the topics are tiny generalized learnable units, they can specify which other topics they require as a pre-requirement - to be completed by a student before being eligible to study this topic.
         </P>
@@ -107,8 +108,8 @@ export default function Captain() {
         <P>
           The <b>questions</b> are an important asset to the system and the system uses them wisely. The system <SLink href='#references'>assigns any user submitted questions to the appropriate topics<sup>[2]</sup></SLink>, and if no close match then to appropriate <b>subjects</b> (a subject is just a folder/grouping of topics). The question can then be shown to the appropriate subject experts that deal with the related topics and even to the learners who have completed those topics. This helps in getting appropriate solutions to questions and the question is attached forever to the system, <SLink href='#references'>expanding the knowledge content of the system<sup>[3]</sup></SLink> not arbitrarily but in the direction of its learners.
         </P>
-      </section>
-      <section id='references'>
+      </Section>
+      <Section id='references'>
         <H1>References</H1>
         <div className='flex flex-col font-mono gap-3 text-xs tracking-wider leading-relaxed xsm:text-sm'>
           <div className='flex gap-3'>
@@ -124,7 +125,7 @@ export default function Captain() {
             <span className='text-justify break-words overflow-clip'>S. Singh and V. Singh, “An Architecture of Domain Independent and Extensible Intelligent Tutoring System based on Concept Dependencies and Subject Paths,” Int. J. Adv. Comput. Sci. Appl., vol. 13, no. 5, 2022, <SLink href='https://dx.doi.org/10.14569/IJACSA.2022.0130538'>doi: 10.14569/IJACSA.2022.0130538</SLink></span>
           </div>
         </div>
-      </section>
+      </Section>
     </Page>
   )
 }

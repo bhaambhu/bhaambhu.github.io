@@ -1,14 +1,17 @@
 import { H1, H2, P } from '../components/TextComponents'
 import { HorizontalScreenshot } from '../components/ImageComponents'
-import Page from '../components/ProjectPage'
+import Page from '../components/Page'
+import Section from '../components/Section'
 
 export default function PhpWikiCMS() {
   return (
     <Page title='WikiCMS' seoKeywords={['mysql', 'php', 'wiki', 'project', 'fullstack']} description='A framework that allows you to easily create a wiki-style page management system, supports tree-style relationships, adding questions to pages and tags to questions.' links={['features', 'why', 'tech', 'design']}>
-      <H1>php Wiki CMS</H1>
-      <P>A framework that allows you to easily create a wiki-style page management system, supports tree-style relationships, adding questions to pages and tags to questions.</P>
-      <HorizontalScreenshot src='/phpWikiCMS/screenshot.png' />
-      <section id='features'>
+      <Section>
+        <H1>php Wiki CMS</H1>
+        <P>A framework that allows you to easily create a wiki-style page management system, supports tree-style relationships, adding questions to pages and tags to questions.</P>
+        <HorizontalScreenshot src='/phpWikiCMS/screenshot.png' />
+      </Section>
+      <Section id='features'>
         <H1>Features</H1>
         <P>
           <ul className='list-disc ml-5'>
@@ -19,9 +22,9 @@ export default function PhpWikiCMS() {
             <li key='5'>Relationship between topics and questions, and questions and question-types, and there&apos;s also subjects which is another layer for grouping topics.</li>
           </ul>
         </P>
-      </section>
+      </Section>
 
-      <section id='why'>
+      <Section id='why'>
         <H1>Why I Made It</H1>
 
         <P>I made this project to collect knowledge on various computer science topics as I studied them. While studying one topic we often encouter new unknown terms which are separate topics that we currently don&apos;t know but might feed info upon in the future.</P>
@@ -33,17 +36,17 @@ export default function PhpWikiCMS() {
         <H2>Disclaimer</H2>
         <P>I made this project in 2017 but I am rebasing the commits and pushing it to github in December 2022 (that&apos;s what the commit dates above reflect).</P>
         <P>Now that I look back at it after years of experience, this project could be structured in a better way, but since php is kinda dead now, I didn&apos;t do any effort to restructure or improve this project, but someone could maybe find this project useful so I&apos;m putting this on github.</P>
-      </section>
+      </Section>
 
-      <section id='tech'>
+      <Section id='tech'>
         <H1>Tech</H1>
         <P>php, MySQL, CKEditor</P>
-      </section>
+      </Section>
 
-      <section id='design'>
+      <Section id='design'>
         <H1>Design</H1>
         <P>It features a minimal design that is easy to navigate. It&apos;s built on a simple grey pallette that is easy on the eyes for long time reading.</P>
-      </section>
+      </Section>
     </Page>
   )
 }

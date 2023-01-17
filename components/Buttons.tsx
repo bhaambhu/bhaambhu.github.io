@@ -1,11 +1,11 @@
 import React from 'react'
-import { FaExternalLinkAlt, FaFileDownload, FaGithub, FaGithubSquare } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaFileDownload, FaGithub, FaGithubSquare, FaPrint } from 'react-icons/fa';
 import { ButtonProps } from '../config/interfaces';
 
-export function Button({ href = null, children, iconExternal = false, iconDownload = false, iconGitHub = false, dashed = false, outline = false, disabled = false, newTab = false }: ButtonProps) {
+export function Button({ href = null, children, iconExternal = false, iconDownload = false, iconPrint = false, iconGitHub = false, dashed = false, outline = false, disabled = false, newTab = false, ...otherProps }: ButtonProps) {
   return (
     <button
-      onClick={() => { if (href && !disabled) { if (newTab) window.open(href); else window.location.href = href } }}
+      onClick={otherProps.onClick ? otherProps.onClick : () => { if (href && !disabled) { if (newTab) window.open(href); else window.location.href = href } }}
       // onClick={() => { if (href && !disabled) window.location.href = href; }}
       className={`
           px-2 py-1 flex items-center 
@@ -30,6 +30,11 @@ export function Button({ href = null, children, iconExternal = false, iconDownlo
       {iconGitHub &&
         <>
           &nbsp;<FaGithub className='self-center text-xl' />
+        </>
+      }
+      {iconPrint &&
+        <>
+          &nbsp;<FaPrint className='self-center text-xl' />
         </>
       }
     </button>

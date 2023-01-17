@@ -5,7 +5,7 @@ import { DivTextProps, SLinkProps, SpanTextProps } from "../config/interfaces";
 
 export function P(props: ComponentProps<'div'>) {
   return (
-    <div className={twMerge('text-slate-700 my-5 text-sm tracking-wider leading-relaxed xsm:text-base text-justify '+props.className)}>
+    <div className={twMerge('text-slate-700 my-5 print:m-0 text-sm tracking-wider leading-relaxed xsm:text-base text-justify '+props.className)}>
       {props.children}
     </div>
   )
@@ -42,9 +42,9 @@ export function H1(props: DivTextProps) {
   return (
     <>
       {/* Margin for Navbar */}
-      <div className='w-full h-28' />
+      {/* <div className='w-full h-28' /> */}
       {/* Section Header */}
-      <div className='flex mb-8 md:w-[70%]'>
+      <div className='flex mb-8 md:w-[70%] print:hidden'>
         <div className='mr-4 p-0 bg-primary-500 w-20 h-[2px] self-center mb-2' />
         <div className='text-dynamicHeader flex font-mono font-bold tracking-widest text-primary-500 mb-2.5 mr-4'>{props.children?.replace(/ /g, '\u00a0')}</div>
         <div className='p-0 bg-primary-500 w-full h-[2px] self-center mb-2' />
