@@ -179,50 +179,24 @@ function ResumePage({ data }: ResumePageProps) {
 export default function Resume() {
   return (
     // print:p-0 print:m-0 p-5 xsm:px-12 md:px-24 lg:px-44 max-w-7xl m-auto
-    <div className='m-auto'>
+    <div className=''>
       <Navbar title='Resume' showResumeButton={false} />
-      <div className='px-6 print:p-0'>
-
-      <Section>
-        <H1>Resume</H1>
-        <P className='print:hidden'>This resume is being generated using TypeScript. You can use its source code to make your own.
-          <div className='flex flex-wrap gap-3 mt-2 print:hidden '>
-            <Button iconDownload href={'/resume.pdf'} newTab>DOWNLOAD</Button>
-            <Button iconPrint outline onClick={() => {
-              window.print()
-            }}>PRINT</Button>
-            <Button iconGitHub outline href={'https://github.com/bhaambhu/bhaambhu.github.io/blob/main/pages/resume.tsx'} newTab>VIEW SOURCE</Button>
-          </div>
-        </P>
-      </Section>
-      <div className='overflow-scroll'>
-        <ResumePage data={resumeData} />
-      </div>
+      <div className='px-6 print:p-0 mx-auto w-full md:w-fit'>
+        <Section>
+          <H1>Resume</H1>
+          <P className='print:hidden'>This resume is being generated using TypeScript. You can use its source code to make your own.
+            <div className='flex flex-wrap gap-3 mt-2 print:hidden '>
+              <Button iconDownload href={'/resume.pdf'} newTab>DOWNLOAD</Button>
+              <Button iconPrint outline onClick={() => {
+                window.print()
+              }}>PRINT</Button>
+              <Button iconGitHub outline href={'https://github.com/bhaambhu/bhaambhu.github.io/blob/main/pages/resume.tsx'} newTab>VIEW SOURCE</Button>
             </div>
-    </div>
-  )
-}
-
-function ResumeOld() {
-  return (
-    // Whole page
-    <div className='print:bg-white print:border-none border-2'>
-      <Navbar title='Resume' showResumeButton={false} />
-      <NavbarGap />
-      {/* Container */}
-      <div className='flex flex-col items-center justify-center w-full'>
-        <div className='w-[21cm] mb-8 text-end print:hidden'>
-          <P>This resume is being generated using TypeScript. You can use its source code to make your own.</P>
-          <div className='flex gap-3'>
-            <Button iconDownload href={'/resume.pdf'} newTab>DOWNLOAD</Button>
-            <Button iconPrint outline onClick={() => {
-              window.print()
-            }}>PRINT</Button>
-            <Button iconGitHub outline href={'https://github.com/bhaambhu/bhaambhu.github.io/blob/main/pages/resume.tsx'} newTab>VIEW SOURCE</Button>
-          </div>
+          </P>
+        </Section>
+        <div className='overflow-scroll no-scrollbar md:overflow-visible'>
+          <ResumePage data={resumeData} />
         </div>
-        {/* Resume A4 Page */}
-        <ResumePage data={resumeData} />
       </div>
     </div>
   )
