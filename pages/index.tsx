@@ -45,12 +45,21 @@ export default function Home() {
           </div>
           {/* Profile Picture Container */}
           <div className='max-w-xs mx-12 self-center md:self-start'>
+            <div className='relative group h-fit'>
+              <div className='transition ease-in-out duration-250 group-hover:transition group-hover:duration-250 rounded group-hover:translate-x-3 group-hover:translate-y-4 border-primary-500 border-2 absolute w-full h-full top-0 left-0 translate-x-4 translate-y-6' />
+              <img className='rounded group-hover:grayscale-0 grayscale transition duration-250 z-10' alt='Sanjay Himself' src={'/close.jpg'} />
+              <div className='absolute w-full h-full bg-primary-500 top-0 left-0 opacity-30 group-hover:opacity-0 rounded transition duration-250 ' />
+            </div>
+          </div>
+          
+          {/* Original Code */}
+          {/* <div className='max-w-xs mx-12 self-center md:self-start'>
             <picture className='relative group h-fit'>
               <div className='transition ease-in-out duration-500 group-hover:transition group-hover:duration-500 rounded group-hover:translate-x-3 group-hover:translate-y-4 border-primary-500 border-2 absolute w-full h-full top-0 left-0 translate-x-4 translate-y-6' />
               <img className='rounded group-hover:grayscale-0 grayscale transition duration-500 z-10' alt='Sanjay Himself' src={'/close.jpg'} />
               <div className='absolute w-full h-full bg-primary-500 top-0 left-0 opacity-30 group-hover:opacity-0 rounded transition duration-500 ' />
             </picture>
-          </div>
+          </div> */}
         </div>
       </Section>
 
