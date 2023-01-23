@@ -71,7 +71,7 @@ export default function Home() {
         <ProjectCard
           title='CAPTAIN'
           tags={['Full Stack', 'django', 'React JS', 'PostgreSQL', 'Next JS', 'React Native', 'EXPO', 'Python', 'JavaScript', 'Tailwind CSS']}
-          about='An intelligent tutoring system that can be used to teach any subject while adapting the course to the learner. The architecture is made in such a way that no piece of knowledge needs to repeat.'
+          about='An open-source learning app with Django backend, NextJS front-end for staff, and React Native app for learners. It’s an intelligent tutoring system that can be used to teach any subject while adapting the course to the learner. The system is made in such a way that no piece of knowledge needs to repeat. '
         ><Button href="/captain">DETAILS</Button>
           <Button newTab outline href='https://captain-nextjs-bhaambhu.vercel.app' iconExternal>WEBSITE</Button>
         </ProjectCard>
@@ -88,7 +88,7 @@ export default function Home() {
         <ProjectCard
           title='SHADES: Combat'
           tags={['UNITY 3D', 'C#', 'Enemy AI', 'Realtime Multiplayer', 'In-App-Purchases', 'Google Play Services']}
-          about='A top down shooter game I made for the android platform. The game was an instant hit with over 1 million downloads and an average rating of 4.5/5 stars.'
+          about='A 3D shooter game for the android platform – 1.5M players, 4.5/5 avg rating from 21K reviews. The biggest learning was real-time concurrency control – managing multiple players that are accessing and manipulating the same resources, in both peer-to-peer (LAN) and client-server (Online Multiplayer) environments.'
         ><Button href="/shades">DETAILS</Button>
           <Button outline href='/shades/shades.apk' iconDownload>APK</Button></ProjectCard>
 
@@ -96,7 +96,7 @@ export default function Home() {
         <ProjectCard
           title='Unity Ludo Framework'
           tags={['UNITY 3D', 'C#']}
-          about='A working Unity project for creating any type of Ludo game. Currently setup as a mobile-based 2D Ludo game with working AI. Can be easily extended to a 3D game or a completely different Ludo game if needed.'
+          about='An open-source Unity3D project for creating any type of Ludo game. Currently setup as a mobile-based 2D Ludo game with working AI. Can be easily extended to a 3D game or a completely different Ludo game if needed.'
         ><Button href="/unity-ludo">DETAILS</Button>
           <Button newTab outline href='https://github.com/bhaambhu/Unity-Ludo-Framework' iconGitHub>SOURCE CODE</Button></ProjectCard>
 
@@ -104,7 +104,7 @@ export default function Home() {
         <ProjectCard
           title='phpWikiCMS'
           tags={['Full Stack', 'PHP', 'MySQL']}
-          about='A framework that allows you to easily create a wiki style page management system, supports tree-style relationships and their management and viewing.'
+          about='An open-source framework that helps create a wiki style page management system, supports tree-style relationships and their management and viewing.'
         ><Button href="/phpWikiCMS">DETAILS</Button>
           <Button newTab outline href='https://github.com/bhaambhu/phpWikiCMS' iconGitHub>SOURCE CODE</Button></ProjectCard>
 

@@ -22,16 +22,6 @@ const resumeData = {
   },
   workExperiences: [
     {
-      jobTitle: 'Senior Research Fellow',
-      organization: 'Chaudhary Devi Lal University',
-      period: 'October 2018 - October 2022',
-      keyPoints: [
-        'Taught Data Structures, Advanced Algorithms and Compiler Design classes to MTech and MCA.',
-        'Published 4 Research Papers in Indexed Journals and Presented 3 Research Papers in International Conferences.',
-        'Earned a PhD in Computer Science & Engineering for my work on Intelligent Tutoring Systems.'
-      ]
-    },
-    {
       jobTitle: 'Web Developer',
       organization: 'OOPS InfoSolutions',
       period: 'September 2016 - October 2018',
@@ -41,6 +31,18 @@ const resumeData = {
         'Meeting clients, understanding business needs and conceptualizing solutions.'
       ]
     }
+  ],
+  researchExperiences: [
+    {
+      jobTitle: 'Senior Research Fellow',
+      organization: 'Chaudhary Devi Lal University',
+      period: 'October 2018 - October 2022',
+      keyPoints: [
+        'Taught Data Structures, Advanced Algorithms and Compiler Design classes to MTech and MCA.',
+        'Published 4 Research Papers in Indexed Journals and Presented 3 Research Papers in International Conferences.',
+        'Earned a PhD in Computer Science & Engineering for my work on Intelligent Tutoring Systems.'
+      ]
+    },
   ],
   education: [
     {
@@ -66,16 +68,20 @@ const resumeData = {
   ],
   skills: [
     {
-      heading: 'Programming Languages',
-      content: 'JavaScript (ES6), TypeScript, HTML, CSS, C++, Python, Java, PHP'
+      heading: 'Front End',
+      content: 'ReactJS, NextJS, React Native, HTML, CSS, TailwindCSS, Material UI, Jekyll.'
     },
     {
-      heading: 'Libraries & Frameworks',
-      content: 'Django, ReactJS, NextJS, Unity3D, TailwindCSS'
+      heading: 'Back End',
+      content: 'Django, Rest APIs, NextJS (NodeJS), SQL, PostgreSQL, Supabase, Prisma, Heroku, Vercel, Railway.'
+    },
+    {
+      heading: 'Programming Languages',
+      content: 'Object Oriented Design, Python, JavaScript (ES6), TypeScript, C++, Java, PHP, SQL, JSON, XML.'
     },
     {
       heading: 'Tools & Platforms',
-      content: 'Git, Railway, Heroku, Vercel, Prisma'
+      content: 'Git, Docker, Unity3D, Android Studio, Adobe Creative Suite, Figma, Content Management Systems (CMS) like WordPress, Joomla.'
     }
   ],
   projects: [
@@ -111,11 +117,9 @@ const resumeData = {
     },
   ],
   aboutMe: {
-    aboutMe: 'I am good at deeply understanding and adapting to new technologies quickly.',
     points: [
-      'I am an artist and I have an eye for good design. I am always reading on ways of improving the user experience.',
-      '6 International Research Publications and 3 International Conference Presentations.',
-      'Qualified GATE, UGC NET with JRF, JEST, HTET, so I am good at pedagogy and explaining concepts to others.',
+      'Hard-working software engineer with a flair for creating elegant solutions in the least amount of time. Have developed several full-stack web and mobile apps with an unapologetically user-focused philosophy.',
+      "Looking forward to using my skills for an organization's growth and developing challenging products and growing together."
     ]
   }
 }
@@ -158,21 +162,23 @@ function ResumePage({ data }: ResumePageProps) {
           </div>
         </div>
         {/* Body Section */}
-        <div className='flex mt-6'>
+        <div className='flex mt-3'>
           {/* Left Column */}
           <div className='w-[72%] pr-6'>
-            <SectionHeader title='Projects' />
+            <SectionHeader title='Solo Projects' />
             {data.projects.map((item, i) => <OneProject key={i} {...item} />)}
-            <SectionHeader className='mt-6' title='Work' />
+            <SectionHeader className='mt-0' title='Work Experience' />
             {data.workExperiences.map((item, i) => <OneWorkExperience key={i} {...item} />)}
+            <SectionHeader className='mt-0' title='Research Experience' />
+            {data.researchExperiences.map((item, i) => <OneWorkExperience key={i} {...item} />)}
           </div>
           {/* Right Column */}
           <div className='w-[30%]'>
             <SectionHeader title='About Me' />
             <AboutMeSection {...data.aboutMe} />
-            <SectionHeader className='mt-6' title='Skills' />
+            <SectionHeader className='mt-2' title='Skills' />
             {data.skills.map((item, i) => <OneSkill key={i} {...item} />)}
-            <SectionHeader className='mt-6' title='Education' />
+            <SectionHeader className='mt-2' title='Education' />
             {data.education.map((item, i) => <OneEducation key={i} {...item} />)}
           </div>
         </div>
@@ -209,13 +215,11 @@ export default function Resume() {
 
 function AboutMeSection({ ...props }: AboutInfo) {
   return (
-    <div className='mt-3'>
-      <BaseText>{props.aboutMe}</BaseText>
-      <div className=' mt-2 flex flex-col gap-2'>
+    <div className='mt-2'>
+      <div className='flex flex-col gap-2'>
         {props.points.map((item, i) => {
           return (
             <div key={i} className='flex gap-1'>
-              <ArrowPoint />
               <BaseText>{item}</BaseText>
             </div>
           );
@@ -237,7 +241,7 @@ function OneProject({ ...props }: ProjectInfo) {
 
 function OneEducation({ ...props }: EducationInfo) {
   return (
-    <div className='my-2'>
+    <div className='my-0'>
       <BaseHeading>{props.uniName}</BaseHeading>
       <BaseSubHeading>{props.period}</BaseSubHeading>
       <BaseText>{props.about}</BaseText>
@@ -247,9 +251,9 @@ function OneEducation({ ...props }: EducationInfo) {
 
 function OneSkill({ ...props }: SkillInfo) {
   return (
-    <div className='my-2'>
+    <div className='my-1'>
       <BaseHeading>{props.heading}</BaseHeading>
-      <div className='mt-1'>
+      <div className='mt-0'>
         <BaseText>{props.content}</BaseText>
       </div>
     </div>
@@ -258,7 +262,7 @@ function OneSkill({ ...props }: SkillInfo) {
 
 function OneWorkExperience({ ...props }: WorkInfo) {
   return (
-    <div className='my-2'>
+    <div className='my-0'>
       <BaseHeading>{props.jobTitle} <span className='text-gray-500'>@{props.organization}</span></BaseHeading>
       <BaseSubHeading>{props.period}</BaseSubHeading>
       <div className=' mt-1 flex flex-col gap-1'>
@@ -320,13 +324,13 @@ interface ResumeData {
     github: string;
   }
   workExperiences: WorkInfo[],
+  researchExperiences: WorkInfo[],
   education: EducationInfo[],
   skills: SkillInfo[],
   projects: ProjectInfo[],
   aboutMe: AboutInfo,
 }
 interface AboutInfo {
-  aboutMe: string;
   points: string[];
 }
 interface ProjectInfo {
