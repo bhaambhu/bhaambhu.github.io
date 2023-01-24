@@ -197,7 +197,7 @@ export default function Resume() {
           <H1>Resume</H1>
           <P className='print:hidden'>This resume is being generated using TypeScript. You can use its source code to make your own.
             <div className='flex flex-wrap gap-3 mt-2 print:hidden '>
-              <Button iconDownload href={'/resume.pdf'} newTab>DOWNLOAD</Button>
+              <Button iconDownload outline href={'/resume.pdf'} newTab>DOWNLOAD LATEST RESUME</Button>
               <Button iconPrint outline onClick={() => {
                 window.print()
               }}>PRINT</Button>
