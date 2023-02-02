@@ -29,6 +29,7 @@ module.exports = {
     }
   },
   plugins: [
+    require('@tailwindcss/typography'),
     plugin(function ({ addUtilities }) {
       addUtilities({
         /* Hide scrollbar for Chrome, Safari and Opera */

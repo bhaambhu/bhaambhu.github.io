@@ -46,30 +46,29 @@ const resumeData = {
   ],
   education: [
     {
-      uniName: 'CDLU',
-      period: '2018 - 2022',
-      about: 'PhD in Computer Science for the thesis titled “On Development of a Framework for a Mobile Based Intelligent Tutoring System”.'
+      about: 'Qualified GATE, UGC NET, JRF, JEST, HTET, 6 Int. Publications, 3 Int. Conferences – good at teaching concepts & researching.'
     },
     {
-      uniName: 'Kurukshetra University',
-      period: '2014 - 2017',
-      about: 'MCA Computer Science - 70.71%'
+      heading: '2018 - 2022',
+      about: 'Doctor of Philosophy (PhD) under UGC Junior Research Fellowship - Computer Science and Engineering, CDLU'
     },
     {
-      uniName: 'Under Graduation',
-      about: 'BSc CS (2014) - 80.72%'
+      heading: '2014 - 2017',
+      about: 'Masters in Computer Applications (MCA) Kurukshetra University – <b>70.71%</b>'
     },
     {
-      about: '12th (Science) (2011) - 81.6%'
+      heading: '2011 - 2014',
+      about: 'B.Sc. Computer Science – <b>80.72%</b>'
     },
     {
-      about: '10th (2009) - 81.6%'
+      heading: 'School',
+      about: '12<sup>th</sup> Science – CBSE (2011) – <b>81.6%</b><br/>10<sup>th</sup> – CBSE (2009) – <b>81.6%</b>'
     },
   ],
   skills: [
     {
       heading: 'Front End',
-      content: 'ReactJS, NextJS, React Native, HTML, CSS, TailwindCSS, Material UI, Jekyll.'
+      content: 'ReactJS, Redux, NextJS, React Native, HTML, CSS, TailwindCSS, Webpack, Material UI, Jekyll.'
     },
     {
       heading: 'Back End',
@@ -77,43 +76,48 @@ const resumeData = {
     },
     {
       heading: 'Programming Languages',
-      content: 'Object Oriented Design, Python, JavaScript (ES6), TypeScript, C++, Java, PHP, SQL, JSON, XML.'
+      content: 'Object Oriented Design, Python, JavaScript (ES6), TypeScript, C, C++, C#, Java, PHP, SQL, JSON, XML.'
     },
     {
       heading: 'Tools & Platforms',
-      content: 'Git, Docker, Unity3D, Android Studio, Adobe Creative Suite, Figma, Content Management Systems (CMS) like WordPress, Joomla.'
+      content: 'Git, Linux, Docker, Unity3D, Android Studio, Adobe Apps, Figma, Content Management Systems, WordPress, Joomla, Bootstrap, Mac Systems.'
     }
   ],
   projects: [
     {
       title: 'CAPTAIN',
       tech: 'FullStack, Django, PostgreSQL, React, Next, React Native, Python, Tailwind',
-      about: 'An open-source learning app with Django Backend, NextJS front-end for staff, and React Native App for learners. Its an intelligent tutoring system that can be used to teach any subject while adapting the course to the learner. The system is made in such a way that no piece of knowledge needs to repeat.',
-      link: 'https://bhaambhu.com/captain'
+      about: 'An <b>open-source</b> learning app with <b>Django</b> Backend, <b>NextJS</b> front-end for staff, and <b>React Native</b> App for learners. Its an intelligent tutoring system that can be used to teach any subject while adapting the course to the learner. The system is made in such a way that no piece of knowledge needs to repeat.',
+      link: 'https://bhaambhu.com/captain',
+      linkText: 'bhaambhu.com/captain',
     },
     {
       title: 'Responsive Portfolio',
       tech: 'React, Next, TypeScript, Tailwind',
-      about: 'My personal website/portfolio project. It is a Next JS project that utilizes TypeScript, Tailwind CSS and static export. It has responsive design. Feel free to use it and make your own portfolio with it.',
-      link: 'https://bhaambhu.com'
+      about: 'My personal website/portfolio project. It is a <b>Next JS</b> project that utilizes TypeScript, <b>Tailwind CSS</b> and static export. It has <b>responsive design</b>. Feel free to use it and make your own portfolio with it.',
+      link: 'https://bhaambhu.com',
+      linkText: 'bhaambhu.com',
     },
     {
       title: 'SHADES: Combat',
       tech: 'C#, Unity3D, Realtime Multiplayer, Enemy AI, InAppPurchases, Google Play Services',
-      about: 'A top down shooter game I made for the android platform. The game was an instant hit with over 1 million downloads and an average rating of 4.5/5 stars.',
-      link: 'https://bhaambhu.com/shades'
+      about: 'A 3D shooter game for the android platform – 1.5M players, 4.5/5 avg rating from 21K reviews. The biggest learning was <b>real-time concurrency control</b> – managing multiple players that are accessing and manipulating the same resources, in both <b>peer-to-peer</b> (LAN) and <b>client-server</b> (Online Multiplayer) environments.',
+      link: 'https://bhaambhu.com/shades',
+      linkText: 'bhaambhu.com/shades',
     },
     {
       title: 'Unity Ludo Framework',
       tech: 'Unity3D, C#',
-      about: 'An open-source Unity3D project for creating any type of Ludo game. Currently setup as a mobile-based 2D Ludo game with working AI. Can be easily extended to a 3D game or a completely different Ludo game if needed.',
-      link: 'https://bhaambhu.com/unity-ludo'
+      about: 'An <b>open-source Unity3D</b> project for creating any type of Ludo game. Currently setup as a mobile-based 2D Ludo game with <b>working AI</b>. Can be easily extended to a 3D game or a completely different Ludo game if needed.',
+      link: 'https://bhaambhu.com/unity-ludo',
+      linkText: 'bhaambhu.com/unity-ludo',
     },
     {
       title: 'phpWikiCMS',
       tech: 'FullStack, PHP, MySQL',
-      about: 'An open-source framework that helps create a wiki style page management system, supports tree-style relationships and their management and viewing.',
-      link: 'https://bhaambhu.com/phpWikiCMS'
+      about: 'An <b>open-source</b> framework that helps create a <b>wiki style page management system</b>, supports <b>tree-style relationships</b> and their management and viewing.',
+      link: 'https://bhaambhu.com/phpWikiCMS',
+      linkText: 'bhaambhu.com/phpWikiCMS',
     },
   ],
   aboutMe: {
@@ -164,16 +168,16 @@ function ResumePage({ data }: ResumePageProps) {
         {/* Body Section */}
         <div className='flex mt-3'>
           {/* Left Column */}
-          <div className='w-[72%] pr-6'>
+          <div className='w-[68%] pr-6'>
             <SectionHeader title='Solo Projects' />
             {data.projects.map((item, i) => <OneProject key={i} {...item} />)}
-            <SectionHeader className='mt-0' title='Work Experience' />
+            <SectionHeader className='mt-1' title='Work Experience' />
             {data.workExperiences.map((item, i) => <OneWorkExperience key={i} {...item} />)}
             <SectionHeader className='mt-0' title='Research Experience' />
             {data.researchExperiences.map((item, i) => <OneWorkExperience key={i} {...item} />)}
           </div>
           {/* Right Column */}
-          <div className='w-[30%]'>
+          <div className='w-[33%]'>
             <SectionHeader title='About Me' />
             <AboutMeSection {...data.aboutMe} />
             <SectionHeader className='mt-2' title='Skills' />
@@ -231,8 +235,8 @@ function AboutMeSection({ ...props }: AboutInfo) {
 
 function OneProject({ ...props }: ProjectInfo) {
   return (
-    <div className='my-2'>
-      <BaseHeading>{props.title}</BaseHeading>
+    <div className='my-0'>
+      <BaseHeading>{props.title} <InlineLink to={props.link}>{props.linkText}</InlineLink></BaseHeading>
       <BaseSubHeading>{props.tech}</BaseSubHeading>
       <BaseText>{props.about}</BaseText>
     </div>
@@ -241,9 +245,8 @@ function OneProject({ ...props }: ProjectInfo) {
 
 function OneEducation({ ...props }: EducationInfo) {
   return (
-    <div className='my-0'>
-      <BaseHeading>{props.uniName}</BaseHeading>
-      <BaseSubHeading>{props.period}</BaseSubHeading>
+    <div className='my-2'>
+      <BaseMonoHeading>{props.heading}</BaseMonoHeading>
       <BaseText>{props.about}</BaseText>
     </div>
   )
@@ -288,7 +291,15 @@ function SectionHeader({ title = '', className = '' }) {
 
 function BaseHeading({ children }: ComponentProps<'div'>) {
   return (
-    <div className='font-semibold text-lg'>
+    <div className='font-bold text-base mt-1'>
+      {children}
+    </div>
+  )
+}
+
+function BaseMonoHeading({ children }: ComponentProps<'div'>) {
+  return (
+    <div className='font-mono font-bold text-xs my-1'>
       {children}
     </div>
   )
@@ -296,12 +307,20 @@ function BaseHeading({ children }: ComponentProps<'div'>) {
 
 function BaseSubHeading({ children }: ComponentProps<'div'>) {
   return (
-    <div className='font-mono text-xs mb-1'>{children}</div>
+    <div className='font-mono text-[10px] mb-0'>{children}</div>
+  )
+}
+interface InlineLinkProps extends ComponentProps<'span'> {
+  to: string|undefined
+}
+function InlineLink({children, to}: InlineLinkProps){
+  return (
+    <span className='font-mono text-xs text-blue-600'><a href={to} target="_blank" rel="noreferrer">[{children}]</a></span>
   )
 }
 
 function BaseText({ children }: ComponentProps<'div'>) {
-  return (<div className='tracking-wide text-xs text-gray-500 '>{children}</div>)
+  return (<div className='tracking-wide text-xs text-gray-800 prose ' dangerouslySetInnerHTML={{__html:String(children)}} />)
 }
 
 function ArrowPoint() {
@@ -338,6 +357,7 @@ interface ProjectInfo {
   tech: string;
   about: string;
   link?: string;
+  linkText?: string;
 }
 interface WorkInfo {
   jobTitle: string,
@@ -346,8 +366,7 @@ interface WorkInfo {
   keyPoints: string[]
 }
 interface EducationInfo {
-  uniName?: string;
-  period?: string;
+  heading?: string;
   about?: string;
 }
 interface SkillInfo {
