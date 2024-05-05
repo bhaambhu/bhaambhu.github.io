@@ -16,30 +16,10 @@ export interface screenshotProps extends ComponentProps<'img'> {
   src: string;
 }
 
-export interface ButtonProps extends ComponentProps<'button'> {
-  href? : string | null;
-  children?: React.ReactNode;
-  iconExternal?: boolean;
-  iconDownload?: boolean;
-  iconPrint?: boolean;
-  iconGitHub?: boolean;
-  dashed?: boolean;
-  outline?: boolean;
-  disabled?: boolean;
-  newTab?: boolean;
-}
-
 export interface WorkCardProps {
   period?: string;
   jobTitle?: string;
   organization?: string;
-  children?: ReactNode
-}
-
-export interface ProjectCardProps {
-  tags?: string[];
-  title?: string;
-  about?: string;
   children?: ReactNode
 }
 
