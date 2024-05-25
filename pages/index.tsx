@@ -261,6 +261,49 @@ export default function Home() {
         <H1>Work</H1>
 
         <WorkCard
+          jobTitle="Software Engineer"
+          organization="PPFAS AMC"
+          period={"Feb 2023 to Present"}
+        >
+          <div className="tracking-wide text-sm font-mono mt-1 flex flex-col gap-1">
+            <div className="flex gap-2 items-start">
+              <div className="font-mono text-primary-500 font-bold inline-flex">
+                &gt;
+              </div>
+              <div>
+                Spearheaded the transition to TypeScript for existing
+                applications and the development of new ones, significantly
+                improving code stability and reducing the likelihood of errors.
+                Implemented robust algorithms for enhancing application performance and reliability.
+              </div>
+            </div>
+            <div className="flex gap-2 items-start">
+              <div className="font-mono text-primary-500 font-bold inline-flex">
+                &gt;
+              </div>
+              <div>
+                Established comprehensive documentation, guides, and policies
+                within a dedicated wiki for developers, testers, and release
+                managers. Streamlined development processes, saving valuable
+                time and preventing potential issues by providing clear
+                guidelines.
+              </div>
+            </div>
+            <div className="flex gap-2 items-start">
+              <div className="font-mono text-primary-500 font-bold inline-flex">
+                &gt;
+              </div>
+              <div>
+                Built and exercised the Development-Preview-Release system,
+                enabling robust implementation and safe testing of multiple
+                features in parallel. Effectively managed the end-to-end process
+                of app releases, significantly enhancing overall product
+                quality.
+              </div>
+            </div>
+          </div>
+        </WorkCard>
+        <WorkCard
           jobTitle="Senior Research Fellow"
           organization="Chaudhary Devi Lal University"
           period={"October 2018 to October 2022"}
