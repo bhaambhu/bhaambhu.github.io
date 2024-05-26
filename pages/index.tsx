@@ -218,21 +218,22 @@ export default function Home() {
             "Push Notifications",
             "Material Design",
           ]}
-          desktopScreenshots={[
-            "/cskuk/dashboard.png",
-            "/cskuk/publish-event-page.png",
-            "/cskuk/time-table-editor.png",
-          ]}
           mobileScreenshots={[
             "/cskuk/mobile-nav-drawer.png",
             "/cskuk/mobile-timetable-page.png",
             "/cskuk/mobile-syllabus-versions.png",
             "/cskuk/mobile-syllabus-view.png",
+            "/cskuk/mobile-setup-screen.png",
+          ]}
+          desktopScreenshots={[
+            "/cskuk/dashboard.png",
+            "/cskuk/notification-page.png",
+            "/cskuk/time-table-editor.png",
+            "/cskuk/add-syllabus-page.png",
+            "/cskuk/syllabus-page-2.png",
           ]}
           about="A project I made for KUK DCSE. This contained of a php backend for staff and android app for the students. The most interesting part was the time table component."
-        >
-          A project I made for KUK DCSE. This contained of a php backend for staff and android app for the students. The most interesting part was the time table component.
-          </ProjectCard>
+        />
 
         {/* Cheatify Project Tile */}
         <ProjectCard

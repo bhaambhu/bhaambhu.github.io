@@ -62,8 +62,8 @@ module.exports = {
         },
 
         ".scrollbar::-webkit-scrollbar": {
-          width: "20px",
-          height: "20px",
+          width: "18px",
+          height: "18px",
         },
 
         ".scrollbar::-webkit-scrollbar-track": {
@@ -72,14 +72,14 @@ module.exports = {
         },
 
         ".scrollbar::-webkit-scrollbar-thumb": {
-          background: "#f87171",
+          background: "#ef4444",
           "border-radius": "0.45rem",
           border: "4px solid rgba(0, 0, 0, 0)",
           "background-clip": "padding-box",
         },
         
         ".scrollbar::-webkit-scrollbar-thumb:hover": {
-          background: "#ef4444",
+          background: "#f87171",
           "background-clip": "padding-box",
         },
       });

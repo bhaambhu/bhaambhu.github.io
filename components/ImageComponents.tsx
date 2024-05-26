@@ -14,7 +14,7 @@ export function ScreenshotContainer(props: ComponentProps<"div">) {
 export function ScrollableScreenshotsGallery(props: ComponentProps<"div">) {
   return (
     <div className="flex justify-between my-5 w-full relative">
-      <div className="flex overflow-x-auto gap-3 scrollbar w-full pb-1">
+      <div className="flex overflow-x-auto gap-3 scrollbar w-full pb-1.5">
         {props.children}
       </div>
       {/* <div className="border-2 border-red-500 bg-white absolute -right-5 px-2 top-[50%] rounded-md animate-wiggle">
@@ -24,8 +24,8 @@ export function ScrollableScreenshotsGallery(props: ComponentProps<"div">) {
   );
 }
 
-export function ScreenshotGalleryItem({ src }: screenshotProps) {
-  return <img src={src} className="w-[200px] rounded-md " />;
+export function ScreenshotGalleryItem({ src, width="200px", ...otherProps }: screenshotProps) {
+  return <img src={src} className=" rounded-md " width={width}/>;
 }
 
 export function Screenshot({ src }: screenshotProps) {

@@ -45,7 +45,7 @@ export default function ProjectCard(props: ProjectCardProps) {
       {props.desktopScreenshots && (
         <ScrollableScreenshotsGallery>
           {props.desktopScreenshots?.map((screenshot) => (
-            <ScreenshotGalleryItem src={screenshot} key={screenshot} />
+            <ScreenshotGalleryItem src={screenshot} key={screenshot} width="600px" />
           ))}
         </ScrollableScreenshotsGallery>
       )}
