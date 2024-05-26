@@ -64,6 +64,7 @@ module.exports = {
         ".scrollbar::-webkit-scrollbar": {
           width: "18px",
           height: "18px",
+          "-webkit-appearance": "none",
         },
 
         ".scrollbar::-webkit-scrollbar-track": {
@@ -77,7 +78,7 @@ module.exports = {
           border: "4px solid rgba(0, 0, 0, 0)",
           "background-clip": "padding-box",
         },
-        
+
         ".scrollbar::-webkit-scrollbar-thumb:hover": {
           background: "#f87171",
           "background-clip": "padding-box",
