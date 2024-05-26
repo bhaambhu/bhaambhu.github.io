@@ -60,6 +60,28 @@ module.exports = {
           "-ms-overflow-style": "none" /* IE and Edge */,
           "scrollbar-width": "none" /* Firefox */,
         },
+
+        ".scrollbar::-webkit-scrollbar": {
+          width: "18px",
+          height: "18px",
+        },
+
+        ".scrollbar::-webkit-scrollbar-track": {
+          "border-radius": "0.3rem",
+          border: "2px solid #ef4444",
+        },
+
+        ".scrollbar::-webkit-scrollbar-thumb": {
+          background: "#ef4444",
+          "border-radius": "0.45rem",
+          border: "4px solid rgba(0, 0, 0, 0)",
+          "background-clip": "padding-box",
+        },
+        
+        ".scrollbar::-webkit-scrollbar-thumb:hover": {
+          background: "#f87171",
+          "background-clip": "padding-box",
+        },
       });
     }),
   ],

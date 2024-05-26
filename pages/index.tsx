@@ -205,8 +205,7 @@ export default function Home() {
             SOURCE CODE
           </Button>
         </ProjectCard>
-
-        <H1>More Projects</H1>
+        <H1>Obsolete Projects</H1>
         {/* KUK Project Tile */}
         <ProjectCard
           title="KUK&nbsp;Student Notification & Information System"
@@ -219,6 +218,20 @@ export default function Home() {
             "Push Notifications",
             "Material Design",
           ]}
+          mobileScreenshots={[
+            "/cskuk/mobile-nav-drawer.png",
+            "/cskuk/mobile-timetable-page.png",
+            "/cskuk/mobile-syllabus-versions.png",
+            "/cskuk/mobile-syllabus-view.png",
+            "/cskuk/mobile-setup-screen.png",
+          ]}
+          desktopScreenshots={[
+            "/cskuk/dashboard.png",
+            "/cskuk/notification-page.png",
+            "/cskuk/time-table-editor.png",
+            "/cskuk/add-syllabus-page.png",
+            "/cskuk/syllabus-page-2.png",
+          ]}
           about="A project I made for KUK DCSE. This contained of a php backend for staff and android app for the students. The most interesting part was the time table component."
         />
 
@@ -227,7 +240,7 @@ export default function Home() {
           title="Cheatify"
           tags={["Android", "Java", "SQLite", "Google Sheets"]}
           about="This was a beautifully designed Android adaptation of the Cheatbook encyclopedia of video game cheats - made with permission taken from creator of the original cheatbook. Upon installation, my app downloaded a database of video game cheats and guides to the phone for offline viewing and also used google sheets as a free online database - for back in the days when internet was expensive."
-          screenshots={[
+          mobileScreenshots={[
             "/cheatify/1.png",
             "/cheatify/2.png",
             "/cheatify/3.png",
@@ -247,7 +260,14 @@ export default function Home() {
         <ProjectCard
           title="Minimal Clock Widget"
           tags={["Android", "Java"]}
-          about="In the early days of android every provider like HTC, Samsung, etc. had their own different looking user interfaces and clock widget. With this widget I tried to provide users with a simple, minimal and elegant time viewing experience on their homescreens."
+          about="In the early days of android every provider like HTC, Samsung, etc. had their own different looking user interfaces and clock widget. With this widget I tried to provide users with a minimal and elegant time viewing experience on their homescreens."
+          mobileScreenshots={[
+            "/clockwidget/unnamed.webp",
+            "/clockwidget/unnamed (3).webp",
+            "/clockwidget/unnamed (2).webp",
+            "/clockwidget/unnamed (1).webp",
+            "/clockwidget/unnamed (4).webp",
+          ]}
         />
         {/* Hummer Project Tile */}
         <ProjectCard
@@ -260,6 +280,50 @@ export default function Home() {
       <Section id="work">
         <H1>Work</H1>
 
+        <WorkCard
+          jobTitle="Software Engineer"
+          organization="PPFAS AMC"
+          period={"Feb 2023 to Present"}
+        >
+          <div className="tracking-wide text-sm font-mono mt-1 flex flex-col gap-1">
+            <div className="flex gap-2 items-start">
+              <div className="font-mono text-primary-500 font-bold inline-flex">
+                &gt;
+              </div>
+              <div>
+                Spearheaded the transition to TypeScript for existing
+                applications and the development of new ones, significantly
+                improving code stability and reducing the likelihood of errors.
+                Implemented robust algorithms for enhancing application
+                performance and reliability.
+              </div>
+            </div>
+            <div className="flex gap-2 items-start">
+              <div className="font-mono text-primary-500 font-bold inline-flex">
+                &gt;
+              </div>
+              <div>
+                Established comprehensive documentation, guides, and policies
+                within a dedicated wiki for developers, testers, and release
+                managers. Streamlined development processes, saving valuable
+                time and preventing potential issues by providing clear
+                guidelines.
+              </div>
+            </div>
+            <div className="flex gap-2 items-start">
+              <div className="font-mono text-primary-500 font-bold inline-flex">
+                &gt;
+              </div>
+              <div>
+                Built and exercised the Development-Preview-Release system,
+                enabling robust implementation and safe testing of multiple
+                features in parallel. Effectively managed the end-to-end process
+                of app releases, significantly enhancing overall product
+                quality.
+              </div>
+            </div>
+          </div>
+        </WorkCard>
         <WorkCard
           jobTitle="Senior Research Fellow"
           organization="Chaudhary Devi Lal University"
