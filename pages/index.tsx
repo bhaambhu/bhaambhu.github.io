@@ -205,8 +205,7 @@ export default function Home() {
             SOURCE CODE
           </Button>
         </ProjectCard>
-
-        <H1>More Projects</H1>
+        <H1>Obsolete Projects</H1>
         {/* KUK Project Tile */}
         <ProjectCard
           title="KUK&nbsp;Student Notification & Information System"
@@ -219,15 +218,28 @@ export default function Home() {
             "Push Notifications",
             "Material Design",
           ]}
+          desktopScreenshots={[
+            "/cskuk/dashboard.png",
+            "/cskuk/publish-event-page.png",
+            "/cskuk/time-table-editor.png",
+          ]}
+          mobileScreenshots={[
+            "/cskuk/mobile-nav-drawer.png",
+            "/cskuk/mobile-timetable-page.png",
+            "/cskuk/mobile-syllabus-versions.png",
+            "/cskuk/mobile-syllabus-view.png",
+          ]}
           about="A project I made for KUK DCSE. This contained of a php backend for staff and android app for the students. The most interesting part was the time table component."
-        />
+        >
+          A project I made for KUK DCSE. This contained of a php backend for staff and android app for the students. The most interesting part was the time table component.
+          </ProjectCard>
 
         {/* Cheatify Project Tile */}
         <ProjectCard
           title="Cheatify"
           tags={["Android", "Java", "SQLite", "Google Sheets"]}
           about="This was a beautifully designed Android adaptation of the Cheatbook encyclopedia of video game cheats - made with permission taken from creator of the original cheatbook. Upon installation, my app downloaded a database of video game cheats and guides to the phone for offline viewing and also used google sheets as a free online database - for back in the days when internet was expensive."
-          screenshots={[
+          mobileScreenshots={[
             "/cheatify/1.png",
             "/cheatify/2.png",
             "/cheatify/3.png",
@@ -247,7 +259,14 @@ export default function Home() {
         <ProjectCard
           title="Minimal Clock Widget"
           tags={["Android", "Java"]}
-          about="In the early days of android every provider like HTC, Samsung, etc. had their own different looking user interfaces and clock widget. With this widget I tried to provide users with a simple, minimal and elegant time viewing experience on their homescreens."
+          about="In the early days of android every provider like HTC, Samsung, etc. had their own different looking user interfaces and clock widget. With this widget I tried to provide users with a minimal and elegant time viewing experience on their homescreens."
+          mobileScreenshots={[
+            "/clockwidget/unnamed.webp",
+            "/clockwidget/unnamed (3).webp",
+            "/clockwidget/unnamed (2).webp",
+            "/clockwidget/unnamed (1).webp",
+            "/clockwidget/unnamed (4).webp",
+          ]}
         />
         {/* Hummer Project Tile */}
         <ProjectCard
@@ -274,7 +293,8 @@ export default function Home() {
                 Spearheaded the transition to TypeScript for existing
                 applications and the development of new ones, significantly
                 improving code stability and reducing the likelihood of errors.
-                Implemented robust algorithms for enhancing application performance and reliability.
+                Implemented robust algorithms for enhancing application
+                performance and reliability.
               </div>
             </div>
             <div className="flex gap-2 items-start">

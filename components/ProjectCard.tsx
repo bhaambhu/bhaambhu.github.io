@@ -6,7 +6,8 @@ interface ProjectCardProps {
   title?: string;
   about?: string;
   children?: ReactNode;
-  screenshots?: string[];
+  mobileScreenshots?: string[];
+  desktopScreenshots?: string[];
 }
 
 export default function ProjectCard(props: ProjectCardProps) {
@@ -30,9 +31,9 @@ export default function ProjectCard(props: ProjectCardProps) {
       <div className="flex gap-2 my-2 text-sm whitespace-nowrap flex-wrap">
         {tags}
       </div>
-      {props.screenshots && (
+      {props.mobileScreenshots && (
         <ScrollableScreenshotsGallery>
-          {props.screenshots?.map((screenshot) => (
+          {props.mobileScreenshots?.map((screenshot) => (
             <ScreenshotGalleryItem src={screenshot} key={screenshot} />
           ))}
         </ScrollableScreenshotsGallery>
@@ -41,8 +42,15 @@ export default function ProjectCard(props: ProjectCardProps) {
       <p className="text-slate-700 text-sm tracking-wider leading-relaxed xsm:text-base">
         {props.about}
       </p>
+      {props.desktopScreenshots && (
+        <ScrollableScreenshotsGallery>
+          {props.desktopScreenshots?.map((screenshot) => (
+            <ScreenshotGalleryItem src={screenshot} key={screenshot} />
+          ))}
+        </ScrollableScreenshotsGallery>
+      )}
       {props.children && (
-        <div className="flex gap-2 my-2">{props.children}</div>
+        <div className="flex gap-2 my-2 text-slate-700 text-sm tracking-wider leading-relaxed xsm:text-base">{props.children}</div>
       )}
     </article>
   );
