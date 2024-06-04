@@ -8,7 +8,7 @@ export default function PhpWikiCMS() {
     <Page
       title="ScaleVote"
       seoKeywords={["mysql", "php", "wiki", "project", "fullstack"]}
-      description="A framework that allows you to easily create a wiki-style page management system, supports tree-style relationships, adding questions to pages and tags to questions."
+      description="A minimal election conducting system I put up for learning Spring Boot and experimenting with scalability and real-time processing capabilities of Apache Kafka."
       links={["overview", "database"]}
     >
       <Section>
