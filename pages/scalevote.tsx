@@ -14,7 +14,7 @@ export default function PhpWikiCMS() {
       <Section>
         <H1>ScaleVote</H1>
         <P>
-          It's just a{" "}
+          It&apos;s just a{" "}
           <b>
             <EM>non-serious</EM>
           </b>{" "}
@@ -23,14 +23,14 @@ export default function PhpWikiCMS() {
           General Elections.
         </P>
         <P>
-          Lately, I've been working with dynamically typed languages like{" "}
+          Lately, I&apos;ve been working with dynamically typed languages like{" "}
           <b>Python</b> (Django) and <b>JavaScript</b> (Node). While dynamic
           typing is quick and forgiving for solo projects, it can lead to
           unpredictable issues in larger teams. This led me to technologies like{" "}
           <b>TypeScript</b>, which are amazing at mitigating many of these
           issues and we see it bringing some order in chaos everyday. This got
           me wanting to revisit my childhood roots coding in Java, and to
-          explore frameworks utilizing Java's strong typing and robust
+          explore frameworks utilizing Java&apos;s strong typing and robust
           environment. This project is an exploration of building a robust and
           scalable system with Spring Boot and Kafka which is capable of
           handling high-throughput data efficiently.
@@ -59,7 +59,7 @@ export default function PhpWikiCMS() {
             </li>
             <li>
               <b>Kafka Topics:</b> Each political party has its own topic. Votes
-              are sent to the relevant topic based on the selected candidate's
+              are sent to the relevant topic based on the selected candidate&apos;s
               party.
             </li>
             <li>
@@ -79,7 +79,7 @@ export default function PhpWikiCMS() {
       <Section id="database">
         <H1>Database</H1>
         <P>
-          At this draft stage I'm only storing very primitive stuff you can see
+          At this draft stage I&apos;m only storing very primitive stuff you can see
           in this ER diagram:
         </P>
         <div className="flex justify-center">
@@ -92,7 +92,7 @@ export default function PhpWikiCMS() {
           which vote), and the Candidate entity inherit the Voter entity (the
           candidate is a voter too), the PollingBooth entities be having more
           attributes like number of voters in the area, be linked with some kind
-          of clustering entity, and so on... But, we're not being realistically
+          of clustering entity, and so on... But, we&apos;re not being realistically
           accurate here for now!!!
         </P>
         <H2>To Be Continued</H2>
