@@ -48,28 +48,28 @@ export default function Home() {
             <P>Here are a few technologies I&apos;ve worked with recently:</P>
             <ul className="text-slate-700 text-xs text-justify font-mono grid grid-cols-2 gap-y-2 mt-4 mb-10 gap-x-2">
               <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
-                JavaScript
+                Python (Django)
               </li>
               <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
-                React
+                Java (Spring Boot)
               </li>
               <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
-                Next JS
+                TypeScript (NextJS, RemixJS)
               </li>
               <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
-                Django
+                React Native
               </li>
               <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
-                Unity 3D
+                Unity 3D, C#
               </li>
               <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
-                Mongo DB
+                <i>php (Laravel)</i>
               </li>
               <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
-                <i>php</i>
+                PostgreSQL
               </li>
               <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
-                SQL
+                Kafka
               </li>
             </ul>
           </div>
