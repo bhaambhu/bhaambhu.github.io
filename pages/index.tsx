@@ -132,6 +132,34 @@ export default function Home() {
           </Button>
         </ProjectCard>
 
+        {/* SHADES Project Tile */}
+        <ProjectCard
+          title="SHADES: Combat"
+          tags={[
+            "UNITY 3D",
+            "C#",
+            "Enemy AI",
+            "Realtime Multiplayer",
+            "In-App-Purchases",
+            "Google Play Services",
+          ]}
+          about="A 3D shooter game for the android platform – 1.5M players, 4.5/5 avg rating from 21K reviews. The biggest learning was real-time concurrency control – managing multiple players that are accessing and manipulating the same resources, in both peer-to-peer (LAN) and client-server (Online Multiplayer) environments."
+        >
+          <Button href="/shades">MORE INFO</Button>
+          <Button outline href="/shades/shades.apk" iconDownload>
+            APK
+          </Button>
+        </ProjectCard>
+
+        {/* Portfolio Project Tile */}
+        <ProjectCard
+          title="ScaleVote"
+          tags={["Java Spring Boot", "Kafka", "PostgreSQL"]}
+          about="A minimal election conducting system I put up for learning Spring Boot and experimenting with scalability and real-time processing capabilities of Apache Kafka."
+        >
+          <Button href="/scalevote">MORE INFO</Button>
+        </ProjectCard>
+
         {/* Portfolio Project Tile */}
         <ProjectCard
           title="This Portfolio"
@@ -150,25 +178,6 @@ export default function Home() {
             iconGitHub
           >
             SOURCE CODE
-          </Button>
-        </ProjectCard>
-
-        {/* SHADES Project Tile */}
-        <ProjectCard
-          title="SHADES: Combat"
-          tags={[
-            "UNITY 3D",
-            "C#",
-            "Enemy AI",
-            "Realtime Multiplayer",
-            "In-App-Purchases",
-            "Google Play Services",
-          ]}
-          about="A 3D shooter game for the android platform – 1.5M players, 4.5/5 avg rating from 21K reviews. The biggest learning was real-time concurrency control – managing multiple players that are accessing and manipulating the same resources, in both peer-to-peer (LAN) and client-server (Online Multiplayer) environments."
-        >
-          <Button href="/shades">MORE INFO</Button>
-          <Button outline href="/shades/shades.apk" iconDownload>
-            APK
           </Button>
         </ProjectCard>
 

@@ -21,6 +21,12 @@ module.exports = {
           },
         ],
         dynamicHeader: ["clamp(20px, 5vw, 26px)"],
+        "2xs": [
+          "0.55rem",
+          {
+            lineHeight: "0.75rem",
+          },
+        ],
       },
       keyframes: {
         wiggle: {
