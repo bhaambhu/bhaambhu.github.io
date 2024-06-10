@@ -85,7 +85,7 @@ const resumeData = {
     {
       heading: "Back End",
       content:
-        "Python, Java, php, NodeJS (NextJS, RemixJS, Express), Django, Spring Boot, Kafka, REST APIs, PostgreSQL, MongoDB, Supabase, Prisma, Heroku, Vercel, Railway, Jekyll, Expo, AWS.",
+        "Java, Python, php, NodeJS (NextJS, RemixJS, Express), Django, Spring Boot, Kafka, REST APIs, PostgreSQL, MongoDB, Hibernate, Supabase, Prisma, Heroku, Vercel, Railway, Jekyll, Expo, AWS.",
     },
     {
       heading: "Front End",
@@ -99,6 +99,14 @@ const resumeData = {
     },
   ],
   projects: [
+    {
+      title: "ScaleVote",
+      tech: "Java Spring Boot, Kafka, PostgreSQL, Hibernate",
+      about:
+        "An election conducting system inspired by the recent Indian General Elections put up for experimenting with scalability and real-time processing capabilities of <b>Spring Boot</b> & <b>Kafka</b>.",
+      link: "https://bhaambhu.com/scalevote",
+      linkText: "bhaambhu.com/scalevote",
+    },
     {
       title: "CAPTAIN",
       tech: "Django (python), PostgreSQL, NextJS, React Native",
@@ -114,14 +122,6 @@ const resumeData = {
         "A 3D top-down shooter game for the android platform – <b>1.5 million players</b>, <b>4.5-star rating</b> from <b>21K reviews</b>. The biggest learning was <b>real-time concurrency control</b> – managing multiple players that are accessing and manipulating the same resources, in both <b>peer-to-peer</b> (LAN) and <b>client-server</b> (Online Multiplayer) environments.",
       link: "https://bhaambhu.com/shades",
       linkText: "bhaambhu.com/shades",
-    },
-    {
-      title: "ScaleVote",
-      tech: "Java Spring Boot, Kafka, PostgreSQL",
-      about:
-        "A minimal election conducting system I put up for learning <b>Spring Boot</b> and experimenting with scalability and real-time processing capabilities of <b>Apache Kafka</b>.",
-      link: "https://bhaambhu.com/scalevote",
-      linkText: "bhaambhu.com/scalevote",
     },
     {
       title: "phpWikiCMS",
@@ -402,7 +402,9 @@ function InlineLink({ children, to }: InlineLinkProps) {
 function BaseText({ children, className }: ComponentProps<"div">) {
   return (
     <div
-      className={twMerge(`tracking-wide text-xs text-gray-800 prose ` + className)}
+      className={twMerge(
+        `tracking-wide text-xs text-gray-800 prose ` + className
+      )}
       dangerouslySetInnerHTML={{ __html: String(children) }}
     />
   );
