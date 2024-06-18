@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function cal() {
+export default function Cal() {
   const [currentMonth, setCurrentMonth] = useState(
     new Date(new Date().getFullYear(), new Date().getMonth(), 1)
   );
