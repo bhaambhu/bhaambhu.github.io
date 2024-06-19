@@ -115,9 +115,9 @@ const Calendar2 = ({
   const calendarDays = generateCalendarDays(calendarDate);
 
   return (
-    <div className="flex items-center justify-center py-8 px-4">
+    <div className="flex items-center justify-center py-8 px-4 ">
       <div className="max-w-sm w-full shadow-lg">
-        <div className="md:p-8 p-5 dark:bg-gray-800 bg-white rounded-t">
+        <div className="md:p-8 p-5 dark:bg-gray-800 bg-white rounded min-w-[430px] flex-shrink" >
           <div className="px-4 flex items-center justify-between">
             <span
               tabIndex={0}
