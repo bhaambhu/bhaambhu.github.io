@@ -17,17 +17,17 @@ export default function Cal() {
   );
 }
 
-const isSpecialDate = (date: Date) => {
+// Sum digits of day, month, and year
+const sumDigits = (num: Number) =>
+  String(num)
+    .split("")
+    .reduce((sum, digit) => sum + parseInt(digit, 10), 0);
+
+const isSpecialDate = (date: Date, targetSum: Number) => {
   // Format date to dd-mm-yyyy
   const day = date.getDate();
   const month = date.getMonth() + 1; // Months are 0-based in JavaScript
   const year = date.getFullYear();
-
-  // Sum digits of day, month, and year
-  const sumDigits = (num: Number) =>
-    String(num)
-      .split("")
-      .reduce((sum, digit) => sum + parseInt(digit, 10), 0);
 
   let totalSum = sumDigits(day) + sumDigits(month) + sumDigits(year);
 
@@ -36,7 +36,7 @@ const isSpecialDate = (date: Date) => {
     totalSum = sumDigits(totalSum);
   }
 
-  return totalSum === 4;
+  return totalSum === targetSum;
 };
 
 // Helper function to get the name of the month and the year
@@ -117,7 +117,7 @@ const Calendar2 = ({
   return (
     <div className="flex items-center justify-center py-8 px-4 ">
       <div className="max-w-sm w-full shadow-lg">
-        <div className="md:p-8 p-5 dark:bg-gray-800 bg-white rounded min-w-[430px] flex-shrink" >
+        <div className="md:p-8 p-5 dark:bg-gray-800 bg-white rounded min-w-[430px] flex-shrink">
           <div className="px-4 flex items-center justify-between">
             <span
               tabIndex={0}
@@ -202,15 +202,21 @@ const Calendar2 = ({
                             calendarDate.getMonth(),
                             day
                           );
-                          const isSpecial = day && isSpecialDate(currentDate);
+                          const isDanger = day && isSpecialDate(currentDate, 4);
+                          const isLucky = day && isSpecialDate(currentDate, 8);
+                          const isGood = day && isSpecialDate(currentDate, 3);
                           return (
                             <td key={dayIndex} className="pt-6">
                               <div className="px-2 py-2 cursor-pointer flex w-full justify-center">
                                 {day ? (
                                   <p
                                     className={`text-base font-medium ${
-                                      isSpecial
+                                      isDanger
+                                        ? "bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center"
+                                        : isLucky
                                         ? "bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center"
+                                        : isGood
+                                        ? "bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center"
                                         : "text-gray-500 dark:text-gray-100"
                                     }`}
                                   >
