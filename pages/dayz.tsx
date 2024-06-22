@@ -119,7 +119,7 @@ const Calendar = ({
   const todayIsLucky = isSpecialDate(today, 8);
   const todayIsGood = isSpecialDate(today, 3);
   return (
-    <div className="flex items-center justify-center py-8 px-4 min-w-[430px] flex-col gap-2 cursor-default" suppressHydrationWarning>
+    <div className="flex items-center justify-center py-8 px-4 flex-col gap-2 cursor-default" suppressHydrationWarning>
       <div className="flex justify-between w-full">
         <div className="flex items-center gap-2 font-mono shadow-lg rounded px-2 py-1.5 dark:bg-gray-800 bg-white dark:text-gray-100 text-gray-800">
           {today.toLocaleDateString()}
@@ -138,8 +138,8 @@ const Calendar = ({
           day.
         </div>
       </div>
-      <div className="max-w-sm w-full shadow-lg min-w-[430px]">
-        <div className="md:p-8 p-5 dark:bg-gray-800 bg-white rounded min-w-[430px] flex-shrink">
+      <div className="max-w-sm w-full shadow-lg ">
+        <div className="p-5 dark:bg-gray-800 bg-white rounded  flex-shrink">
           <div className="px-4 flex items-center justify-between">
             <span
               tabIndex={0}
