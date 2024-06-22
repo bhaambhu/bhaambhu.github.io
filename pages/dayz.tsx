@@ -119,8 +119,9 @@ const Calendar = ({
   const todayIsLucky = isSpecialDate(today, 8);
   const todayIsGood = isSpecialDate(today, 3);
   return (
-    <div className="flex items-center justify-center py-8 px-4 flex-col gap-2 cursor-default" suppressHydrationWarning>
-      <div className="flex justify-between w-full">
+    <div className="flex items-center justify-center flex-col gap-2 cursor-default ">
+      {/* Header - Today's Date and Info */}
+      <div className="flex justify-between w-full text-xs sm:text-base">
         <div className="flex items-center gap-2 font-mono shadow-lg rounded px-2 py-1.5 dark:bg-gray-800 bg-white dark:text-gray-100 text-gray-800">
           {today.toLocaleDateString()}
         </div>
@@ -138,12 +139,13 @@ const Calendar = ({
           day.
         </div>
       </div>
-      <div className="max-w-sm w-full shadow-lg ">
-        <div className="p-5 dark:bg-gray-800 bg-white rounded  flex-shrink">
+      {/* Calendar */}
+      <div className="max-w-sm w-full shadow-lg text-xs">
+        <div className="sm:px-5 px-2 py-5 dark:bg-gray-800 bg-white rounded flex-shrink">
           <div className="px-4 flex items-center justify-between">
             <span
               tabIndex={0}
-              className="focus:outline-none text-base font-bold dark:text-gray-100 text-gray-800"
+              className="focus:outline-none sm:text-base font-bold dark:text-gray-100 text-gray-800"
             >
               {monthYear}
             </span>
@@ -173,7 +175,7 @@ const Calendar = ({
               </button>
               <button
                 aria-label="calendar forward"
-                className="focus:text-gray-400 hover:text-gray-400 ml-3 text-gray-800 dark:text-gray-100"
+                className="focus:text-gray-400 hover:text-gray-400 sm:ml-3 text-gray-800 dark:text-gray-100"
                 onClick={() => {
                   setCurrentMonth(addMonth(currentMonth));
                 }}
@@ -203,7 +205,7 @@ const Calendar = ({
                   {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
                     <th key={day}>
                       <div className="w-full flex justify-center">
-                        <p className="text-base font-medium text-center text-gray-800 dark:text-gray-100">
+                        <p className="sm:text-base font-medium text-center text-gray-800 dark:text-gray-100">
                           {day}
                         </p>
                       </div>
@@ -229,10 +231,10 @@ const Calendar = ({
                           const isGood = day && isSpecialDate(currentDate, 3);
                           return (
                             <td key={dayIndex} className="pt-6">
-                              <div className="px-2 py-2 flex w-full justify-center">
+                              <div className="sm:px-2 px-1 py-2 flex w-full justify-center">
                                 {day ? (
                                   <p
-                                    className={`text-base font-medium ${
+                                    className={`sm:text-base font-medium ${
                                       isDanger
                                         ? "bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center"
                                         : isLucky
@@ -257,21 +259,22 @@ const Calendar = ({
           </div>
         </div>
       </div>
-      <div className="flex justify-between w-full uppercase">
+      {/* Footer - Legend */}
+      <div className="flex justify-between w-full uppercase text-xs sm:text-xs">
         <div className="flex items-center gap-2 font-mono shadow-lg rounded px-2 py-1.5 dark:bg-gray-800 bg-white dark:text-gray-100 text-gray-800">
-          <div className="bg-red-500 text-white text-xs rounded w-5 h-5 flex items-center justify-center">
+          <div className="bg-red-500 text-white text-2xs sm:text-xs rounded w-3 h-3 sm:w-5 sm:h-5 flex items-center justify-center">
             4
           </div>
           Danger
         </div>
         <div className="flex items-center gap-2 font-mono shadow-lg rounded px-2 py-1.5 dark:bg-gray-800 bg-white dark:text-gray-100 text-gray-800">
-          <div className="bg-green-500 text-white text-xs rounded w-5 h-5 flex items-center justify-center">
+          <div className="bg-green-500 text-white text-2xs sm:text-xs rounded w-3 h-3 sm:w-5 sm:h-5 flex items-center justify-center">
             8
           </div>
           Lucky
         </div>
         <div className="flex items-center gap-2 font-mono shadow-lg rounded px-2 py-1.5 dark:bg-gray-800 bg-white dark:text-gray-100 text-gray-800">
-          <div className="bg-blue-500 text-white text-xs rounded w-5 h-5 flex items-center justify-center">
+          <div className="bg-blue-500 text-white text-2xs sm:text-xs rounded w-3 h-3 sm:w-5 sm:h-5 flex items-center justify-center">
             3
           </div>
           Good
