@@ -119,12 +119,12 @@ const Calendar = ({
   const todayIsLucky = isSpecialDate(today, 8);
   const todayIsGood = isSpecialDate(today, 3);
   return (
-    <div className="flex items-center justify-center py-8 px-4 min-w-[430px] flex-col gap-2 cursor-default">
+    <div className="flex items-center justify-center py-8 px-4 min-w-[430px] flex-col gap-2 cursor-default" suppressHydrationWarning>
       <div className="flex justify-between w-full">
-        <div className="flex items-center gap-2 font-mono shadow-lg rounded px-2 py-1.5 dark:bg-gray-800 bg-white">
+        <div className="flex items-center gap-2 font-mono shadow-lg rounded px-2 py-1.5 dark:bg-gray-800 bg-white dark:text-gray-100 text-gray-800">
           {today.toLocaleDateString()}
         </div>
-        <div className="flex items-center gap-2 font-mono shadow-lg rounded px-2 py-1.5 dark:bg-gray-800 bg-white italic">
+        <div className="flex items-center gap-2 font-mono shadow-lg rounded px-2 py-1.5 dark:bg-gray-800 bg-white italic dark:text-gray-100 text-gray-800">
           Just another
           {todayIsDanger ? (
             <span className="text-red-500">danger</span>
@@ -258,19 +258,19 @@ const Calendar = ({
         </div>
       </div>
       <div className="flex justify-between w-full uppercase">
-        <div className="flex items-center gap-2 font-mono shadow-lg rounded px-2 py-1.5 dark:bg-gray-800 bg-white">
+        <div className="flex items-center gap-2 font-mono shadow-lg rounded px-2 py-1.5 dark:bg-gray-800 bg-white dark:text-gray-100 text-gray-800">
           <div className="bg-red-500 text-white text-xs rounded w-5 h-5 flex items-center justify-center">
             4
           </div>
           Danger
         </div>
-        <div className="flex items-center gap-2 font-mono shadow-lg rounded px-2 py-1.5 dark:bg-gray-800 bg-white">
+        <div className="flex items-center gap-2 font-mono shadow-lg rounded px-2 py-1.5 dark:bg-gray-800 bg-white dark:text-gray-100 text-gray-800">
           <div className="bg-green-500 text-white text-xs rounded w-5 h-5 flex items-center justify-center">
             8
           </div>
           Lucky
         </div>
-        <div className="flex items-center gap-2 font-mono shadow-lg rounded px-2 py-1.5 dark:bg-gray-800 bg-white">
+        <div className="flex items-center gap-2 font-mono shadow-lg rounded px-2 py-1.5 dark:bg-gray-800 bg-white dark:text-gray-100 text-gray-800">
           <div className="bg-blue-500 text-white text-xs rounded w-5 h-5 flex items-center justify-center">
             3
           </div>
