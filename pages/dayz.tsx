@@ -6,7 +6,7 @@ export default function Dayz() {
   );
   return (
     <div className=" h-full min-h-full absolute w-full flex justify-center dark:bg-gray-400">
-      <div className=" w-full flex mt-28 items-center flex-col">
+      <div className=" w-full flex mt-6 sm:mt-28 items-center flex-col">
         <Calendar
           currentMonth={currentMonth}
           setCurrentMonth={setCurrentMonth}
@@ -230,7 +230,7 @@ const Calendar = ({
                           const isLucky = day && isSpecialDate(currentDate, 8);
                           const isGood = day && isSpecialDate(currentDate, 3);
                           return (
-                            <td key={dayIndex} className="pt-6">
+                            <td key={dayIndex} className="sm:pt-6">
                               <div className="sm:px-2 px-1 py-2 flex w-full justify-center">
                                 {day ? (
                                   <p
