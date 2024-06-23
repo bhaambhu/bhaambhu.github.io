@@ -229,6 +229,10 @@ const Calendar = ({
                           const isDanger = day && isSpecialDate(currentDate, 4);
                           const isLucky = day && isSpecialDate(currentDate, 8);
                           const isGood = day && isSpecialDate(currentDate, 3);
+                          const isToday =
+                            day &&
+                            currentDate.toDateString() ==
+                              new Date().toDateString();
                           return (
                             <td key={dayIndex} className="sm:pt-6">
                               <div className="sm:px-2 px-1 py-2 flex w-full justify-center">
@@ -242,6 +246,9 @@ const Calendar = ({
                                         : isGood
                                         ? "bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center"
                                         : "text-gray-500 dark:text-gray-100"
+                                    } ${
+                                      isToday &&
+                                      "border-2 border-yellow-600 text-yellow-600 dark:border-yellow-300 dark:text-yellow-300 rounded-full w-8 h-8 items-center justify-center flex"
                                     }`}
                                   >
                                     {day}
