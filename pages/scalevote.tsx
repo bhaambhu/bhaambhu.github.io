@@ -3,7 +3,7 @@ import { HorizontalScreenshot } from "../components/ImageComponents";
 import Page from "../components/Page";
 import Section from "../components/Section";
 
-export default function PhpWikiCMS() {
+export default function ScaleVote() {
   return (
     <Page
       title="ScaleVote"

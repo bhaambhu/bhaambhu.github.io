@@ -7,15 +7,6 @@ const nextConfig = {
     path: "",
     // unoptimized: true,
   },
-  async redirects() {
-    return [
-      {
-        source: "/ballotize",
-        destination: "/scalevote",
-        permanent: true,
-      },
-    ];
-  },
 };
 
 module.exports = nextConfig;
