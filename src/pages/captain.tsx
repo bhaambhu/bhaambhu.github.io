@@ -1,9 +1,9 @@
 import React from 'react'
-import { Button } from '../components/Buttons'
-import { HorizontalScreenshot } from '../components/ImageComponents'
-import Page from '../components/Page'
-import Section from '../components/Section'
-import { EM, H1, H2, SLink, P, Quote } from '../components/TextComponents'
+import { Button } from '../../components/Buttons'
+import { HorizontalScreenshot } from '../../components/ImageComponents'
+import Page from '../../components/Page'
+import Section from '../../components/Section'
+import { EM, H1, H2, SLink, P, Quote } from '../../components/TextComponents'
 
 export default function Captain() {
   return (
