@@ -36,7 +36,7 @@ const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
                     }}>{props.title && <div className='font-mono font-semibold text-2xl tracking-wider mr-3 -ml-2 text-red-500'>
                         &lt;
                     </div>}
-                        <Image alt='Bhaambhu Logo' width='32px' height='32px' src={'../favicon.ico'} />
+                        <img alt='Bhaambhu Logo' width={32} height={32} src='/favicon.ico' />
                     </button>
                     {props.title && <button onClick={() => {
                         setShowSidebar(false);
