@@ -10,12 +10,14 @@
     "static": "next build && next export -o docs && touch ./docs/.nojekyll && echo 'bhaambhu.com' > ./docs/CNAME"
   },
   "dependencies": {
+    "@react-three/fiber": "^8.17.7",
     "jspdf": "^2.5.1",
     "next": "^14.2.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^4.4.0",
-    "tailwind-merge": "^1.8.1"
+    "tailwind-merge": "^1.8.1",
+    "three": "^0.168.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",

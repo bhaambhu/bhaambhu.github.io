@@ -1,7 +1,7 @@
-import { H1, H2, P } from '../../components/TextComponents'
-import { HorizontalScreenshot } from '../../components/ImageComponents'
-import Page from '../../components/Page'
-import Section from '../../components/Section'
+import { H1, H2, P } from '../components/TextComponents'
+import { HorizontalScreenshot } from '../components/ImageComponents'
+import Page from '../components/Page'
+import Section from '../components/Section'
 
 export default function PhpWikiCMS() {
   return (

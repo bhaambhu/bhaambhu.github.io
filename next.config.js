@@ -7,6 +7,7 @@ const nextConfig = {
     path: "",
     // unoptimized: true,
   },
+  transpilePackages: ["three"],
 };
 
 module.exports = nextConfig;
