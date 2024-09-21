@@ -24,11 +24,11 @@ export default function ThreeTest() {
         style={{ width: "100%", height: "100%" }}
         ref={canvasRef}
       >
-        <MyImage ref={meshRef} />
-        <ambientLight intensity={0.8} />
+        <SanjayClose ref={meshRef} />
+        <ambientLight intensity={0.7} />
         <pointLight
-          position={[mousePosition.x, -mousePosition.y, 10]}
-          decay={0.1}
+          position={[mousePosition.x, -mousePosition.y, 0]}
+          decay={0}
           // color={"blue"}
           // distance={100}
           ref={pointLightRef}
@@ -46,11 +46,35 @@ export default function ThreeTest() {
   );
 }
 
-function MyImage(props: ThreeElements["mesh"]) {
+function SanjayClose(props: ThreeElements["mesh"]) {
   const [colorMap, displacementMap, normalMap] = useLoader(TextureLoader, [
     "/close.jpg",
     "/close_Depth.jpg",
-    "/close_Normal.jpg",
+    "/close_Normal_2.jpg",
+  ]);
+  // const rotationSpeed = 1;
+  // useFrame((state, delta) => {
+  //   meshRef.current.rotation.y += delta * rotationSpeed;
+  // });
+  return (
+    <mesh {...props}>
+      {/* <boxGeometry args={[1, 1, 1]} /> */}
+      <planeGeometry args={[3, 3, 100, 100]} />
+      <meshStandardMaterial
+        map={colorMap}
+        normalMap={normalMap}
+        normalScale={new THREE.Vector2(0.5, 0.5)}
+        displacementMap={displacementMap}
+        displacementScale={0.1}
+      />
+    </mesh>
+  );
+}
+function SanjayFar(props: ThreeElements["mesh"]) {
+  const [colorMap, displacementMap, normalMap] = useLoader(TextureLoader, [
+    "/relight/sanjay_far.jpg",
+    "/relight/sanjay_far_Depth.jpg",
+    "/relight/sanjay_far_Normal.jpg",
   ]);
   // const rotationSpeed = 1;
   // useFrame((state, delta) => {
