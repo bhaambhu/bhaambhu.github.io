@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@react-three/fiber": "^8.17.7",
+    "@react-three/flex": "^1.0.1",
     "jspdf": "^2.5.1",
+    "leva": "^0.9.35",
     "next": "^14.2.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -23,6 +25,7 @@
     "@tailwindcss/typography": "^0.5.9",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.26",
+    "@types/three": "^0.168.0",
     "autoprefixer": "^10.4.8",
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.13",
