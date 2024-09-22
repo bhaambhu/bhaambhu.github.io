@@ -34,9 +34,9 @@ export default function ThreeTest() {
           ref={pointLightRef}
           power={10}
         />
-        {isReady && (
+        {/* {isReady && (
           <pointLightHelper args={[pointLightRef.current, 2, 0xff0000]} />
-        )}
+        )} */}
       </Canvas>
       {/* For debugging mouse position */}
       {/* <div className="absolute top-0 text-white text-xs">
