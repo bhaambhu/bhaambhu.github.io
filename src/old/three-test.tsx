@@ -2,7 +2,7 @@ import { Canvas, ThreeElements, useLoader } from "@react-three/fiber";
 import { forwardRef, Ref, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import useMousePosition from "../utils/useMousePosition";
-import { TextureLoader } from "three/src/loaders/TextureLoader";
+// import { TextureLoader } from "three/src/loaders/TextureLoader";
 
 export default function ThreeTest() {
   const canvasRef = useRef<HTMLCanvasElement>(null!);
@@ -47,7 +47,7 @@ export default function ThreeTest() {
 }
 
 function SanjayClose(props: ThreeElements["mesh"]) {
-  const [colorMap, displacementMap, normalMap] = useLoader(TextureLoader, [
+  const [colorMap, displacementMap, normalMap] = useLoader(THREE.TextureLoader, [
     "/close.jpg",
     "/close_Depth.jpg",
     "/close_Normal_2.jpg",
@@ -71,7 +71,7 @@ function SanjayClose(props: ThreeElements["mesh"]) {
   );
 }
 function SanjayFar(props: ThreeElements["mesh"]) {
-  const [colorMap, displacementMap, normalMap] = useLoader(TextureLoader, [
+  const [colorMap, displacementMap, normalMap] = useLoader(THREE.TextureLoader, [
     "/relight/sanjay_far.jpg",
     "/relight/sanjay_far_Depth.jpg",
     "/relight/sanjay_far_Normal.jpg",
