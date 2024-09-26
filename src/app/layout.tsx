@@ -40,7 +40,7 @@ export default function RootLayout({
             </h2>
           </a>
           <nav className={`flex justify-between font-body`}>
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               <a href={websiteURL + "/"}>Home</a>
               <a href={websiteURL + "/posts/"}>Posts</a>
               <a href={websiteURL + "/projects/"}>Projects</a>

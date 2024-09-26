@@ -6,6 +6,10 @@
   margin: 0px;
 }
 
+nav,ul a {
+  color: #3273dc;
+}
+
 /* @layer base {
   * {
     @apply box-border;
