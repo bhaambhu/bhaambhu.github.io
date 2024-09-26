@@ -1,5 +1,5 @@
 import React from 'react'
-import { WorkCardProps } from '../config/interfaces'
+import { WorkCardProps } from '../../config/interfaces'
 
 export default function WorkCard(props: WorkCardProps) {
 

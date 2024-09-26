@@ -1,8 +1,8 @@
-import { H1, P, Quote } from '../components/TextComponents'
-import { HorizontalScreenshot } from '../components/ImageComponents'
-import { VerticalVideo } from '../components/VideoPlayers'
-import Page from '../components/Page'
-import Section from '../components/Section'
+import { H1, P, Quote } from '../components/Old/TextComponents'
+import { HorizontalScreenshot } from '../components/Old/ImageComponents'
+import { VerticalVideo } from '../components/Old/VideoPlayers'
+import Page from '../components/Old/Page'
+import Section from '../components/Old/Section'
 
 export default function UnityLudo() {
   return (

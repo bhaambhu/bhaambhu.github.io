@@ -1,6 +1,6 @@
 import { ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";
-import { screenshotProps } from "../config/interfaces";
+import { screenshotProps } from "../../config/interfaces";
 import { CgScrollH } from "react-icons/cg";
 
 export function ScreenshotContainer(props: ComponentProps<"div">) {

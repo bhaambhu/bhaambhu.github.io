@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import Script from 'next/script'
-import { NavbarProps } from '../config/interfaces'
+import { NavbarProps } from '../../config/interfaces'
 import Link from 'next/link'
 
 const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {

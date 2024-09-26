@@ -1,5 +1,5 @@
 import React, { ComponentProps } from 'react'
-import { SectionProps } from '../config/interfaces'
+import { SectionProps } from '../../config/interfaces'
 
 export default function Section({ navbarGap = true, ...props }: SectionProps) {
   return (

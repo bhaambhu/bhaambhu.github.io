@@ -1,8 +1,8 @@
-import { H1, H2, P } from '../components/TextComponents'
-import { Video } from '../components/VideoPlayers'
-import { HorizontalScreenshot, ScreenshotContainer, Screenshot } from '../components/ImageComponents'
-import Page from '../components/Page'
-import Section from '../components/Section'
+import { H1, H2, P } from '../components/Old/TextComponents'
+import { Video } from '../components/Old/VideoPlayers'
+import { HorizontalScreenshot, ScreenshotContainer, Screenshot } from '../components/Old/ImageComponents'
+import Page from '../components/Old/Page'
+import Section from '../components/Old/Section'
 
 export default function Shades() {
   let seoKeywords = ['shades', 'shades combat', 'shades combat militia', 'sanjay shades', 'sanjay bhambhu shades', 'shades android', 'shades iphone', 'shades combat game', 'shades game']

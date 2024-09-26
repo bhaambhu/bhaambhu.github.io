@@ -1,13 +1,13 @@
 import React, { ComponentProps } from "react";
-import Navbar from "../components/Navbar";
-import Page from "../components/Page";
-import Section, { NavbarGap } from "../components/Section";
-import { H1, P } from "../components/TextComponents";
+import Navbar from "../components/Old/Navbar";
+import Page from "../components/Old/Page";
+import Section, { NavbarGap } from "../components/Old/Section";
+import { H1, P } from "../components/Old/TextComponents";
 import { GoMail } from "react-icons/go";
 import { BiPhoneCall } from "react-icons/bi";
 import { AiOutlineHome } from "react-icons/ai";
 import { VscGithubAlt } from "react-icons/vsc";
-import { Button } from "../components/Buttons";
+import { Button } from "../components/Old/Buttons";
 import { twMerge } from "tailwind-merge";
 import jsPDF from "jspdf";
 

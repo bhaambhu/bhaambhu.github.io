@@ -1,6 +1,6 @@
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
-import { PageProps } from '../config/interfaces'
+import { PageProps } from '../../config/interfaces'
 import Navbar from './Navbar'
 import SEO from './SEO'
 

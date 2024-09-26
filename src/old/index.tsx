@@ -1,12 +1,12 @@
 import Head from "next/head";
 import Script from "next/script";
-import ProjectCard from "../components/ProjectCard";
-import Navbar from "../components/Navbar";
-import { Button } from "../components/Buttons";
-import { H1, P } from "../components/TextComponents";
-import Page from "../components/Page";
-import WorkCard from "../components/WorkCard";
-import Section from "../components/Section";
+import ProjectCard from "../components/Old/ProjectCard";
+import Navbar from "../components/Old/Navbar";
+import { Button } from "../components/Old/Buttons";
+import { H1, P } from "../components/Old/TextComponents";
+import Page from "../components/Old/Page";
+import WorkCard from "../components/Old/WorkCard";
+import Section from "../components/Old/Section";
 import ThreeTest from "./three-test";
 
 export default function Home() {

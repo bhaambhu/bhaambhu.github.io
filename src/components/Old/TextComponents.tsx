@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";
-import { DivTextProps, SLinkProps, SpanTextProps } from "../config/interfaces";
+import { DivTextProps, SLinkProps, SpanTextProps } from "../../config/interfaces";
 
 export function P(props: ComponentProps<'div'>) {
   return (
