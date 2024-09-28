@@ -1,0 +1,20 @@
+---
+title: "Scalability and Kafka in Election Systems: Building ScaleVote"
+date: "2024-09-26"
+tags: ["Java", "Spring Boot", "Kafka", "PostgreSQL", "Scalability"]
+---
+
+ScaleVote is an election conducting system I built, inspired by the Indian General Elections, to experiment with **scalability** and **real-time processing**. Using **Java Spring Boot** and **Kafka**, this project simulates polling booths where each vote is cast to a Kafka topic. Each candidate has their own topic, and the results are computed in real time.
+
+In this post, I’ll discuss:
+
+1. **Why Kafka?**  
+   Kafka’s distributed event streaming makes it ideal for handling high throughput in real-time voting scenarios.
+  
+2. **Spring Boot for Microservices**  
+   Leveraging Spring Boot's lightweight microservices architecture for rapid development and scalability.
+
+3. **Challenges in Scaling**  
+   Handling millions of votes efficiently and ensuring real-time computation of results.
+
+Read the full code on [GitHub](https://github.com/bhaambhu/scalevote).

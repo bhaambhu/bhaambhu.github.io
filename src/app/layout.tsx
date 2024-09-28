@@ -32,15 +32,15 @@ export default function RootLayout({
   }
   return (
     <html lang="en" className={`${fontHeading.variable} ${fontBody.variable}`}>
-      <body className="max-w-screen-md m-auto  p-4 text-base">
+      <body className="max-w-screen-md m-auto p-4 text-base text-sb-text">
         <header>
           <a href={websiteURL + "/"}>
-            <h2 className={`my-4 text-3xl font-bold font-heading`}>
+            <h1 className={`my-3.5 mt-6 text-4xl font-bold font-heading text-sb-text`}>
               Sanjay Bhaambhu
-            </h2>
+            </h1>
           </a>
           <nav className={`flex justify-between font-body`}>
-            <div className="flex gap-4">
+            <div className="flex gap-4 text-sb-link">
               <a href={websiteURL + "/"}>Home</a>
               <a href={websiteURL + "/posts/"}>Posts</a>
               <a href={websiteURL + "/projects/"}>Projects</a>
@@ -66,7 +66,7 @@ export default function RootLayout({
           </nav>
         </header>
         <main className="flex flex-1 flex-col">{children}</main>
-        <footer className="flex justify-between">
+        <footer className="flex justify-between font-body">
           {/* Copyright Text */}
           <div>© {new Date().getFullYear()} Sanjay Bhaambhu</div>
           {/* Social Links */}

@@ -2,6 +2,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 const colors = require("tailwindcss/colors");
 const plugin = require("tailwindcss/plugin");
+const { text } = require("stream/consumers");
 
 module.exports = {
   content: [
@@ -17,6 +18,10 @@ module.exports = {
       },
       colors: {
         primary: colors.red,
+        sb: {
+          text: "#222222",
+          link: "#3173DC",
+        },
       },
       fontSize: {
         dynamic: [

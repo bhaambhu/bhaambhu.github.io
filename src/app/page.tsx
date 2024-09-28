@@ -5,7 +5,7 @@ export default function HomePage() {
   return (
     <PageContent className="leading-relaxed">
       {/* Page Heading */}
-      <h1 className={`text-2xl font-bold my-3 font-heading`}>👋🏼 Hello</h1>
+      <h1 className={`text-3xl font-bold my-3 font-heading`}>👋🏼 Hello</h1>
       {/* About Section */}
       <div className="flex font-body leading-relaxed p-2 md:p-0 gap-4 flex-col md:flex-row">
         <div className="flex flex-col gap-4 ">
