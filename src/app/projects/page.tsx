@@ -1,7 +1,6 @@
 import PageContent from "@/components/PageContent";
 import ProjectCard from "@/components/ProjectCard";
-import { formatDate, getBlogPosts, getProjects } from "@/utils/utils";
-import Link from "next/link";
+import { getProjects } from "@/utils/utils";
 import React from "react";
 
 export default function ProjectsPage() {

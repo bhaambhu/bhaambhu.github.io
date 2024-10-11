@@ -1,7 +1,11 @@
 import PageContent from "@/components/PageContent";
+import ProjectCard from "@/components/ProjectCard";
+import { getFeaturedProjects } from "@/utils/utils";
 import Image from "next/image";
 
 export default function HomePage() {
+  let feturedProjects = getFeaturedProjects();
+
   return (
     <PageContent className="leading-relaxed">
       {/* Page Heading */}
@@ -10,18 +14,19 @@ export default function HomePage() {
       <div className="flex font-body leading-relaxed p-2 md:p-0 gap-4 flex-col md:flex-row">
         <div className="flex flex-col gap-4 ">
           <p>
-            I’m Sanjay — but you might stumble across <code>@bhaambhu</code> in
-            some corners of the internet. I work at PPFAS where I focus mainly
-            on the mobile apps.
+            I’m Sanjay — though you might know me as<code>@bhaambhu</code>
+            around the web. I’m a software engineer focused on creating apps and
+            websites that solve real-world problems.
           </p>
           <p>
-            I love studying new technologies, and building engaging
-            multi-platform products.
+            I’m passionate about building scalable, high-performance software
+            and love diving into new technologies. My projects span from
+            open-source learning platforms to interactive web experiences.
           </p>
           <p>
-            When I’m not in the tech zone, I’m probably playing badminton, on a
-            road trip, or experimenting in the kitchen. I’ve got a soft spot for
-            collecting good music.
+            Outside of work, you’ll find me exploring new places, playing
+            badminton, or immersing myself in music. I’m always on the lookout
+            for new ways to blend tech and creativity.
           </p>
         </div>
         <div className="flex justify-center m-auto ">
@@ -31,35 +36,20 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      {/* Featured Posts Sections */}
-      <div className="font-body">
-        <h2 className={`text-xl font-bold my-3 font-heading`}>
-          ⭐️ Featured Posts
-        </h2>
-        <p>A curated collection of my top articles from over the years:</p>
-        <ul className="list-disc block list-inside p-3">
-          <li className="">
-            <a href="https://mrkaran.dev/posts/nomad-networking-explained/">
-              Understanding Networking in Nomad
-            </a>
-          </li>
-          <li>
-            <a href="https://mrkaran.dev/posts/clickhouse-replication/">
-              Using ClickHouse Keeper for Replication
-            </a>
-          </li>
-          <li>
-            <a href="https://mrkaran.dev/posts/home-server-nomad/">
-              Running Nomad for home server
-            </a>
-          </li>
-          <li>
-            <a href="https://mrkaran.dev/posts/ndots-kubernetes/">
-              DNS Lookups in Kubernetes
-            </a>
-          </li>
-        </ul>
-      </div>
+      {/* Featured Projects Section */}
+      {feturedProjects.length > 0 && (
+        <div className="font-body">
+          <h2 className={`text-xl font-bold mt-6 font-heading`}>
+            ⭐️ Highlighted Projects
+          </h2>
+          <p className="mt-1">A few standout projects I'm particularly proud of:</p>
+          <article className="mt-4 flex flex-col gap-3">
+            {feturedProjects.map((project) => (
+              <ProjectCard project={project} key={project.slug} />
+            ))}
+          </article>
+        </div>
+      )}
     </PageContent>
   );
 }

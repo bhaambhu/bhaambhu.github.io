@@ -8,7 +8,7 @@ interface ProjectCard {
 
 export default function ProjectCard({ project }: ProjectCard) {
   return (
-    <div
+    <article
       className="border-2 border-sb-link p-2 rounded-lg flex flex-col"
       key={project.slug}
     >
@@ -33,6 +33,6 @@ export default function ProjectCard({ project }: ProjectCard) {
           </Link>
         ))}
       </div>
-    </div>
+    </article>
   );
 }

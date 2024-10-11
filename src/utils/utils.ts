@@ -31,6 +31,11 @@ export function getProjectsByTag(tag: string) {
   return allProjects.filter((project) => project.metadata.tags.includes(tag));
 }
 
+export function getFeaturedProjects() {
+  const allProjects = getProjects();
+  return allProjects.filter((project) => project.metadata.featured);
+}
+
 // Get all unique tags from all blog posts
 export function getAllTags() {
   const allPosts = getBlogPosts();
@@ -98,6 +103,7 @@ export interface PostsMetadata extends CommonMetadata {
 export interface ProjectsMetadata extends CommonMetadata {
   summary: string;
   links?: { text: string; url: string }[];
+  featured?: boolean;
 }
 
 type CommonMetadata = {
