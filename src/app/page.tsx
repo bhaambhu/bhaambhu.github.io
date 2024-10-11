@@ -40,7 +40,7 @@ export default function HomePage() {
       {feturedProjects.length > 0 && (
         <div className="font-body">
           <h2 className={`text-xl font-bold mt-6 font-heading`}>
-            ⭐️ Highlighted Projects
+            Highlighted Projects
           </h2>
           <p className="mt-1">A few standout projects I'm particularly proud of:</p>
           <div className="mt-1.5 flex flex-col gap-3">
