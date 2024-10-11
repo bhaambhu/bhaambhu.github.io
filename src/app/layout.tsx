@@ -42,8 +42,8 @@ export default function RootLayout({
           <nav className={`flex justify-between font-body`}>
             <div className="flex gap-4 text-sb-link">
               <a href={websiteURL + "/"}>Home</a>
-              <a href={websiteURL + "/posts/"}>Posts</a>
               <a href={websiteURL + "/projects/"}>Projects</a>
+              <a href={websiteURL + "/posts/"}>Posts</a>
               <a href={websiteURL + "/contact/"}>Contact</a>
               {/* <a href={websiteURL + "/resume/"}>Resume</a> */}
             </div>
