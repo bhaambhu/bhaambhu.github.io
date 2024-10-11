@@ -43,11 +43,11 @@ export default function HomePage() {
             ⭐️ Highlighted Projects
           </h2>
           <p className="mt-1">A few standout projects I'm particularly proud of:</p>
-          <article className="mt-4 flex flex-col gap-3">
+          <div className="mt-1.5 flex flex-col gap-3">
             {feturedProjects.map((project) => (
               <ProjectCard project={project} key={project.slug} />
             ))}
-          </article>
+          </div>
         </div>
       )}
     </PageContent>
