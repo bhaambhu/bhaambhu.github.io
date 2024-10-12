@@ -7,7 +7,7 @@ import { H1, P } from "../components/TextComponents";
 import Page from "../components/Page";
 import WorkCard from "../components/WorkCard";
 import Section from "../components/Section";
-import ThreeTest from "./three-test";
+import ThreeJSPicture from "../components/ThreeJSPicture";
 
 export default function Home() {
   return (
@@ -80,7 +80,7 @@ export default function Home() {
             <div className="relative group h-full w-full">
               <div className="transition ease-in-out duration-300 group-hover:transition group-hover:duration-300 rounded-lg group-hover:translate-x-3.5 group-hover:translate-y-5 border-primary-500 border-2 absolute w-full h-full top-0 left-0 translate-x-4 translate-y-6" />
               <div className="rounded-lg overflow-hidden z-10 border-2 border-primary-500 h-full w-full  ">
-                <ThreeTest />
+                <ThreeJSPicture />
               </div>
               {/* <div className="absolute w-full h-full bg-primary-500 top-0 left-0 opacity-30 group-hover:opacity-0 rounded transition duration-250 " /> */}
             </div>

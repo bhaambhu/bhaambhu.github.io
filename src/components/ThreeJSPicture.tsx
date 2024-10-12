@@ -4,7 +4,7 @@ import * as THREE from "three";
 import useMousePosition from "../utils/useMousePosition";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 
-export default function ThreeTest() {
+export default function ThreeJSPicture() {
   const canvasRef = useRef<HTMLCanvasElement>(null!);
   const mousePosition = useMousePosition(canvasRef);
   const pointLightRef = useRef<THREE.PointLight>(null!);
