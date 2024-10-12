@@ -43,18 +43,20 @@ export function getAllTags() {
   return Array.from(new Set(allTags)); // Return unique tags
 }
 
-function getMDXData<T>(dir: string) {
+function getMDXData<T extends CommonMetadata>(dir: string) {
   let mdxFiles = getMDXFiles(dir);
-  return mdxFiles.map((file) => {
-    let { data, content } = readMDXFile(path.join(dir, file));
-    let slug = path.basename(file, path.extname(file));
+  return mdxFiles
+    .map((file) => {
+      let { data, content } = readMDXFile(path.join(dir, file));
+      let slug = path.basename(file, path.extname(file));
 
-    return {
-      metadata: data as T,
-      slug,
-      content,
-    };
-  });
+      return {
+        metadata: data as T,
+        slug,
+        content,
+      };
+    })
+    .filter((item) => item.metadata.published == true);
 }
 
 function getMDXFiles(dir: string) {
@@ -109,6 +111,7 @@ export interface ProjectsMetadata extends CommonMetadata {
 type CommonMetadata = {
   title: string;
   tags: string[];
+  published?: boolean;
 };
 
 export function formatDate(dateStr: string): string {

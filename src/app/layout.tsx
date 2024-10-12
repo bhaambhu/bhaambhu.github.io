@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { IBM_Plex_Sans } from "next/font/google";
+import Link from "next/link";
 
 const fontHeading = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -43,7 +44,7 @@ export default function RootLayout({
             <div className="flex gap-4 text-sb-link">
               <a href={websiteURL + "/"}>Home</a>
               <a href={websiteURL + "/projects/"}>Projects</a>
-              <a href={websiteURL + "/posts/"}>Posts</a>
+              {/* <a href={websiteURL + "/posts/"}>Posts</a> */}
               <a href={websiteURL + "/contact/"}>Contact</a>
               {/* <a href={websiteURL + "/resume/"}>Resume</a> */}
             </div>
@@ -71,8 +72,8 @@ export default function RootLayout({
           <div>© {new Date().getFullYear()} Sanjay Bhaambhu</div>
           {/* Social Links */}
           <div className="flex gap-3">
-            <div>Github</div>
-            <div>RSS</div>
+            <Link href="https://github.com/bhaambhu" target="_blank">Github</Link>
+            {/* <div>RSS</div> */}
           </div>
         </footer>
       </body>

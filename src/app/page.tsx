@@ -14,7 +14,7 @@ export default function HomePage() {
       <div className="flex font-body leading-relaxed p-2 md:p-0 gap-4 flex-col md:flex-row">
         <div className="flex flex-col gap-4 ">
           <p>
-            I’m Sanjay — though you might know me as<code>@bhaambhu</code>
+            I’m Sanjay — though you might know me as <code className="bg-gray-100 p-1 rounded-md">@bhaambhu</code>{" "}
             around the web. I’m a software engineer focused on creating apps and
             websites that solve real-world problems.
           </p>
@@ -42,7 +42,9 @@ export default function HomePage() {
           <h2 className={`text-xl font-bold mt-6 font-heading`}>
             Highlighted Projects
           </h2>
-          <p className="mt-1">A few standout projects I'm particularly proud of:</p>
+          <p className="mt-1">
+            A few standout projects I'm particularly proud of:
+          </p>
           <div className="mt-1.5 flex flex-col gap-3">
             {feturedProjects.map((project) => (
               <ProjectCard project={project} key={project.slug} />
