@@ -25,14 +25,15 @@ export default function ThreeTest() {
         ref={canvasRef}
       >
         <SanjayClose ref={meshRef} />
-        <ambientLight intensity={0.7} />
+        <ambientLight intensity={1} />
         <pointLight
           position={[mousePosition.x, -mousePosition.y, 0]}
           decay={0}
-          // color={"blue"}
-          // distance={100}
+          color={"red"}
+          // distance={500}
           ref={pointLightRef}
-          power={10}
+          intensity={3}
+          castShadow
         />
         {/* {isReady && (
           <pointLightHelper args={[pointLightRef.current, 2, 0xff0000]} />
@@ -62,6 +63,7 @@ function SanjayClose(props: ThreeElements["mesh"]) {
       <planeGeometry args={[3, 3, 100, 100]} />
       <meshStandardMaterial
         map={colorMap}
+        flatShading
         normalMap={normalMap}
         normalScale={new THREE.Vector2(0.5, 0.5)}
         displacementMap={displacementMap}

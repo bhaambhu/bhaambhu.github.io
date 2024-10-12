@@ -35,8 +35,8 @@ export default function Home() {
         <div className="md:w-[60%]">
           <H1>About Me</H1>
         </div>
-        <div className="flex flex-col md:flex-row justify-between">
-          <div className="md:max-w-[60%]">
+        <div className="flex flex-col lg:flex-row justify-between">
+          <div className="lg:max-w-[60%]">
             <P>
               Hello! My creative journey started in 2009, when I 3D-modeled our
               house and made mods for counter-strike. That transitioned to
@@ -76,9 +76,9 @@ export default function Home() {
           </div>
 
           {/* New ThreeJS Picture Container */}
-          <div className="w-[300px] h-[300px] mx-12 self-center md:self-start">
+          <div className="w-[300px] h-[300px] mx-12 self-center lg:self-start">
             <div className="relative group h-full w-full">
-              <div className="transition ease-in-out duration-1000 group-hover:transition group-hover:duration-1000 rounded group-hover:translate-x-3.5 group-hover:translate-y-5 border-primary-500 border-2 absolute w-full h-full top-0 left-0 translate-x-4 translate-y-6" />
+              <div className="transition ease-in-out duration-300 group-hover:transition group-hover:duration-300 rounded-lg group-hover:translate-x-3.5 group-hover:translate-y-5 border-primary-500 border-2 absolute w-full h-full top-0 left-0 translate-x-4 translate-y-6" />
               <div className="rounded-lg overflow-hidden z-10 border-2 border-primary-500 h-full w-full  ">
                 <ThreeTest />
               </div>
