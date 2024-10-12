@@ -7,7 +7,18 @@
 }
 
 a {
-  color: #3173DC;
+  color: #3173dc;
+}
+
+.horizontal-image-container {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.horizontal-image {
+  width: 48%;
+  object-fit: cover;
 }
 
 /* @layer base {

@@ -103,15 +103,15 @@ export interface PostsMetadata extends CommonMetadata {
 }
 
 export interface ProjectsMetadata extends CommonMetadata {
-  summary: string;
   links?: { text: string; url: string }[];
-  featured?: boolean;
 }
 
 type CommonMetadata = {
   title: string;
   tags: string[];
   published?: boolean;
+  description: string;
+  featured?: boolean;
 };
 
 export function formatDate(dateStr: string): string {

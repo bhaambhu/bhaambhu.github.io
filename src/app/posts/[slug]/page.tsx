@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default async function PostsPage({ params }: Props) {
+export default async function PostPage({ params }: Props) {
   let post = getBlogPosts().find((post) => post.slug === params.slug);
 
   if (!post) {
