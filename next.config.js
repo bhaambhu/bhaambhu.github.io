@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
+  distDir: "docs",
   reactStrictMode: true,
   swcMinify: true,
   images: {

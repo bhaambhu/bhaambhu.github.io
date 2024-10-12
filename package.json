@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "static": "next build && next export -o docs && touch ./docs/.nojekyll && echo 'bhaambhu.com' > ./docs/CNAME"
+    "static": "next build && touch ./docs/.nojekyll && echo 'bhaambhu.com' > ./docs/CNAME"
   },
   "dependencies": {
     "@react-three/fiber": "^8.17.7",
