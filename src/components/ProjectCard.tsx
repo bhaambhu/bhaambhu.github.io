@@ -7,6 +7,8 @@ interface ProjectCardProps {
   about?: string;
   children?: ReactNode;
   mobileScreenshots?: string[];
+  /** A short true anecdote, shown as a muted line under the tags. */
+  funFact?: string;
   /** Landscape phone screenshots, e.g. games played sideways. */
   landscapeScreenshots?: string[];
   desktopScreenshots?: string[];
@@ -89,6 +91,12 @@ export default function ProjectCard(props: ProjectCardProps) {
       <div className="flex gap-2 my-2 text-sm whitespace-nowrap flex-wrap">
         {tags}
       </div>
+      {props.funFact && (
+        <p className="mb-2 font-mono text-xs italic tracking-wide text-slate-500">
+          <span className="not-italic text-primary-500">✦ </span>
+          {props.funFact}
+        </p>
+      )}
       {props.landscapeScreenshots && (
         <ScrollableScreenshotsGallery>
           {props.landscapeScreenshots.map((screenshot) => (

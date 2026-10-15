@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Image from 'next/image'
 import Script from 'next/script'
 import { NavbarProps } from '../config/interfaces'
@@ -9,6 +9,20 @@ const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
     const [logoHovered, setLogoHovered] = useState(false)
     const [logoPressed, setLogoPressed] = useState(false)
     const showHollowLogo = logoHovered && !logoPressed
+
+    // Easter egg: five quick taps on the logo (an × and an ○) spin it and say
+    // what it is.
+    const [logoSecret, setLogoSecret] = useState(false)
+    const logoTaps = useRef<number[]>([])
+    const countLogoTap = () => {
+        const now = Date.now()
+        logoTaps.current = [...logoTaps.current.filter(t => now - t < 2000), now]
+        if (logoTaps.current.length >= 5) {
+            logoTaps.current = []
+            setLogoSecret(true)
+            setTimeout(() => setLogoSecret(false), 4500)
+        }
+    }
 
     // Convert links array to elements
     let linkButtons = null;
@@ -43,13 +57,18 @@ const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
                         onPointerDown={() => setLogoPressed(true)}
                         onClick={() => {
                             setShowSidebar(false);
+                            countLogoTap();
                             window.location.href = props.title ? "/" : "#";
                         }}>
                         <img alt='Bhaambhu Logo' width={32} height={32} src='/favicon.ico'
-                            className={`absolute inset-0 transition-opacity duration-150 ${showHollowLogo ? 'opacity-0' : 'opacity-100'}`} />
+                            className={`absolute inset-0 transition-[opacity,transform] duration-700 ${showHollowLogo ? 'opacity-0' : 'opacity-100'} ${logoSecret ? 'rotate-[360deg]' : ''}`} />
                         <img alt='' aria-hidden width={32} height={32} src='/logo-hollow.png'
                             className={`absolute inset-0 transition-opacity duration-150 ${showHollowLogo ? 'opacity-100' : 'opacity-0'}`} />
                     </button>
+                    {/* The logo's secret, just under the navbar. */}
+                    <p aria-live='polite' className={`pointer-events-none fixed left-5 top-[76px] max-w-[300px] rounded bg-white/95 px-3 py-2 font-mono text-xs font-bold tracking-wide text-primary-500 shadow transition-all duration-300 ${logoSecret ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0'}`}>
+                        {logoSecret ? '× and ○: my logo is a game of tic-tac-toe. I’ve been making games since 2009.' : ''}
+                    </p>
                     {props.title && <>
                         <span aria-hidden className='font-mono text-2xl text-gray-300 select-none'>/</span>
                         <button onClick={() => {

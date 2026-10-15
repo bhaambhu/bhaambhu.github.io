@@ -10,6 +10,7 @@ import Section from "../components/Section";
 import ThreeJSPicture from "../components/ThreeJSPicture";
 import Typewriter from "../components/Typewriter";
 import PortraitQuips from "../components/PortraitQuips";
+import EmailCopy from "../components/EmailCopy";
 
 export default function Home() {
   return (
@@ -518,6 +519,7 @@ export default function Home() {
         >
           SAY&nbsp;HELLO
         </button>
+        <EmailCopy email="sanjay@bhaambhu.com" />
 
         <p className="text-slate-700 font-mono text-[10px] mt-8 self-center italic">
           Made for you with{" "}
