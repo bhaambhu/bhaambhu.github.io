@@ -46,7 +46,7 @@ export function Button({
             }
       }
       // onClick={() => { if (href && !disabled) window.location.href = href; }}
-      // Filled and hollow swap on hover, so every button answers the pointer.
+      // A subtle hover: filled buttons lighten a shade, hollow ones take a faint tint.
       className={`
           px-2 py-1 flex items-center
           border-2 rounded transition-colors duration-150
@@ -57,8 +57,8 @@ export function Button({
               ? "bg-slate-400 border-slate-400 text-slate-300 cursor-not-allowed"
               : `cursor-pointer border-primary-500 ${
                   outline
-                    ? "bg-white text-primary-500 hover:bg-primary-500 hover:text-white"
-                    : "bg-primary-500 text-white hover:bg-white hover:text-primary-500"
+                    ? "bg-white text-primary-500 hover:bg-primary-50"
+                    : "bg-primary-500 text-white hover:bg-primary-400 hover:border-primary-400"
                 }`
           }
       `}
