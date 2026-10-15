@@ -30,7 +30,7 @@ const UNITS_PER_PX = 1 / 100;
 // How far into the photo to zoom: 1 shows all of it.
 const ZOOM = 1.12;
 // How far the light reaches, in world units (the plane is 3 across).
-const REACH = 2.6;
+const REACH = 3.7;
 
 const vertexShader = /* glsl */ `
   uniform sampler2D uDepth;
@@ -61,7 +61,8 @@ const fragmentShader = /* glsl */ `
   // the light floats. A low light rakes across the face, so the surfaces
   // that turn towards it light up and the ones that turn away stay gray.
   const float RELIEF = 0.55;
-  const float LIGHT_HEIGHT = 0.45;
+  // const float LIGHT_HEIGHT = 0.45;
+  const float LIGHT_HEIGHT = 0.55;
   // Distance at which the light has faded to nothing.
   const float REACH = ${REACH.toFixed(2)};
 
