@@ -28,22 +28,23 @@ const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
             {/* Navbar */}
             <header id='navbar' className='print:hidden ease-in-out duration-300 z-10 flex left-0 top-0 items-center p-5 fixed w-full bg-white shadow md:flex-row justify-between'>
 
-                {/* Breadcrumbs */}
-                <div className='flex gap-5 items-center'>
-                    <button className='flex' onClick={() => {
+                {/* Breadcrumbs: the logo leads home, then "/" and the page */}
+                <div className='flex gap-3 items-center'>
+                    <button aria-label='Home' className='flex' onClick={() => {
                         setShowSidebar(false);
                         window.location.href = props.title ? "/" : "#";
-                    }}>{props.title && <div className='font-mono font-semibold text-2xl tracking-wider mr-3 -ml-2 text-red-500'>
-                        &lt;
-                    </div>}
+                    }}>
                         <img alt='Bhaambhu Logo' width={32} height={32} src='/favicon.ico' />
                     </button>
-                    {props.title && <button onClick={() => {
-                        setShowSidebar(false);
-                        window.location.href = "#";
-                    }} className='font-mono font-bold text-[36px] tracking-widest leading-9 -mb-1 text-gray-800'>
-                        {props.title}
-                    </button>}
+                    {props.title && <>
+                        <span aria-hidden className='font-mono text-2xl text-gray-300 select-none'>/</span>
+                        <button onClick={() => {
+                            setShowSidebar(false);
+                            window.location.href = "#";
+                        }} className='font-mono font-bold text-[26px] tracking-wider leading-8 text-gray-800'>
+                            {props.title}
+                        </button>
+                    </>}
                 </div>
 
 
