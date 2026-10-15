@@ -6,6 +6,9 @@ import Link from 'next/link'
 
 const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
     const [showSidebar, setShowSidebar] = useState(false)
+    const [logoHovered, setLogoHovered] = useState(false)
+    const [logoPressed, setLogoPressed] = useState(false)
+    const showHollowLogo = logoHovered && !logoPressed
 
     // Convert links array to elements
     let linkButtons = null;
@@ -30,16 +33,22 @@ const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
 
                 {/* Breadcrumbs: the logo leads home, then "/" and the page */}
                 <div className='flex gap-3 items-center'>
-                    {/* Solid logo at rest and while pressed; the hollow one on
-                        hover. Both are stacked so swapping never shifts layout. */}
-                    <button aria-label='Home' className='group relative flex h-8 w-8' onClick={() => {
-                        setShowSidebar(false);
-                        window.location.href = props.title ? "/" : "#";
-                    }}>
+                    {/* Hollow on hover; solid at rest. A press fills it and it
+                        stays filled until the pointer leaves, so the next hover
+                        shows the hollow version again. Both images are stacked
+                        so swapping never shifts the layout. */}
+                    <button aria-label='Home' className='relative flex h-8 w-8'
+                        onPointerEnter={() => setLogoHovered(true)}
+                        onPointerLeave={() => { setLogoHovered(false); setLogoPressed(false); }}
+                        onPointerDown={() => setLogoPressed(true)}
+                        onClick={() => {
+                            setShowSidebar(false);
+                            window.location.href = props.title ? "/" : "#";
+                        }}>
                         <img alt='Bhaambhu Logo' width={32} height={32} src='/favicon.ico'
-                            className='absolute inset-0 transition-opacity duration-150 group-hover:opacity-0 group-active:opacity-100' />
+                            className={`absolute inset-0 transition-opacity duration-150 ${showHollowLogo ? 'opacity-0' : 'opacity-100'}`} />
                         <img alt='' aria-hidden width={32} height={32} src='/logo-hollow.png'
-                            className='absolute inset-0 opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-active:opacity-0' />
+                            className={`absolute inset-0 transition-opacity duration-150 ${showHollowLogo ? 'opacity-100' : 'opacity-0'}`} />
                     </button>
                     {props.title && <>
                         <span aria-hidden className='font-mono text-2xl text-gray-300 select-none'>/</span>
