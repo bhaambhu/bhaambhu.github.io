@@ -38,6 +38,27 @@ export function EM(props: SpanTextProps) {
   )
 }
 
+/**
+ * Text whose letters each turn dark under the pointer. The change is instant
+ * on the way in and fades out slowly, so a sweep across the word leaves a
+ * short trail. The whole string stays one label for screen readers.
+ */
+export function HoverLetters({ text }: { text: string }) {
+  return (
+    <span aria-label={text}>
+      {Array.from(text).map((letter, i) => (
+        <span
+          key={i}
+          aria-hidden
+          className='transition-colors duration-700 hover:text-slate-900 hover:duration-0'
+        >
+          {letter === ' ' ? '\u00a0' : letter}
+        </span>
+      ))}
+    </span>
+  )
+}
+
 export function H1(props: DivTextProps) {
   return (
     <>
@@ -46,7 +67,7 @@ export function H1(props: DivTextProps) {
       {/* Section Header */}
       <div className='flex mb-8 md:w-[70%] print:hidden'>
         <div className='mr-4 p-0 bg-primary-500 w-20 h-[2px] self-center mb-2' />
-        <div className='text-dynamicHeader flex font-mono font-bold tracking-widest text-primary-500 mb-2.5 mr-4'>{props.children?.replace(/ /g, '\u00a0')}</div>
+        <div className='text-dynamicHeader flex font-mono font-bold tracking-widest text-primary-500 mb-2.5 mr-4'><HoverLetters text={props.children ?? ''} /></div>
         <div className='p-0 bg-primary-500 w-full h-[2px] self-center mb-2' />
       </div>
     </>
