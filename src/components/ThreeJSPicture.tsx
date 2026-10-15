@@ -28,7 +28,7 @@ export default function ThreeJSPicture() {
 // World units per CSS pixel, from the camera's zoom of 100.
 const UNITS_PER_PX = 1 / 100;
 // How far the light reaches, in world units (the plane is 3 across).
-const REACH = 2.1;
+const REACH = 2.6;
 
 const vertexShader = /* glsl */ `
   uniform sampler2D uDepth;
