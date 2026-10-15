@@ -12,15 +12,16 @@ interface ProjectCardProps {
   desktopScreenshots?: string[];
 }
 
-// Tilt at most this many degrees each way, towards the pointer.
-const MAX_TILT = 1.2;
+// How far the shadow shifts, in px, as the pointer crosses the card. The card
+// itself stays flat: rotating it in 3D made the browser redraw its text blurry.
+const SHADOW_SHIFT = 14;
 
 export default function ProjectCard(props: ProjectCardProps) {
   const cardRef = useRef<HTMLElement>(null);
   const [hovered, setHovered] = useState(false);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [light, setLight] = useState({ x: 0, y: 0 });
 
-  // People who ask for less motion get the lift and the dimming, not the tilt.
+  // People who ask for less motion get the lift and dimming, with a still shadow.
   const reduceMotion = () =>
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -31,7 +32,7 @@ export default function ProjectCard(props: ProjectCardProps) {
     // -1..1 across the card, from its centre.
     const px = ((e.clientX - r.left) / r.width) * 2 - 1;
     const py = ((e.clientY - r.top) / r.height) * 2 - 1;
-    setTilt({ x: -py * MAX_TILT, y: px * MAX_TILT });
+    setLight({ x: px, y: py });
   };
 
   // Convert tags array to elements
@@ -47,7 +48,7 @@ export default function ProjectCard(props: ProjectCardProps) {
   return (
     <div className="relative my-4">
       {/* Dims the rest of the page while this card is hovered. It sits outside
-          the tilted card: a transformed parent would trap a fixed element. */}
+          the lifted card: a transformed parent would trap a fixed element. */}
       <div
         aria-hidden
         className={`pointer-events-none fixed inset-0 z-20 bg-slate-900/25 transition-opacity duration-300 ${
@@ -59,20 +60,25 @@ export default function ProjectCard(props: ProjectCardProps) {
       onPointerEnter={(e) => e.pointerType === "mouse" && setHovered(true)}
       onPointerLeave={() => {
         setHovered(false);
-        setTilt({ x: 0, y: 0 });
+        setLight({ x: 0, y: 0 });
       }}
       onPointerMove={onPointerMove}
       style={{
-        transform: hovered
-          ? `perspective(1600px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(-6px)`
-          : "none",
+        // A whole-pixel lift keeps the text sharp. The shadow falls away from
+        // the pointer, as if lit from where the mouse is.
+        transform: hovered ? "translateY(-6px)" : "none",
+        // The red border is a ring, which Tailwind also draws as a box-shadow,
+        // so it is part of this value or it disappears.
+        boxShadow: hovered
+          ? `0 0 0 2px #ef4444, ${-light.x * SHADOW_SHIFT}px ${16 - light.y * SHADOW_SHIFT}px 40px -12px rgba(15, 23, 42, 0.35)`
+          : "0 0 0 2px #ef4444",
       }}
       // Only the hovered card rises above the dimming layer; the rest dim with
       // the page.
       // The arrow everywhere on the card, text included (cursor is inherited,
       // so it replaces the text I-beam); links and buttons set their own hand.
-      className={`relative cursor-default bg-white rounded px-3 py-1.5 ring-2 ring-primary-500 transition-[transform,box-shadow] duration-200 ease-out ${
-        hovered ? "z-30 shadow-2xl" : "z-0 shadow-none"
+      className={`relative cursor-default bg-white rounded px-3 py-1.5 transition-[transform,box-shadow] duration-200 ease-out ${
+        hovered ? "z-30" : "z-0"
       }`}
     >
       <span className="font-mono text-primary-500 font-bold tracking-widest text-sm">
