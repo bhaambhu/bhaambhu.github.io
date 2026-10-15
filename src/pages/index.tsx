@@ -44,9 +44,9 @@ export default function Home() {
         <P>
           Senior software engineer: React Native, React and TypeScript, and
           Laravel. For 10 years I&apos;ve shipped production apps, games and
-          platforms. Today I lead a five-to-six-person app team at Parag Parikh
-          Mutual Fund, whose investor app serves 300,000+ people. Open to roles
-          in Europe or remote.
+          platforms. Today I&apos;m the technical lead for the apps at Parag
+          Parikh Mutual Fund, whose investor app serves 300,000+ people. Open
+          to roles in Europe or remote.
         </P>
       </Section>
 
@@ -405,7 +405,7 @@ export default function Home() {
               <div className="font-mono text-primary-500 font-bold inline-flex">
                 &gt;
               </div>
-              <div>Lead a team of 5–6 engineers building the investor and corporate apps in React Native (Expo), Next.js and Remix.</div>
+              <div>Technical lead for the investor and corporate apps in React Native (Expo), Next.js and Remix: I set the architecture and standards, review code, and mentor a junior developer and our QA tester.</div>
             </div>
             <div className="flex gap-2 items-start">
               <div className="font-mono text-primary-500 font-bold inline-flex">
