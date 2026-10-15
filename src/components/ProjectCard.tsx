@@ -57,6 +57,10 @@ export default function ProjectCard(props: ProjectCardProps) {
           hovered ? "opacity-100" : "opacity-0"
         }`}
       />
+      {/* Curled-corner shadows sit behind the card; they give way to the hover
+          shadow while it's lifted. */}
+      <div aria-hidden className={`paper-curl paper-curl-left ${hovered ? "opacity-0" : "opacity-100"}`} />
+      <div aria-hidden className={`paper-curl paper-curl-right ${hovered ? "opacity-0" : "opacity-100"}`} />
     <article
       ref={cardRef}
       onPointerEnter={(e) => e.pointerType === "mouse" && setHovered(true)}

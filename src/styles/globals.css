@@ -210,3 +210,24 @@ button:not(:disabled),
 .cursor-bulb {
   cursor: url("/cursors/bulb.svg") 16 12, crosshair;
 }
+
+/* Lifted paper corners on project cards: two soft shadows angled under the
+   bottom corners, behind the card, so its corners seem to curl off the page. */
+.paper-curl {
+  position: absolute;
+  bottom: 14px;
+  width: 40%;
+  height: 22%;
+  max-height: 110px;
+  z-index: 0;
+  box-shadow: 0 16px 13px rgba(15, 23, 42, 0.3);
+  transition: opacity 0.2s ease-out;
+}
+.paper-curl-left {
+  left: 10px;
+  transform: rotate(-4deg);
+}
+.paper-curl-right {
+  right: 10px;
+  transform: rotate(4deg);
+}
