@@ -11,7 +11,7 @@ interface ProjectCardProps {
 }
 
 // Tilt at most this many degrees each way, towards the pointer.
-const MAX_TILT = 4;
+const MAX_TILT = 1.2;
 
 export default function ProjectCard(props: ProjectCardProps) {
   const cardRef = useRef<HTMLElement>(null);
@@ -62,7 +62,7 @@ export default function ProjectCard(props: ProjectCardProps) {
       onPointerMove={onPointerMove}
       style={{
         transform: hovered
-          ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(-6px)`
+          ? `perspective(1600px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(-6px)`
           : "none",
       }}
       // Only the hovered card rises above the dimming layer; the rest dim with
