@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Script from 'next/script'
 import { NavbarProps } from '../config/interfaces'
@@ -68,9 +68,21 @@ const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
             logoQueue.current = [...LOGO_LINES].sort(() => Math.random() - 0.5)
         }
         setLogoSecret(logoQueue.current.shift() ?? null)
-        clearTimeout(logoHide.current)
-        logoHide.current = setTimeout(() => setLogoSecret(null), 3200)
     }
+
+    // A line too long for the navbar (phones) scrolls sideways once; it stays
+    // up until the scroll has finished, plus a moment to read the end.
+    const quipBox = useRef<HTMLSpanElement>(null)
+    const quipText = useRef<HTMLSpanElement>(null)
+    const [quipScroll, setQuipScroll] = useState(0)
+    useLayoutEffect(() => {
+        clearTimeout(logoHide.current)
+        if (!logoSecret) { setQuipScroll(0); return }
+        const overflow = Math.max(0, (quipText.current?.scrollWidth ?? 0) - (quipBox.current?.clientWidth ?? 0))
+        setQuipScroll(overflow)
+        const scrollMs = overflow ? 600 + (overflow / 45) * 1000 : 0
+        logoHide.current = setTimeout(() => setLogoSecret(null), 2800 + scrollMs)
+    }, [logoSecret])
 
     // Convert links array to elements
     let linkButtons = null;
@@ -95,7 +107,7 @@ const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
             <header id='navbar' className='print:hidden ease-in-out duration-300 z-40 flex left-0 top-0 items-center p-5 fixed w-full bg-white shadow md:flex-row justify-between'>
 
                 {/* Breadcrumbs: the logo leads home, then "/" and the page */}
-                <div className='flex gap-3 items-center min-w-0'>
+                <div className='flex gap-3 items-center min-w-0 flex-1 mr-4 md:flex-none md:mr-0'>
                     {/* Grows a little on hover. */}
                     <button aria-label='Home' className='group relative flex h-8 w-8'
                         onClick={() => {
@@ -106,10 +118,15 @@ const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
                         <img alt='Bhaambhu Logo' width={32} height={32} src='/favicon.ico'
                             className={`absolute inset-0 transition duration-200 group-hover:scale-110 ${logoSecret ? 'rotate-[360deg] duration-700' : ''}`} />
                     </button>
-                    {/* The logo's secret, just under the navbar. */}
-                    <p aria-live='polite' className={`pointer-events-none fixed left-5 top-[76px] max-w-[300px] rounded bg-white/95 px-3 py-2 font-mono text-xs font-bold tracking-wide text-primary-500 shadow transition-all duration-300 ${logoSecret ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0'}`}>
-                        {logoSecret ?? ''}
-                    </p>
+                    {/* The logo's guess, right of it in the navbar (only at the top of
+                        the homepage, where nothing else is shown there). */}
+                    {logoSecret && <span ref={quipBox} aria-live='polite' className='crumb-in min-w-0 flex-1 overflow-hidden'>
+                        <span ref={quipText} key={logoSecret}
+                            className={`inline-block whitespace-nowrap font-mono text-sm md:text-base font-bold tracking-wide text-primary-500 ${quipScroll ? 'logo-quip-scroll' : ''}`}
+                            style={quipScroll ? ({ '--quip-shift': `-${quipScroll}px`, '--quip-time': `${(quipScroll / 45).toFixed(2)}s` } as React.CSSProperties) : undefined}>
+                            {logoSecret}
+                        </span>
+                    </span>}
                     {/* On phones a page title gives way to the section, so the
                         breadcrumb stays one line beside the menu button. */}
                     {props.title && <span className={`${section ? 'hidden md:flex' : 'flex'} items-center gap-3`}>
