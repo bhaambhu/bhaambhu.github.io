@@ -62,6 +62,7 @@ const fragmentShader = /* glsl */ `
   // that turn towards it light up and the ones that turn away stay gray.
   const float RELIEF = 0.55;
   // const float LIGHT_HEIGHT = 0.45;
+  const float GRAY_CURVE = 0.8;
   const float LIGHT_HEIGHT = 0.55;
   // Distance at which the light has faded to nothing.
   const float REACH = ${REACH.toFixed(2)};
@@ -85,7 +86,9 @@ const fragmentShader = /* glsl */ `
     float falloff = pow(clamp(1.0 - dist / REACH, 0.0, 1.0), 2.0);
     float amount = clamp(uStrength * facing * falloff * 2.4, 0.0, 1.0);
 
-    vec3 gray = vec3(lum) * 0.94;
+    // Brighten the midtones (below 1 lifts them), leaving pure white and
+    // black where they are, so the grayscale reads lighter and clearer.
+    vec3 gray = vec3(pow(lum, GRAY_CURVE));
     vec3 lit = base * (0.9 + 0.35 * facing * falloff);
     gl_FragColor = vec4(mix(gray, lit, amount), 1.0);
   }
