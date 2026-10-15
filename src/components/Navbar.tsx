@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Script from 'next/script'
 import { NavbarProps } from '../config/interfaces'
@@ -9,6 +9,41 @@ const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
     const [logoHovered, setLogoHovered] = useState(false)
     const [logoPressed, setLogoPressed] = useState(false)
     const showHollowLogo = logoHovered && !logoPressed
+
+    // The section heading most recently scrolled under the navbar, shown as
+    // the last breadcrumb; null above the first heading.
+    const [section, setSection] = useState<{ name: string; el: HTMLElement } | null>(null)
+    useEffect(() => {
+        let frame = 0
+        const update = () => {
+            frame = 0
+            const navBottom = document.getElementById('navbar')?.getBoundingClientRect().bottom ?? 72
+            let current: { name: string; el: HTMLElement } | null = null
+            const headings = Array.from(document.querySelectorAll<HTMLElement>('[data-section-heading]'))
+            headings.forEach(el => {
+                if (el.getBoundingClientRect().top < navBottom) {
+                    current = { name: el.dataset.sectionHeading ?? '', el }
+                }
+            })
+            // The last section can be too short to scroll its heading under
+            // the navbar, so reaching the bottom of the page counts as being in it.
+            const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4
+            const last = headings[headings.length - 1]
+            if (atBottom && last && window.scrollY > 0) {
+                current = { name: last.dataset.sectionHeading ?? '', el: last }
+            }
+            setSection(prev => (prev?.name === (current as { name: string } | null)?.name ? prev : current))
+        }
+        const onScroll = () => { if (!frame) frame = requestAnimationFrame(update) }
+        update()
+        window.addEventListener('scroll', onScroll, { passive: true })
+        window.addEventListener('resize', onScroll)
+        return () => {
+            window.removeEventListener('scroll', onScroll)
+            window.removeEventListener('resize', onScroll)
+            cancelAnimationFrame(frame)
+        }
+    }, [])
 
     // Easter egg: five quick taps on the logo (an × and an ○) spin it and say
     // what it is.
@@ -47,7 +82,7 @@ const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
             <header id='navbar' className='print:hidden ease-in-out duration-300 z-40 flex left-0 top-0 items-center p-5 fixed w-full bg-white shadow md:flex-row justify-between'>
 
                 {/* Breadcrumbs: the logo leads home, then "/" and the page */}
-                <div className='flex gap-3 items-center'>
+                <div className='flex gap-3 items-center min-w-0'>
                     {/* Hollow on hover; solid at rest. A press fills it and it
                         stays filled until the pointer leaves, so the next hover
                         shows the hollow version again. Both images are stacked
@@ -70,7 +105,9 @@ const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
                     <p aria-live='polite' className={`pointer-events-none fixed left-5 top-[76px] max-w-[300px] rounded bg-white/95 px-3 py-2 font-mono text-xs font-bold tracking-wide text-primary-500 shadow transition-all duration-300 ${logoSecret ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0'}`}>
                         {logoSecret ? '× and ○: my logo is a game of tic-tac-toe. I’ve been making games since 2009.' : ''}
                     </p>
-                    {props.title && <>
+                    {/* On phones a page title gives way to the section, so the
+                        breadcrumb stays one line beside the menu button. */}
+                    {props.title && <span className={`${section ? 'hidden md:flex' : 'flex'} items-center gap-3`}>
                         <span aria-hidden className='font-mono text-2xl text-gray-300 select-none'>/</span>
                         <button onClick={() => {
                             setShowSidebar(false);
@@ -78,7 +115,16 @@ const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
                         }} className='font-mono font-bold text-[26px] tracking-wider leading-8 text-gray-800'>
                             {props.title}
                         </button>
-                    </>}
+                    </span>}
+                    {section && <span key={section.name} className='crumb-in flex items-center gap-3 min-w-0'>
+                        <span aria-hidden className='font-mono text-2xl text-gray-300 select-none'>/</span>
+                        <button onClick={() => {
+                            setShowSidebar(false);
+                            window.scrollTo({ top: section.el.getBoundingClientRect().top + window.scrollY - 110, behavior: 'smooth' });
+                        }} className={`font-mono font-bold tracking-wider truncate ${props.title ? 'text-lg md:text-xl text-gray-500' : 'text-lg md:text-[26px] text-gray-800'}`}>
+                            {section.name}
+                        </button>
+                    </span>}
                 </div>
 
 

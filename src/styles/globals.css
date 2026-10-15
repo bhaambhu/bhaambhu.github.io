@@ -211,3 +211,19 @@ button:not(:disabled),
   cursor: url("/cursors/bulb.svg") 16 12, crosshair;
 }
 
+
+/* The navbar's section breadcrumb slides in when the section changes. */
+.crumb-in {
+  animation: crumb-in 0.25s ease-out;
+}
+@keyframes crumb-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .crumb-in {
+    animation: none;
+  }
+}

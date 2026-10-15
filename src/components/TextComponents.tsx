@@ -65,7 +65,8 @@ export function H1(props: DivTextProps) {
       {/* Margin for Navbar */}
       {/* <div className='w-full h-28' /> */}
       {/* Section Header */}
-      <div className='flex mb-8 md:w-[70%] print:hidden'>
+      {/* data-section-heading lets the navbar name the section being read. */}
+      <div data-section-heading={props.children} className='flex mb-8 md:w-[70%] print:hidden'>
         <div className='mr-4 p-0 bg-primary-500 w-20 h-[2px] self-center mb-2' />
         <div className='text-dynamicHeader flex font-mono font-bold tracking-widest text-primary-500 mb-2.5 mr-4 cursor-crosshair select-none'><HoverLetters text={props.children ?? ''} /></div>
         <div className='p-0 bg-primary-500 w-full h-[2px] self-center mb-2' />
