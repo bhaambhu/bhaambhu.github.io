@@ -14,9 +14,21 @@ interface ProjectCardProps {
   desktopScreenshots?: string[];
 }
 
-// How far the shadow shifts, in px, as the pointer crosses the card. The card
-// itself stays flat: rotating it in 3D made the browser redraw its text blurry.
-const SHADOW_SHIFT = 14;
+// Corners in card coordinates (-1..1 across, -1..1 down). The card never
+// rotates (that made its text blurry); the curl is all in the corner shadows.
+const CORNERS = [
+  { key: "tl", x: -1, y: -1 },
+  { key: "tr", x: 1, y: -1 },
+  { key: "bl", x: -1, y: 1 },
+  { key: "br", x: 1, y: 1 },
+];
+
+// How lifted a corner is: flat when the pointer is on it, fully curled once
+// it's about half the card away.
+function cornerLift(px: number, py: number, cx: number, cy: number) {
+  const d = Math.hypot(px - cx, py - cy) / 2;
+  return Math.min(1, Math.max(0, (d - 0.08) / 0.5));
+}
 
 export default function ProjectCard(props: ProjectCardProps) {
   const cardRef = useRef<HTMLElement>(null);
@@ -57,10 +69,20 @@ export default function ProjectCard(props: ProjectCardProps) {
           hovered ? "opacity-100" : "opacity-0"
         }`}
       />
-      {/* Curled-corner shadows sit behind the card; they give way to the hover
-          shadow while it's lifted. */}
-      <div aria-hidden className={`paper-curl paper-curl-left ${hovered ? "opacity-0" : "opacity-100"}`} />
-      <div aria-hidden className={`paper-curl paper-curl-right ${hovered ? "opacity-0" : "opacity-100"}`} />
+      {/* Curled corners on hover, behind the card; the one nearest the
+          pointer presses flat. */}
+      {CORNERS.map((c) => (
+        <div
+          key={c.key}
+          aria-hidden
+          className={`paper-curl paper-curl-${c.key}`}
+          // Above the dimming layer (z 20), just under the lifted card (z 30).
+          style={{
+            opacity: hovered ? cornerLift(light.x, light.y, c.x, c.y) : 0,
+            zIndex: hovered ? 25 : 0,
+          }}
+        />
+      ))}
     <article
       ref={cardRef}
       onPointerEnter={(e) => e.pointerType === "mouse" && setHovered(true)}
@@ -70,14 +92,11 @@ export default function ProjectCard(props: ProjectCardProps) {
       }}
       onPointerMove={onPointerMove}
       style={{
-        // A whole-pixel lift keeps the text sharp. The shadow falls away from
-        // the pointer, as if lit from where the mouse is.
+        // A whole-pixel lift keeps the text sharp; the curled corners behind
+        // the card do the rest.
         transform: hovered ? "translateY(-6px)" : "none",
-        // The red border is a ring, which Tailwind also draws as a box-shadow,
-        // so it is part of this value or it disappears.
-        boxShadow: hovered
-          ? `0 0 0 2px #ef4444, ${-light.x * SHADOW_SHIFT}px ${16 - light.y * SHADOW_SHIFT}px 40px -12px rgba(15, 23, 42, 0.35)`
-          : "0 0 0 2px #ef4444",
+        // The red border, drawn as a shadow ring.
+        boxShadow: "0 0 0 2px #ef4444",
       }}
       // Only the hovered card rises above the dimming layer; the rest dim with
       // the page.
