@@ -4,6 +4,20 @@ import Script from 'next/script'
 import { NavbarProps } from '../config/interfaces'
 import Link from 'next/link'
 
+// What the logo (an × and an ○) might be, shown one at a time on tap.
+const LOGO_LINES = [
+    '× and ○: it’s just tic-tac-toe!',
+    '× and ○: it’s the game controller.',
+    'It’s a telescope!',
+    'Resembles someone who’s lost an eye.',
+    'xo: a hug and a kiss, from me to you.',
+    '× marks the spot. ○ is the treasure.',
+    'Close and open: the two buttons every app needs.',
+    'Wrong and right. I fix the first one for a living.',
+    'A robot that just woke up.',
+    'It’s a B. For Bhaambhu, obviously.',
+]
+
 const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
     const [showSidebar, setShowSidebar] = useState(false)
 
@@ -42,18 +56,20 @@ const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
         }
     }, [])
 
-    // Easter egg: a quick double-tap on the logo (an × and an ○) spins it and says
-    // what it is.
-    const [logoSecret, setLogoSecret] = useState(false)
-    const logoTaps = useRef<number[]>([])
-    const countLogoTap = () => {
-        const now = Date.now()
-        logoTaps.current = [...logoTaps.current.filter(t => now - t < 600), now]
-        if (logoTaps.current.length >= 2) {
-            logoTaps.current = []
-            setLogoSecret(true)
-            setTimeout(() => setLogoSecret(false), 4500)
+    // Easter egg: on the homepage at the very top (nothing after the logo), a
+    // tap on the logo spins it and offers a guess at what it is. Every line
+    // shows once, in a shuffled order, before any repeats.
+    const [logoSecret, setLogoSecret] = useState<string | null>(null)
+    const logoQueue = useRef<string[]>([])
+    const logoHide = useRef<ReturnType<typeof setTimeout>>()
+    const atHomeTop = !props.title && !section
+    const showLogoSecret = () => {
+        if (logoQueue.current.length === 0) {
+            logoQueue.current = [...LOGO_LINES].sort(() => Math.random() - 0.5)
         }
+        setLogoSecret(logoQueue.current.shift() ?? null)
+        clearTimeout(logoHide.current)
+        logoHide.current = setTimeout(() => setLogoSecret(null), 3200)
     }
 
     // Convert links array to elements
@@ -80,19 +96,19 @@ const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
 
                 {/* Breadcrumbs: the logo leads home, then "/" and the page */}
                 <div className='flex gap-3 items-center min-w-0'>
-                    {/* A soft red glow and a slight grow on hover. */}
+                    {/* Grows a little on hover. */}
                     <button aria-label='Home' className='group relative flex h-8 w-8'
                         onClick={() => {
                             setShowSidebar(false);
-                            countLogoTap();
+                            if (atHomeTop) return showLogoSecret();
                             window.location.href = props.title ? "/" : "#";
                         }}>
                         <img alt='Bhaambhu Logo' width={32} height={32} src='/favicon.ico'
-                            className={`absolute inset-0 transition duration-200 group-hover:scale-110 group-hover:drop-shadow-[0_0_6px_rgba(239,68,68,0.55)] ${logoSecret ? 'rotate-[360deg] duration-700' : ''}`} />
+                            className={`absolute inset-0 transition duration-200 group-hover:scale-110 ${logoSecret ? 'rotate-[360deg] duration-700' : ''}`} />
                     </button>
                     {/* The logo's secret, just under the navbar. */}
                     <p aria-live='polite' className={`pointer-events-none fixed left-5 top-[76px] max-w-[300px] rounded bg-white/95 px-3 py-2 font-mono text-xs font-bold tracking-wide text-primary-500 shadow transition-all duration-300 ${logoSecret ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0'}`}>
-                        {logoSecret ? '× and ○: my logo is a game of tic-tac-toe. I’ve been making games since 2009.' : ''}
+                        {logoSecret ?? ''}
                     </p>
                     {/* On phones a page title gives way to the section, so the
                         breadcrumb stays one line beside the menu button. */}
