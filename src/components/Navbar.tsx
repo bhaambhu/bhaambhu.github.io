@@ -30,11 +30,16 @@ const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
 
                 {/* Breadcrumbs: the logo leads home, then "/" and the page */}
                 <div className='flex gap-3 items-center'>
-                    <button aria-label='Home' className='flex' onClick={() => {
+                    {/* Solid logo at rest and while pressed; the hollow one on
+                        hover. Both are stacked so swapping never shifts layout. */}
+                    <button aria-label='Home' className='group relative flex h-8 w-8' onClick={() => {
                         setShowSidebar(false);
                         window.location.href = props.title ? "/" : "#";
                     }}>
-                        <img alt='Bhaambhu Logo' width={32} height={32} src='/favicon.ico' />
+                        <img alt='Bhaambhu Logo' width={32} height={32} src='/favicon.ico'
+                            className='absolute inset-0 transition-opacity duration-150 group-hover:opacity-0 group-active:opacity-100' />
+                        <img alt='' aria-hidden width={32} height={32} src='/logo-hollow.png'
+                            className='absolute inset-0 opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-active:opacity-0' />
                     </button>
                     {props.title && <>
                         <span aria-hidden className='font-mono text-2xl text-gray-300 select-none'>/</span>
