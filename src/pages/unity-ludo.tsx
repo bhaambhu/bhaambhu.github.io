@@ -3,16 +3,34 @@ import { HorizontalScreenshot } from '../components/ImageComponents'
 import { VerticalVideo } from '../components/VideoPlayers'
 import Page from '../components/Page'
 import Section from '../components/Section'
+import WebGLGame from '../components/WebGLGame'
+import fs from 'fs'
+import path from 'path'
 
-export default function UnityLudo() {
+const WEBGL_BUILD = '/unity-ludo/webgl/index.html'
+
+// The "Play" section appears automatically once a Unity WebGL build is copied to public/unity-ludo/webgl/
+export async function getStaticProps() {
+  return { props: { hasWebGLBuild: fs.existsSync(path.join(process.cwd(), 'public', WEBGL_BUILD)) } }
+}
+
+export default function UnityLudo({ hasWebGLBuild }: { hasWebGLBuild: boolean }) {
   return (
-    <Page title='LUDO' links={['ui', 'options', 'tech']} description='A framework that allows you to easily create a ludo-style game.' seoKeywords={['game', 'unity', 'unity3d', 'mobile game', 'unityproject']}>
+    <Page title='LUDO' links={[...(hasWebGLBuild ? ['play'] : []), 'ui', 'options', 'tech']} description='A framework that allows you to easily create a ludo-style game.' seoKeywords={['game', 'unity', 'unity3d', 'mobile game', 'unityproject']}>
       <Section>
         <H1>Unity Ludo Framework</H1>
         <P>A framework that allows you to easily create a ludo-style game.</P>
         <P>This is a Unity project for creating any type of Ludo game. The basic scenes are setup for a mobile-based 2D Ludo game with working AI. This can be easily extended to a 3D game or a completely different Ludo game if needed.</P>
         <VerticalVideo controls loop src="/unity-ludo/gameplay.mp4" />
       </Section>
+
+      {hasWebGLBuild && (
+        <Section id='play'>
+          <H1>Play It</H1>
+          <P>The same Unity project, built for WebGL. Play a round against the AI right here in your browser.</P>
+          <WebGLGame src={WEBGL_BUILD} title='Unity Ludo Framework' aspectRatio='9 / 16' />
+        </Section>
+      )}
 
       <Section id='ui'>
         <H1>User Interface</H1>

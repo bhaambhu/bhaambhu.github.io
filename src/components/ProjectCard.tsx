@@ -1,5 +1,5 @@
 import React, { ImgHTMLAttributes, ReactNode } from "react";
-import { Screenshot, ScreenshotContainer, ScreenshotGalleryItem, ScrollableScreenshotsGallery } from "./ImageComponents";
+import { BrowserScreenshot, PhoneScreenshot, Screenshot, ScreenshotContainer, ScreenshotGalleryItem, ScrollableScreenshotsGallery } from "./ImageComponents";
 
 interface ProjectCardProps {
   tags?: string[];
@@ -34,7 +34,7 @@ export default function ProjectCard(props: ProjectCardProps) {
       {props.mobileScreenshots && (
         <ScrollableScreenshotsGallery>
           {props.mobileScreenshots?.map((screenshot) => (
-            <ScreenshotGalleryItem src={screenshot} key={screenshot} />
+            <PhoneScreenshot src={screenshot} key={screenshot} />
           ))}
         </ScrollableScreenshotsGallery>
       )}
@@ -45,7 +45,7 @@ export default function ProjectCard(props: ProjectCardProps) {
       {props.desktopScreenshots && (
         <ScrollableScreenshotsGallery>
           {props.desktopScreenshots?.map((screenshot) => (
-            <ScreenshotGalleryItem src={screenshot} key={screenshot} width="600px" />
+            <BrowserScreenshot src={screenshot} key={screenshot} />
           ))}
         </ScrollableScreenshotsGallery>
       )}

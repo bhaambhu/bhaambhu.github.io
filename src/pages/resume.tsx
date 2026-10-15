@@ -110,9 +110,9 @@ const resumeData: ResumeData = {
     },
     {
       title: "NativePing",
-      tech: "React Native, Push Notifications, Node.js, Vite, Laravel",
+      tech: "React Native, Expo, Laravel, PostgreSQL, React, npm package",
       about:
-        "A push notification service for React Native apps, offering a simple npm plugin for one-line mobile integration, and a web interface for filtering users and send targeted push notifications.",
+        "Push notification platform for React Native: a one-line npm SDK (native-ping) registers devices, a dashboard segments users by JSONB attributes with live audience estimates, and queued batched jobs deliver through the Expo Push API with per-device tracking.",
       link: "https://nativeping.com",
       linkText: "nativeping.com",
     },

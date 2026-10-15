@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from '../components/Buttons'
 import { HorizontalScreenshot } from '../components/ImageComponents'
 import Page from '../components/Page'
+import { Video } from '../components/VideoPlayers'
 import Section from '../components/Section'
 import { EM, H1, H2, SLink, P, Quote } from '../components/TextComponents'
 
@@ -25,14 +26,12 @@ export default function Captain() {
           The backend is built on <b>Django</b> and uses a <b>PostgreSQL</b> database.
           <div className='flex gap-3 mt-2'>
             <Button newTab iconGitHub href="https://github.com/bhaambhu/captain-django">SOURCE CODE</Button>
-            <Button newTab outline href='https://captain-django-production.up.railway.app/api/' iconExternal>DEPLOYMENT</Button>
           </div>
         </P>
         <P className='mt-6'>
-          The web frontend (for staff accounts) is built on <b>NextJS</b>, which is a framework based on <b>React</b>. To access the full capabilities of the platform you need to have a staff account. Create a normal account on the platform and <SLink href='mailto:bhaambhu@gmail.com'>ping me</SLink> and I will promote you to a staff account.
+          The web frontend (for staff accounts) is built on <b>NextJS</b>, which is a framework based on <b>React</b>. The live demo ran on free hosting that has since been retired, so the screenshots and recording on this page show it instead; the source code is on GitHub.
           <div className='flex gap-3 mt-2'>
             <Button newTab iconGitHub href="https://github.com/bhaambhu/captain-nextjs">SOURCE CODE</Button>
-            <Button newTab outline href='https://captain-nextjs-bhaambhu.vercel.app' iconExternal>DEPLOYMENT</Button>
           </div>
         </P>
         <P className='mt-6'>
@@ -51,8 +50,8 @@ export default function Captain() {
           You can craft topics with the drag-drop supported editor, topics can have other topics as a <b>prerequirement</b> so they can be added resulting in a relationship that is synonymous to a graph - but when a staff is adding a topic B as a requirement for topic A and somewhere down the requirement chains of B we have A as a prerequirement - this should not be permitted because it means topic A requires knowledge of topic A as a prerequirement for reading topic A - but the system takes care of this and makes sure there are no requirement cycles.
         </P>
         <HorizontalScreenshot className='border md:w-full' src='../captain/path-editor-chopped.png' />
-        <P>The <b>previewer</b> is designed to give the staff member a glimpse of how the topic or path they&apos;re editing will display on the phone. You can check out the previewer too.</P>
-        <Button newTab iconExternal href='https://captain-nextjs-bhaambhu.vercel.app/paths/27'>CHECK OUT PREVIEWER</Button>
+        <P>The <b>previewer</b> is designed to give the staff member a glimpse of how the topic or path they&apos;re editing will display on the phone.</P>
+        <Video autoPlay loop muted playsInline src={'/captain/Previewer Demo.mp4'} />
         <P>A topic&apos;s theory content supports editing in <b>markdown</b> format. This is done to enable all the features of github flavoured markdown and a user can structure content using various heading levels, add topics, images, links, math formulas etc.</P>
         <HorizontalScreenshot className='border md:w-full' src='../captain/topic-editor-markdown.png' />
         <H2>Subjects</H2>

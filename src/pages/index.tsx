@@ -25,8 +25,11 @@ export default function Home() {
         </h1>
         <p className="text-dynamic font-bold text-slate-600">I build things.</p>
         <P>
-          I love making websites, apps, and games, studying new technologies,
-          and building engaging multi-platform products.
+          Senior software engineer: React Native, React and TypeScript, and
+          Laravel. For 10 years I&apos;ve shipped production apps, games and
+          platforms. Today I lead a five-to-six-person app team at Parag Parikh
+          Mutual Fund, whose investor app serves 300,000+ people. Open to roles
+          in Europe or remote.
         </P>
       </Section>
 
@@ -49,28 +52,31 @@ export default function Home() {
             <P>Here are a few technologies I&apos;ve worked with recently:</P>
             <ul className="text-slate-700 text-xs text-justify font-mono grid grid-cols-2 gap-y-2 mt-4 mb-10 gap-x-2">
               <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
-                Python (Django)
+                React Native &amp; Expo
               </li>
               <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
-                Java (Spring Boot)
+                PHP (Laravel)
               </li>
               <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
-                TypeScript (NextJS, RemixJS)
-              </li>
-              <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
-                React Native
-              </li>
-              <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
-                Unity 3D, C#
-              </li>
-              <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
-                <i>php (Laravel)</i>
+                React &amp; Next.js
               </li>
               <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
                 PostgreSQL
               </li>
               <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
-                Kafka
+                Python (Django)
+              </li>
+              <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
+                Firebase &amp; EAS
+              </li>
+              <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
+                Godot, Unity 3D, C#
+              </li>
+              <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
+                Java (Spring Boot)
+              </li>
+              <li className='before:content-["▹"] before:text-primary-500 before:font-sans before:pr-2'>
+                TypeScript
               </li>
             </ul>
           </div>
@@ -117,31 +123,55 @@ export default function Home() {
       >
         <H1>Featured Projects</H1>
 
-        {/* CAPTAIN Project Tile */}
+        {/* Sarkari Academy Project Tile */}
         <ProjectCard
-          title="CAPTAIN"
+          title="Sarkari Academy"
           tags={[
             "Full Stack",
-            "django",
-            "React JS",
+            "Laravel",
             "PostgreSQL",
-            "Next JS",
+            "React",
+            "TypeScript",
+            "Expo",
             "React Native",
-            "EXPO",
-            "Python",
-            "JavaScript",
-            "Tailwind CSS",
           ]}
-          about="An open-source learning app with Django backend, NextJS front-end for staff, and React Native app for learners. It’s an intelligent tutoring system that can be used to teach any subject while adapting the course to the learner. The system is made in such a way that no piece of knowledge needs to repeat. "
+          mobileScreenshots={[
+            "/sarkari-academy/app-browse.jpg",
+            "/sarkari-academy/app-for-you.jpg",
+          ]}
+          about="A government job platform for India, live since September 2026. Candidates build a profile once and get the jobs they're actually eligible for, with alerts by email and push before every deadline. One Laravel service layer serves the website, the staff tools and an Expo Android app (now in Play testing) with OTA release channels and a server-controlled forced-update gate."
         >
-          <Button href="/captain">MORE INFO</Button>
+          <Button href="/sarkari-academy">MORE INFO</Button>
+          <Button newTab outline href="https://sarkariacademy.com" iconExternal>
+            WEBSITE
+          </Button>
+        </ProjectCard>
+
+        {/* NativePing Project Tile */}
+        <ProjectCard
+          title="NativePing"
+          tags={[
+            "Full Stack",
+            "React Native",
+            "Expo",
+            "Laravel",
+            "PostgreSQL",
+            "React",
+            "TypeScript",
+            "npm package",
+          ]}
+          about="A push notification platform for React Native apps. Developers add one hook from my native-ping npm package to register devices, then segment users by custom attributes and send targeted notifications from a web dashboard. Delivery runs as queued, batched jobs through the Expo Push API with live progress and per-device delivery tracking."
+        >
+          <Button newTab href="https://nativeping.com" iconExternal>
+            WEBSITE
+          </Button>
           <Button
             newTab
             outline
-            href="https://captain-nextjs-bhaambhu.vercel.app"
+            href="https://www.npmjs.com/package/native-ping"
             iconExternal
           >
-            WEBSITE
+            NPM PACKAGE
           </Button>
         </ProjectCard>
 
@@ -163,6 +193,36 @@ export default function Home() {
             APK
           </Button>
         </ProjectCard>
+
+        {/* CAPTAIN Project Tile */}
+        <ProjectCard
+          title="CAPTAIN"
+          tags={[
+            "Full Stack",
+            "django",
+            "React JS",
+            "PostgreSQL",
+            "Next JS",
+            "React Native",
+            "EXPO",
+            "Python",
+            "JavaScript",
+            "Tailwind CSS",
+          ]}
+          about="An open-source learning app with Django backend, NextJS front-end for staff, and React Native app for learners. It’s an intelligent tutoring system that can be used to teach any subject while adapting the course to the learner. The system is made in such a way that no piece of knowledge needs to repeat. "
+        >
+          <Button href="/captain">MORE INFO</Button>
+          <Button
+            newTab
+            outline
+            href="https://github.com/bhaambhu/captain-django"
+            iconGitHub
+          >
+            SOURCE CODE
+          </Button>
+        </ProjectCard>
+
+        <H1>More Projects</H1>
 
         {/* Portfolio Project Tile */}
         <ProjectCard
@@ -227,7 +287,7 @@ export default function Home() {
             SOURCE CODE
           </Button>
         </ProjectCard>
-        <H1>Obsolete Projects</H1>
+        <H1>Early Work</H1>
         {/* KUK Project Tile */}
         <ProjectCard
           title="KUK&nbsp;Student Notification & Information System"
@@ -276,7 +336,7 @@ export default function Home() {
         <ProjectCard
           title="Rough Fight"
           tags={["Unity 3D", "C#"]}
-          about="This was a brawl style game that included hand-combat AI that would fight and dodge player moves. It also featuprimary local multiplayer. This project was never released and remains incomplete."
+          about="This was a brawl style game that included hand-combat AI that would fight and dodge player moves. It also featured local multiplayer. This project was never released and remains incomplete."
         />
         {/* Clock Widget Project Tile */}
         <ProjectCard
@@ -295,7 +355,7 @@ export default function Home() {
         <ProjectCard
           title="Hummer&nbsp;3D&nbsp;Live&nbsp;Wallpaper"
           tags={["Android", "Unity 3D", "UnityScript"]}
-          about="Part of my early experiments with android development, this live wallpaper featuprimary a 3d model of the popular GMC Hummer that responded to touches."
+          about="Part of my early experiments with android development, this live wallpaper featured a 3d model of the popular GMC Hummer that responded to touches."
         />
       </Section>
 
@@ -303,81 +363,72 @@ export default function Home() {
         <H1>Work</H1>
 
         <WorkCard
-          jobTitle="Software Engineer"
-          organization="PPFAS AMC"
-          period={"Feb 2023 to Present"}
+          jobTitle="Senior Manager – Software Developer"
+          organization="PPFAS Asset Management (Parag Parikh Mutual Fund)"
+          period={"February 2023 to Present"}
         >
           <div className="tracking-wide text-sm font-mono mt-1 flex flex-col gap-1">
             <div className="flex gap-2 items-start">
               <div className="font-mono text-primary-500 font-bold inline-flex">
                 &gt;
               </div>
-              <div>
-                Spearheaded the transition to TypeScript for existing
-                applications and the development of new ones, significantly
-                improving code stability and reducing the likelihood of errors.
-                Implemented robust algorithms for enhancing application
-                performance and reliability.
-              </div>
+              <div>Lead a team of 5–6 engineers building the investor and corporate apps in React Native (Expo), Next.js and Remix.</div>
             </div>
             <div className="flex gap-2 items-start">
               <div className="font-mono text-primary-500 font-bold inline-flex">
                 &gt;
               </div>
-              <div>
-                Established comprehensive documentation, guides, and policies
-                within a dedicated wiki for developers, testers, and release
-                managers. Streamlined development processes, saving valuable
-                time and preventing potential issues by providing clear
-                guidelines.
-              </div>
+              <div>Built and maintain SelfInvest, the React Native app 300,000+ investors use to buy, redeem and track mutual fund investments.</div>
             </div>
             <div className="flex gap-2 items-start">
               <div className="font-mono text-primary-500 font-bold inline-flex">
                 &gt;
               </div>
-              <div>
-                Built and exercised the Development-Preview-Release system,
-                enabling robust implementation and safe testing of multiple
-                features in parallel. Effectively managed the end-to-end process
-                of app releases, significantly enhancing overall product
-                quality.
+              <div>Built a helpdesk that replaced the Salesforce helpdesk (a licence of about ₹90 lakh a year) and the corporate investor portal app, both on my own.</div>
+            </div>
+            <div className="flex gap-2 items-start">
+              <div className="font-mono text-primary-500 font-bold inline-flex">
+                &gt;
               </div>
+              <div>Own the release cycle: App Store and Play submissions, OTA updates and release notes.</div>
+            </div>
+            <div className="flex gap-2 items-start">
+              <div className="font-mono text-primary-500 font-bold inline-flex">
+                &gt;
+              </div>
+              <div>Hardened the fintech apps (root and debugger detection, mock-location blocking, encrypted storage) and introduced regular performance measurement.</div>
+            </div>
+            <div className="flex gap-2 items-start">
+              <div className="font-mono text-primary-500 font-bold inline-flex">
+                &gt;
+              </div>
+              <div>Defined the team&apos;s documentation, testing and release standards; translate SEBI circulars into delivery plans.</div>
             </div>
           </div>
         </WorkCard>
         <WorkCard
           jobTitle="Senior Research Fellow"
           organization="Chaudhary Devi Lal University"
-          period={"October 2018 to October 2022"}
+          period={"October 2018 to January 2023"}
         >
           <div className="tracking-wide text-sm font-mono mt-1 flex flex-col gap-1">
             <div className="flex gap-2 items-start">
               <div className="font-mono text-primary-500 font-bold inline-flex">
                 &gt;
               </div>
-              <div>
-                Taught Data Structures, Advanced Algorithms and Compiler Design
-                classes to MTech and MCA.
-              </div>
+              <div>Designed and built CAPTAIN, an adaptive learning platform (Django, Next.js, React Native), as part of my PhD on intelligent tutoring systems.</div>
             </div>
             <div className="flex gap-2 items-start">
               <div className="font-mono text-primary-500 font-bold inline-flex">
                 &gt;
               </div>
-              <div>
-                Published 4 Research Papers in Indexed Journals and Presented 3
-                Research Papers in International Conferences.
-              </div>
+              <div>Published 4 papers in indexed journals and presented 3 at international conferences.</div>
             </div>
             <div className="flex gap-2 items-start">
               <div className="font-mono text-primary-500 font-bold inline-flex">
                 &gt;
               </div>
-              <div>
-                Earned a PhD in Computer Science & Engineering for my work on
-                Intelligent Tutoring Systems.
-              </div>
+              <div>Taught Data Structures, Advanced Algorithms and Compiler Design to MTech and MCA students.</div>
             </div>
           </div>
         </WorkCard>
