@@ -43,7 +43,8 @@ const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
             </div>}
 
             {/* Navbar */}
-            <header id='navbar' className='print:hidden ease-in-out duration-300 z-10 flex left-0 top-0 items-center p-5 fixed w-full bg-white shadow md:flex-row justify-between'>
+            {/* Above all page content (the portrait, a lifted card), so nothing scrolls over it. */}
+            <header id='navbar' className='print:hidden ease-in-out duration-300 z-40 flex left-0 top-0 items-center p-5 fixed w-full bg-white shadow md:flex-row justify-between'>
 
                 {/* Breadcrumbs: the logo leads home, then "/" and the page */}
                 <div className='flex gap-3 items-center'>
