@@ -6,9 +6,6 @@ import Link from 'next/link'
 
 const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
     const [showSidebar, setShowSidebar] = useState(false)
-    const [logoHovered, setLogoHovered] = useState(false)
-    const [logoPressed, setLogoPressed] = useState(false)
-    const showHollowLogo = logoHovered && !logoPressed
 
     // The section heading most recently scrolled under the navbar, shown as
     // the last breadcrumb; null above the first heading.
@@ -45,14 +42,14 @@ const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
         }
     }, [])
 
-    // Easter egg: five quick taps on the logo (an × and an ○) spin it and say
+    // Easter egg: a quick double-tap on the logo (an × and an ○) spins it and says
     // what it is.
     const [logoSecret, setLogoSecret] = useState(false)
     const logoTaps = useRef<number[]>([])
     const countLogoTap = () => {
         const now = Date.now()
-        logoTaps.current = [...logoTaps.current.filter(t => now - t < 2000), now]
-        if (logoTaps.current.length >= 5) {
+        logoTaps.current = [...logoTaps.current.filter(t => now - t < 600), now]
+        if (logoTaps.current.length >= 2) {
             logoTaps.current = []
             setLogoSecret(true)
             setTimeout(() => setLogoSecret(false), 4500)
@@ -83,23 +80,15 @@ const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
 
                 {/* Breadcrumbs: the logo leads home, then "/" and the page */}
                 <div className='flex gap-3 items-center min-w-0'>
-                    {/* Hollow on hover; solid at rest. A press fills it and it
-                        stays filled until the pointer leaves, so the next hover
-                        shows the hollow version again. Both images are stacked
-                        so swapping never shifts the layout. */}
-                    <button aria-label='Home' className='relative flex h-8 w-8'
-                        onPointerEnter={() => setLogoHovered(true)}
-                        onPointerLeave={() => { setLogoHovered(false); setLogoPressed(false); }}
-                        onPointerDown={() => setLogoPressed(true)}
+                    {/* A soft red glow and a slight grow on hover. */}
+                    <button aria-label='Home' className='group relative flex h-8 w-8'
                         onClick={() => {
                             setShowSidebar(false);
                             countLogoTap();
                             window.location.href = props.title ? "/" : "#";
                         }}>
                         <img alt='Bhaambhu Logo' width={32} height={32} src='/favicon.ico'
-                            className={`absolute inset-0 transition-[opacity,transform] duration-700 ${showHollowLogo ? 'opacity-0' : 'opacity-100'} ${logoSecret ? 'rotate-[360deg]' : ''}`} />
-                        <img alt='' aria-hidden width={32} height={32} src='/logo-hollow.png'
-                            className={`absolute inset-0 transition-opacity duration-150 ${showHollowLogo ? 'opacity-100' : 'opacity-0'}`} />
+                            className={`absolute inset-0 transition duration-200 group-hover:scale-110 group-hover:drop-shadow-[0_0_6px_rgba(239,68,68,0.55)] ${logoSecret ? 'rotate-[360deg] duration-700' : ''}`} />
                     </button>
                     {/* The logo's secret, just under the navbar. */}
                     <p aria-live='polite' className={`pointer-events-none fixed left-5 top-[76px] max-w-[300px] rounded bg-white/95 px-3 py-2 font-mono text-xs font-bold tracking-wide text-primary-500 shadow transition-all duration-300 ${logoSecret ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0'}`}>
