@@ -1,4 +1,4 @@
-import React, { ReactNode, useRef, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { BrowserScreenshot, PhoneScreenshot, Screenshot, ScreenshotContainer, ScreenshotGalleryItem, ScrollableScreenshotsGallery } from "./ImageComponents";
 
 interface ProjectCardProps {
@@ -14,40 +14,8 @@ interface ProjectCardProps {
   desktopScreenshots?: string[];
 }
 
-// Corners in card coordinates (-1..1 across, -1..1 down). The card never
-// rotates (that made its text blurry); the curl is all in the corner shadows.
-const CORNERS = [
-  { key: "tl", x: -1, y: -1 },
-  { key: "tr", x: 1, y: -1 },
-  { key: "bl", x: -1, y: 1 },
-  { key: "br", x: 1, y: 1 },
-];
-
-// How lifted a corner is: flat when the pointer is on it, fully curled once
-// it's about half the card away.
-function cornerLift(px: number, py: number, cx: number, cy: number) {
-  const d = Math.hypot(px - cx, py - cy) / 2;
-  return Math.min(1, Math.max(0, (d - 0.08) / 0.5));
-}
-
 export default function ProjectCard(props: ProjectCardProps) {
-  const cardRef = useRef<HTMLElement>(null);
   const [hovered, setHovered] = useState(false);
-  const [light, setLight] = useState({ x: 0, y: 0 });
-
-  // People who ask for less motion get the lift and dimming, with a still shadow.
-  const reduceMotion = () =>
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  const onPointerMove = (e: React.PointerEvent) => {
-    if (e.pointerType !== "mouse" || reduceMotion() || !cardRef.current) return;
-    const r = cardRef.current.getBoundingClientRect();
-    // -1..1 across the card, from its centre.
-    const px = ((e.clientX - r.left) / r.width) * 2 - 1;
-    const py = ((e.clientY - r.top) / r.height) * 2 - 1;
-    setLight({ x: px, y: py });
-  };
 
   // Convert tags array to elements
   const tags = props.tags?.map((oneTag) => (
@@ -61,37 +29,19 @@ export default function ProjectCard(props: ProjectCardProps) {
 
   return (
     <div className="relative my-4">
-      {/* Curled corners on hover, behind the card; the one nearest the
-          pointer presses flat. */}
-      {CORNERS.map((c) => (
-        <div
-          key={c.key}
-          aria-hidden
-          className={`paper-curl paper-curl-${c.key}`}
-          // Just under the lifted card, above its neighbours.
-          style={{
-            opacity: hovered ? cornerLift(light.x, light.y, c.x, c.y) : 0,
-            zIndex: hovered ? 25 : 0,
-          }}
-        />
-      ))}
     <article
-      ref={cardRef}
       onPointerEnter={(e) => e.pointerType === "mouse" && setHovered(true)}
-      onPointerLeave={() => {
-        setHovered(false);
-        setLight({ x: 0, y: 0 });
-      }}
-      onPointerMove={onPointerMove}
+      onPointerLeave={() => setHovered(false)}
       style={{
-        // A whole-pixel lift keeps the text sharp; the curled corners behind
-        // the card do the rest.
+        // A whole-pixel lift keeps the text sharp.
         transform: hovered ? "translateY(-6px)" : "none",
-        // The red border, drawn as a shadow ring.
-        boxShadow: "0 0 0 2px #ef4444",
+        // The red border is drawn as a shadow ring, so it is part of this value.
+        boxShadow: hovered
+          ? "0 0 0 2px #ef4444, 0 18px 30px -14px rgba(15, 23, 42, 0.35)"
+          : "0 0 0 2px #ef4444",
       }}
-      // The hovered card rises above its neighbours so its shadows aren't
-      // covered by the next card.
+      // The hovered card rises above its neighbours so its shadow isn't covered
+      // by the next card.
       // The arrow everywhere on the card, text included (cursor is inherited,
       // so it replaces the text I-beam); links and buttons set their own hand.
       className={`relative cursor-default bg-white rounded px-3 py-1.5 transition-[transform,box-shadow] duration-200 ease-out ${

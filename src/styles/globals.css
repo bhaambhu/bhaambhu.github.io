@@ -211,22 +211,3 @@ button:not(:disabled),
   cursor: url("/cursors/bulb.svg") 16 12, crosshair;
 }
 
-/* Lifted corners on a hovered project card: a soft, blurred oval of shadow
-   tucked under each corner and peeking out diagonally, so the corner looks
-   raised off the page. Ovals have no straight edges, so nothing reads as a
-   second corner beside the card's border. Opacity is set per corner from the
-   pointer (the nearest corner presses flat). */
-.paper-curl {
-  position: absolute;
-  width: 30%;
-  height: 46px;
-  border-radius: 9999px;
-  background: rgba(15, 23, 42, 0.42);
-  filter: blur(11px);
-  transition: opacity 0.15s ease-out;
-  pointer-events: none;
-}
-.paper-curl-tl { top: -10px; left: -8px; }
-.paper-curl-tr { top: -10px; right: -8px; }
-.paper-curl-bl { bottom: -16px; left: -6px; background: rgba(15, 23, 42, 0.5); }
-.paper-curl-br { bottom: -16px; right: -6px; background: rgba(15, 23, 42, 0.5); }
