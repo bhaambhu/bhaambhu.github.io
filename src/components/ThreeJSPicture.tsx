@@ -49,7 +49,8 @@ const vertexShader = /* glsl */ `
 `;
 
 const fragmentShader = /* glsl */ `
-  uniform sampler2D uColor;
+  uniform sampler2D uColor;     // the photo as shot, for the grayscale
+  uniform sampler2D uColorLit;  // the same photo on a warm backdrop, for the colour
   uniform sampler2D uNormal;
   uniform sampler2D uDepth;
   uniform vec2 uLight;       // pointer position in world units
@@ -82,36 +83,42 @@ const fragmentShader = /* glsl */ `
     vec3 toLight = vec3(uLight, LIGHT_HEIGHT) - surface;
     float dist = length(toLight);
 
-    float facing = max(dot(n, toLight / dist), 0.0);
+    // The backdrop is flat, so it faces the light fully. Without this the
+    // steep normals along the silhouette read as facing away, stayed gray
+    // (white there) and drew a pale outline round the head.
+    float subject = smoothstep(0.2, 0.55, texture2D(uDepth, vUv).r);
+    float facing = mix(1.0, max(dot(n, toLight / dist), 0.0), subject);
     float falloff = pow(clamp(1.0 - dist / REACH, 0.0, 1.0), 2.0);
     float amount = clamp(uStrength * facing * falloff * 2.4, 0.0, 1.0);
 
     // Brighten the midtones (below 1 lifts them), leaving pure white and
     // black where they are, so the grayscale reads lighter and clearer.
     vec3 gray = vec3(pow(lum, GRAY_CURVE));
-    vec3 lit = base * (0.9 + 0.35 * facing * falloff);
+    vec3 lit = texture2D(uColorLit, vUv).rgb * (0.9 + 0.35 * facing * falloff);
     gl_FragColor = vec4(mix(gray, lit, amount), 1.0);
   }
 `;
 
 function Portrait() {
-  const [colorMap, depthMap, normalMap] = useLoader(TextureLoader, [
+  const [colorMap, depthMap, normalMap, colorLitMap] = useLoader(TextureLoader, [
     "/portrait.jpg",
     "/portrait_depth.png",
     "/portrait_normal.png",
+    "/portrait_color.jpg",
   ]);
   const { gl, size } = useThree();
 
   const uniforms = useMemo(
     () => ({
       uColor: { value: colorMap },
+      uColorLit: { value: colorLitMap },
       uNormal: { value: normalMap },
       uDepth: { value: depthMap },
       uDepthScale: { value: 0.1 },
       uLight: { value: new THREE.Vector2(0, 0) },
       uStrength: { value: 0 },
     }),
-    [colorMap, normalMap, depthMap]
+    [colorMap, normalMap, depthMap, colorLitMap]
   );
 
   // Where the pointer is (world units), and whether it has moved recently.
