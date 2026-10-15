@@ -165,3 +165,9 @@ html.splash-seen .splash {
     animation: none;
   }
 }
+
+/* Selected text: white on the brand red (primary-500), across the site. */
+::selection {
+  background-color: #ef4444;
+  color: #ffffff;
+}
