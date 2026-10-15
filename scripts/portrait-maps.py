@@ -40,7 +40,7 @@ def gaussian_blur(a, sigma):
     return np.apply_along_axis(lambda v: np.convolve(v, k, mode="valid"), 0, a)
 
 h = gaussian_blur(d.astype(np.float32), 2.5)
-relief = img.size[0] * 0.12          # how tall the face stands, in pixels
+relief = img.size[0] * 0.5          # how tall the face stands, in pixels
 hy, hx = np.gradient(h * relief)
 n = np.dstack([-hx, hy, np.ones_like(h)])   # image y runs down; OpenGL y runs up
 n /= np.linalg.norm(n, axis=2, keepdims=True)

@@ -27,6 +27,8 @@ export default function ThreeJSPicture() {
 
 // World units per CSS pixel, from the camera's zoom of 100.
 const UNITS_PER_PX = 1 / 100;
+// How far into the photo to zoom: 1 shows all of it.
+const ZOOM = 1.12;
 // How far the light reaches, in world units (the plane is 3 across).
 const REACH = 2.6;
 
@@ -37,9 +39,10 @@ const vertexShader = /* glsl */ `
   varying vec3 vPos;
 
   void main() {
-    vUv = uv;
+    // Sample a slightly smaller centre of the photo: a gentle zoom.
+    vUv = (uv - 0.5) / ${ZOOM.toFixed(2)} + 0.5;
     vec3 pos = position;
-    pos.z += texture2D(uDepth, uv).r * uDepthScale;
+    pos.z += texture2D(uDepth, vUv).r * uDepthScale;
     vPos = pos;
     gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
   }
@@ -58,7 +61,7 @@ const fragmentShader = /* glsl */ `
   // the light floats. A low light rakes across the face, so the surfaces
   // that turn towards it light up and the ones that turn away stay gray.
   const float RELIEF = 0.55;
-  const float LIGHT_HEIGHT = 0.75;
+  const float LIGHT_HEIGHT = 0.45;
   // Distance at which the light has faded to nothing.
   const float REACH = ${REACH.toFixed(2)};
 
