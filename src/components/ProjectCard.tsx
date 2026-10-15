@@ -61,14 +61,6 @@ export default function ProjectCard(props: ProjectCardProps) {
 
   return (
     <div className="relative my-4">
-      {/* Dims the rest of the page while this card is hovered. It sits outside
-          the lifted card: a transformed parent would trap a fixed element. */}
-      <div
-        aria-hidden
-        className={`pointer-events-none fixed inset-0 z-20 bg-slate-900/25 transition-opacity duration-300 ${
-          hovered ? "opacity-100" : "opacity-0"
-        }`}
-      />
       {/* Curled corners on hover, behind the card; the one nearest the
           pointer presses flat. */}
       {CORNERS.map((c) => (
@@ -76,7 +68,7 @@ export default function ProjectCard(props: ProjectCardProps) {
           key={c.key}
           aria-hidden
           className={`paper-curl paper-curl-${c.key}`}
-          // Above the dimming layer (z 20), just under the lifted card (z 30).
+          // Just under the lifted card, above its neighbours.
           style={{
             opacity: hovered ? cornerLift(light.x, light.y, c.x, c.y) : 0,
             zIndex: hovered ? 25 : 0,
@@ -98,8 +90,8 @@ export default function ProjectCard(props: ProjectCardProps) {
         // The red border, drawn as a shadow ring.
         boxShadow: "0 0 0 2px #ef4444",
       }}
-      // Only the hovered card rises above the dimming layer; the rest dim with
-      // the page.
+      // The hovered card rises above its neighbours so its shadows aren't
+      // covered by the next card.
       // The arrow everywhere on the card, text included (cursor is inherited,
       // so it replaces the text I-beam); links and buttons set their own hand.
       className={`relative cursor-default bg-white rounded px-3 py-1.5 transition-[transform,box-shadow] duration-200 ease-out ${
