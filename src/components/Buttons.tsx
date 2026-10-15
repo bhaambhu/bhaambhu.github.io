@@ -46,16 +46,20 @@ export function Button({
             }
       }
       // onClick={() => { if (href && !disabled) window.location.href = href; }}
+      // Filled and hollow swap on hover, so every button answers the pointer.
       className={`
-          px-2 py-1 flex items-center 
-          ${outline ? "bg-white text-primary-500" : "bg-primary-500 text-white"}
-          border-2 border-primary-500 rounded 
-          font-mono font-bold tracking-widest 
+          px-2 py-1 flex items-center
+          border-2 rounded transition-colors duration-150
+          font-mono font-bold tracking-widest
           ${dashed ? "border-dashed" : ""}
           ${
             disabled
               ? "bg-slate-400 border-slate-400 text-slate-300 cursor-not-allowed"
-              : ""
+              : `cursor-pointer border-primary-500 ${
+                  outline
+                    ? "bg-white text-primary-500 hover:bg-primary-500 hover:text-white"
+                    : "bg-primary-500 text-white hover:bg-white hover:text-primary-500"
+                }`
           }
       `}
     >
