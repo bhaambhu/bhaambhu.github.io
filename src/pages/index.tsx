@@ -8,6 +8,7 @@ import Page from "../components/Page";
 import WorkCard from "../components/WorkCard";
 import Section from "../components/Section";
 import ThreeJSPicture from "../components/ThreeJSPicture";
+import Typewriter from "../components/Typewriter";
 
 export default function Home() {
   return (
@@ -23,7 +24,21 @@ export default function Home() {
         <h1 className="text-dynamic font-bold text-slate-900 mb-3">
           Sanjay Bhaambhu.
         </h1>
-        <p className="text-dynamic font-bold text-slate-600">I build things.</p>
+        {/* Each phrase is a strength from the résumé; "build things" stays the anchor. */}
+        <Typewriter
+          // Shrinks a little more than the name on small phones, so the longest
+          // phrase never wraps mid-typing and makes the page jump.
+          className="text-dynamic text-[clamp(32px,8vw,80px)] whitespace-nowrap font-bold text-slate-600"
+          prefix="I "
+          phrases={[
+            "build things.",
+            "ship apps.",
+            "design interfaces.",
+            "lead teams.",
+            "make games.",
+            "teach machines.",
+          ]}
+        />
         <P>
           Senior software engineer: React Native, React and TypeScript, and
           Laravel. For 10 years I&apos;ve shipped production apps, games and

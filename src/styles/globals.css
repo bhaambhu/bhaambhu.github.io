@@ -180,3 +180,26 @@ button:not(:disabled),
 [role="tab"] {
   cursor: pointer;
 }
+
+/* The hero typewriter's cursor: a red bar, blinking. */
+.typewriter-caret {
+  display: inline-block;
+  width: 0.08em;
+  height: 0.9em;
+  margin-left: 0.06em;
+  vertical-align: -0.08em;
+  background-color: #ef4444;
+  animation: typewriter-blink 1s steps(1) infinite;
+}
+
+@keyframes typewriter-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-caret {
+    animation: none;
+  }
+}
