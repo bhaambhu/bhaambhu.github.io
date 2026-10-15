@@ -66,10 +66,10 @@ const fragmentShader = /* glsl */ `
     vec3 base = texture2D(uColor, vUv).rgb;
     float lum = dot(base, vec3(0.299, 0.587, 0.114));
 
-    // The normal map was baked with green pointing down (DirectX style);
-    // three.js reads green as up, so flip it.
-    vec3 n = texture2D(uNormal, vUv).rgb * 2.0 - 1.0;
-    n = normalize(vec3(n.x, -n.y, n.z));
+    // Normals are stored with green pointing up, as three.js expects.
+    // (portrait_normal.png is derived from the depth map, which comes from
+    // Depth Anything V2.)
+    vec3 n = normalize(texture2D(uNormal, vUv).rgb * 2.0 - 1.0);
 
     // The surface point, raised by the depth map: nose and cheeks sit
     // nearer the light than the background does.
@@ -89,9 +89,9 @@ const fragmentShader = /* glsl */ `
 
 function Portrait() {
   const [colorMap, depthMap, normalMap] = useLoader(TextureLoader, [
-    "/close.jpg",
-    "/close_Depth.jpg",
-    "/close_Normal_2.jpg",
+    "/portrait.jpg",
+    "/portrait_depth.png",
+    "/portrait_normal.png",
   ]);
   const { gl, size } = useThree();
 
