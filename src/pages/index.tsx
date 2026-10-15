@@ -218,7 +218,6 @@ export default function Home() {
           ]}
           desktopScreenshots={[
             "/captain/path-editor.png",
-            "/captain/MCQ editor.png",
           ]}
           about="An open-source learning app with Django backend, NextJS front-end for staff, and React Native app for learners. It’s an intelligent tutoring system that can be used to teach any subject while adapting the course to the learner. The system is made in such a way that no piece of knowledge needs to repeat. "
         >
