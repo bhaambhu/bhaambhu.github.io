@@ -123,30 +123,49 @@ function Portrait() {
 
   // Where the pointer is (world units), and whether it has moved recently.
   const pointer = useRef({ x: 0, y: 0, seen: false });
+  // A finger on the photo steers the light until this time (ms), then the
+  // drift takes over again.
+  const touchUntil = useRef(0);
 
   useEffect(() => {
-    const onMove = (ev: PointerEvent) => {
-      if (ev.pointerType === "touch") return;
-      const rect = gl.domElement.getBoundingClientRect();
-      pointer.current = {
+    const canvas = gl.domElement;
+    const toWorld = (ev: PointerEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      return {
         x: (ev.clientX - (rect.left + rect.width / 2)) * UNITS_PER_PX,
         y: -(ev.clientY - (rect.top + rect.height / 2)) * UNITS_PER_PX,
-        seen: true,
       };
+    };
+    const onMove = (ev: PointerEvent) => {
+      if (ev.pointerType === "touch") return;
+      pointer.current = { ...toWorld(ev), seen: true };
+    };
+    // Touch only counts on the photo itself, so scrolling elsewhere doesn't
+    // move the light.
+    const onTouch = (ev: PointerEvent) => {
+      if (ev.pointerType !== "touch") return;
+      pointer.current = { ...toWorld(ev), seen: true };
+      touchUntil.current = performance.now() + 2500;
     };
     const onLeave = () => {
       pointer.current = { ...pointer.current, seen: false };
     };
     window.addEventListener("pointermove", onMove);
+    canvas.addEventListener("pointerdown", onTouch);
+    canvas.addEventListener("pointermove", onTouch);
     document.addEventListener("pointerleave", onLeave);
+    // Vertical swipes still scroll the page; taps and sideways drags steer.
+    canvas.style.touchAction = "pan-y";
     return () => {
       window.removeEventListener("pointermove", onMove);
+      canvas.removeEventListener("pointerdown", onTouch);
+      canvas.removeEventListener("pointermove", onTouch);
       document.removeEventListener("pointerleave", onLeave);
     };
   }, [gl]);
 
-  // Touch screens and the first moments before any movement get a light that
-  // drifts slowly across the face, so the effect is never invisible.
+  // Touch screens get a light that drifts slowly across the face when no
+  // finger is on it, so the effect is never invisible.
   const hasMouse = useMemo(
     () => typeof window !== "undefined" && window.matchMedia("(pointer: fine)").matches,
     []
@@ -157,7 +176,9 @@ function Portrait() {
     const target = new THREE.Vector2();
     let strength: number;
 
-    if (hasMouse && pointer.current.seen) {
+    const touching = performance.now() < touchUntil.current;
+
+    if (touching || (hasMouse && pointer.current.seen)) {
       target.set(pointer.current.x, pointer.current.y);
       strength = 1;
     } else if (!hasMouse) {
