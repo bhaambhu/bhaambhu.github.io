@@ -480,7 +480,7 @@ export default function Home() {
         </P>
         <br />
         <button
-          onClick={() => (window.location.href = "mailto:bhaambhu@gmail.com")}
+          onClick={() => (window.location.href = "mailto:sanjay@bhaambhu.com")}
           className="px-4 py-2 flex bg-white border-2 self-center border-primary-500 rounded font-mono font-bold tracking-widest text-primary-500"
         >
           SAY&nbsp;HELLO
