@@ -160,6 +160,9 @@ export default function Home() {
             "TypeScript",
             "npm package",
           ]}
+          desktopScreenshots={[
+            "/nativeping/home.jpg",
+          ]}
           about="A push notification platform for React Native apps. Developers add one hook from my native-ping npm package to register devices, then segment users by custom attributes and send targeted notifications from a web dashboard. Delivery runs as queued, batched jobs through the Expo Push API with live progress and per-device delivery tracking."
         >
           <Button newTab href="https://nativeping.com" iconExternal>
@@ -186,6 +189,10 @@ export default function Home() {
             "In-App-Purchases",
             "Google Play Services",
           ]}
+          landscapeScreenshots={[
+            "/shades/card-menu.jpg",
+            "/shades/card-gameplay.jpg",
+          ]}
           about="A 3D shooter game for the android platform – 1.5M players, 4.5/5 avg rating from 21K reviews. The biggest learning was real-time concurrency control – managing multiple players that are accessing and manipulating the same resources, in both peer-to-peer (LAN) and client-server (Online Multiplayer) environments."
         >
           <Button href="/shades">MORE INFO</Button>
@@ -208,6 +215,10 @@ export default function Home() {
             "Python",
             "JavaScript",
             "Tailwind CSS",
+          ]}
+          desktopScreenshots={[
+            "/captain/path-editor.png",
+            "/captain/MCQ editor.png",
           ]}
           about="An open-source learning app with Django backend, NextJS front-end for staff, and React Native app for learners. It’s an intelligent tutoring system that can be used to teach any subject while adapting the course to the learner. The system is made in such a way that no piece of knowledge needs to repeat. "
         >
@@ -258,6 +269,10 @@ export default function Home() {
         <ProjectCard
           title="Unity Ludo Framework"
           tags={["UNITY 3D", "C#"]}
+          mobileScreenshots={[
+            "/unity-ludo/gameplay-30.jpg",
+            "/unity-ludo/gameplay-80.jpg",
+          ]}
           about="An open-source Unity3D project for creating any type of Ludo game. Currently setup as a mobile-based 2D Ludo game with working AI. Can be easily extended to a 3D game or a completely different Ludo game if needed."
         >
           <Button href="/unity-ludo">MORE INFO</Button>
