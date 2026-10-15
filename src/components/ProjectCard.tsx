@@ -67,7 +67,9 @@ export default function ProjectCard(props: ProjectCardProps) {
       }}
       // Only the hovered card rises above the dimming layer; the rest dim with
       // the page.
-      className={`relative bg-white rounded px-3 py-1.5 ring-2 ring-primary-500 transition-[transform,box-shadow] duration-200 ease-out ${
+      // The arrow everywhere on the card, text included (cursor is inherited,
+      // so it replaces the text I-beam); links and buttons set their own hand.
+      className={`relative cursor-default bg-white rounded px-3 py-1.5 ring-2 ring-primary-500 transition-[transform,box-shadow] duration-200 ease-out ${
         hovered ? "z-30 shadow-2xl" : "z-0 shadow-none"
       }`}
     >

@@ -171,3 +171,12 @@ html.splash-seen .splash {
   background-color: #ef4444;
   color: #ffffff;
 }
+
+/* Anything clickable gets the hand, so links and buttons read as clickable
+   everywhere, even where a component sets the arrow (e.g. project cards). */
+a[href],
+button:not(:disabled),
+[role="button"],
+[role="tab"] {
+  cursor: pointer;
+}
