@@ -29,6 +29,14 @@ export default function ProjectCard(props: ProjectCardProps) {
 
   return (
     <div className="relative my-4">
+      {/* Dims the rest of the page while this card is hovered. It sits outside
+          the lifted card: a transformed parent would trap a fixed element. */}
+      <div
+        aria-hidden
+        className={`pointer-events-none fixed inset-0 z-20 bg-slate-900/25 transition-opacity duration-300 ${
+          hovered ? "opacity-100" : "opacity-0"
+        }`}
+      />
     <article
       onPointerEnter={(e) => e.pointerType === "mouse" && setHovered(true)}
       onPointerLeave={() => setHovered(false)}
@@ -40,8 +48,8 @@ export default function ProjectCard(props: ProjectCardProps) {
           ? "0 0 0 2px #ef4444, 0 18px 30px -14px rgba(15, 23, 42, 0.35)"
           : "0 0 0 2px #ef4444",
       }}
-      // The hovered card rises above its neighbours so its shadow isn't covered
-      // by the next card.
+      // Only the hovered card rises above the dimming layer; the rest dim with
+      // the page.
       // The arrow everywhere on the card, text included (cursor is inherited,
       // so it replaces the text I-beam); links and buttons set their own hand.
       className={`relative cursor-default bg-white rounded px-3 py-1.5 transition-[transform,box-shadow] duration-200 ease-out ${
