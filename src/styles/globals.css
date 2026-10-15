@@ -203,3 +203,10 @@ button:not(:disabled),
     animation: none;
   }
 }
+
+/* Over the portrait the pointer is the light, so it becomes a lightbulb; the
+   hotspot (16 12) is the centre of the glass. Crosshair where SVG cursors
+   aren't supported. */
+.cursor-bulb {
+  cursor: url("/cursors/bulb.svg") 16 12, crosshair;
+}
