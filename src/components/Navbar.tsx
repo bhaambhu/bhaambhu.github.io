@@ -6,16 +6,15 @@ import Link from 'next/link'
 
 // What the logo (an × and an ○) might be, shown one at a time on tap.
 const LOGO_LINES = [
-    'xo: it’s just tic-tac-toe!',
-    'xo: it’s the game controller.',
+    'x & o: it’s just tic-tac-toe!',
+    'it’s a stretched game controller.',
     'It’s a telescope!',
-    'xo: Resembles someone who’s lost an eye.',
-    'xo: a hug and a kiss, from me to you.',
-    'xo: × marks the spot. ○ is the treasure.',
-    'xo: Close and open: the two buttons every app needs.',
-    'xo: Wrong and right. I fix the first one for a living.',
+    'x & o: hugs and kisses',
+    '× marks the spot. ○ is the treasure.',
+    'x & o: Close and open: the two buttons every app needs.',
+    'x & o: Wrong and right. I fix the first one for a living.',
     'A robot that just woke up.',
-    'It’s a B. For Bhaambhu, obviously.',
+    'It’s just a B. For Bhaambhu, obviously.',
 ]
 
 const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
