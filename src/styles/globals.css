@@ -243,3 +243,18 @@ button:not(:disabled),
     white-space: normal;
   }
 }
+
+/* The logo's single turn when it shows a guess. */
+.logo-spin {
+  animation: logo-spin 0.7s ease-in-out;
+}
+@keyframes logo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-spin {
+    animation-duration: 1ms;
+  }
+}
