@@ -228,33 +228,3 @@ button:not(:disabled),
   }
 }
 
-/* A logo guess wider than the navbar slides left once, after a short pause. */
-.logo-quip-scroll {
-  animation: logo-quip-scroll var(--quip-time) linear 0.6s forwards;
-}
-@keyframes logo-quip-scroll {
-  to {
-    transform: translateX(var(--quip-shift));
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .logo-quip-scroll {
-    animation: none;
-    white-space: normal;
-  }
-}
-
-/* The logo's single turn when it shows a guess. */
-.logo-spin {
-  animation: logo-spin 0.7s ease-in-out;
-}
-@keyframes logo-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .logo-spin {
-    animation-duration: 1ms;
-  }
-}
