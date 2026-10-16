@@ -192,6 +192,12 @@ button:not(:disabled),
   animation: typewriter-blink 1s steps(1) infinite;
 }
 
+/* The navbar's caret: black and a touch thicker, since its text is small. */
+.typewriter-caret-ink {
+  width: max(2.5px, 0.16em);
+  background-color: #0f172a;
+}
+
 @keyframes typewriter-blink {
   50% {
     opacity: 0;

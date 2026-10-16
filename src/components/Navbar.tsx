@@ -157,7 +157,7 @@ const Navbar = ({ showResumeButton = true, ...props}: NavbarProps) => {
                         className={`ml-2 min-w-0 flex-1 overflow-hidden whitespace-nowrap transition-opacity duration-300 ${quipShown ? 'opacity-100' : 'opacity-0'}`}>
                         <span aria-hidden className='font-mono text-sm md:text-base font-bold tracking-wide text-primary-500'>
                             {logoSecret.slice(0, typed)}
-                            <span className='typewriter-caret' />
+                            <span className='typewriter-caret typewriter-caret-ink' />
                         </span>
                     </span>}
                     {/* On phones a page title gives way to the section, so the
