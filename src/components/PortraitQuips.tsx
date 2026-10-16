@@ -1,45 +1,67 @@
 import React, { ReactNode, useRef, useState } from "react";
 
 /**
- * Each tap on the portrait reveals the next line, explaining the trick a bit
- * at a time and ending on a way to get in touch; then it starts over.
+ * Each tap on the portrait reveals the next quip, explaining the trick a bit
+ * at a time and ending on a way to get in touch; then it starts over. A quip
+ * is a list of lines that appear one after another, each on its own row.
  */
-const QUIPS = [
-  "It's a depth map!",
-  "I just added a depth map to this image… then a normal map… then a shader. I got carried away.",
-  "Your cursor is the light. Only what faces it gets its colour back.",
-  "An AI model estimated the depth from a single photo, right on my laptop.",
-  "You like clicking things. I like building them. We'd get along.",
-  "Seriously, the projects are just below ↓",
-  "Fine, you win: sanjay@bhaambhu.com",
+const QUIPS: string[][] = [
+  ["It's a depth map!"],
+  ["I just added a depth map to this image…", "then a normal map…", "then a shader.", "I got carried away."],
+  ["Your cursor is the light.", "Only what faces it gets its colour back."],
+  ["An AI model estimated the depth from a single photo,", "right on my laptop."],
+  ["You like clicking things.", "I like building them.", "We'd get along."],
+  ["Seriously,", "the projects are just below ↓"],
+  ["Fine, you win:", "sanjay@bhaambhu.com"],
 ];
 
-const SHOW_MS = 3600;
+// Pause before each next line, and how long the whole quip stays once its
+// last line is in.
+const LINE_GAP_MS = 900;
+const HOLD_MS = 2600;
 
 export default function PortraitQuips({ children }: { children: ReactNode }) {
   const [tap, setTap] = useState(-1);
+  const [lines, setLines] = useState(0);
   const [visible, setVisible] = useState(false);
-  const hideTimer = useRef<ReturnType<typeof setTimeout>>();
+  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const onTap = () => {
-    setTap((t) => (t + 1) % QUIPS.length);
+    timers.current.forEach(clearTimeout);
+    const next = (tap + 1) % QUIPS.length;
+    const quip = QUIPS[next];
+    setTap(next);
+    setLines(1);
     setVisible(true);
-    clearTimeout(hideTimer.current);
-    hideTimer.current = setTimeout(() => setVisible(false), SHOW_MS);
+    // Reveal the remaining lines one by one, then hide the whole quip.
+    timers.current = quip.slice(1).map((_, i) =>
+      setTimeout(() => setLines(i + 2), LINE_GAP_MS * (i + 1))
+    );
+    timers.current.push(
+      setTimeout(() => setVisible(false), LINE_GAP_MS * (quip.length - 1) + HOLD_MS)
+    );
   };
+
+  const quip = tap >= 0 ? QUIPS[tap] : [];
 
   return (
     <div className="relative h-full w-full" onClick={onTap}>
       {children}
-      {/* Below the portrait, centred on it; announced to screen readers. */}
-      <p
+      {/* Below the portrait, centred on it; the whole quip is announced to
+          screen readers at once. */}
+      <div
         aria-live="polite"
-        className={`pointer-events-none absolute left-1/2 top-full mt-12 w-[min(320px,85vw)] -translate-x-1/2 text-center font-mono text-sm font-bold tracking-wide text-primary-500 transition-all duration-300 ${
-          visible ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"
+        aria-label={quip.join(" ")}
+        className={`pointer-events-none absolute left-1/2 top-full mt-12 w-[min(320px,85vw)] -translate-x-1/2 text-center font-mono text-sm font-bold tracking-wide text-primary-500 transition-opacity duration-300 ${
+          visible ? "opacity-100" : "opacity-0"
         }`}
       >
-        {tap >= 0 ? QUIPS[tap] : ""}
-      </p>
+        {quip.slice(0, lines).map((line, i) => (
+          <p key={`${tap}-${i}`} aria-hidden className="crumb-in leading-relaxed">
+            {line}
+          </p>
+        ))}
+      </div>
     </div>
   );
 }
