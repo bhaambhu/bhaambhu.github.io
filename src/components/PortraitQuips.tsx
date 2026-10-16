@@ -15,10 +15,15 @@ const QUIPS: string[][] = [
   ["Fine, you win:", "sanjay@bhaambhu.com"],
 ];
 
-// Pause before each next line, and how long the whole quip stays once its
-// last line is in.
+// Pause before each next line. Once the last line is in, the quip stays long
+// enough to read: at least HOLD_MS, more for longer quips (about 40 ms a
+// character, so "It's a depth map!" keeps the minimum).
 const LINE_GAP_MS = 900;
 const HOLD_MS = 2600;
+const MS_PER_CHAR = 40;
+
+const holdFor = (quip: string[]) =>
+  Math.max(HOLD_MS, 1800 + quip.join(" ").length * MS_PER_CHAR);
 
 export default function PortraitQuips({ children }: { children: ReactNode }) {
   const [tap, setTap] = useState(-1);
@@ -38,7 +43,7 @@ export default function PortraitQuips({ children }: { children: ReactNode }) {
       setTimeout(() => setLines(i + 2), LINE_GAP_MS * (i + 1))
     );
     timers.current.push(
-      setTimeout(() => setVisible(false), LINE_GAP_MS * (quip.length - 1) + HOLD_MS)
+      setTimeout(() => setVisible(false), LINE_GAP_MS * (quip.length - 1) + holdFor(quip))
     );
   };
 
