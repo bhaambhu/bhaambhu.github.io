@@ -4,12 +4,15 @@ import * as THREE from "three";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 
 /**
- * The portrait in the About section: grayscale until the pointer comes near,
- * then the pointer acts as a soft spotlight that brings back the photo's own
- * colour. The depth map raises the surface and the normal map shapes the
- * light, so the colour wraps around the face instead of sitting on it as a
- * flat disc. On touch screens, with no pointer to follow, the light drifts on
- * its own.
+ * The portrait in the About section: the plain photo until the pointer comes
+ * onto it, then the room dims and the pointer becomes a lamp. The lamp throws
+ * real shadows (the nose across the cheek, the head onto the wall) and puts a
+ * soft sheen on the skin, and a small ring lies on the face under the pointer,
+ * tilting with it.
+ *
+ * All of it comes from one photo: the depth map (Depth Anything V2) gives each
+ * pixel a height, and the normal map, derived from it, gives the slope. On
+ * touch screens the lamp follows a finger on the photo for a moment.
  */
 export default function ThreeJSPicture() {
   return (
@@ -29,102 +32,174 @@ export default function ThreeJSPicture() {
 const UNITS_PER_PX = 1 / 100;
 // How far into the photo to zoom: 1 shows all of it.
 const ZOOM = 1.12;
-// How far the light reaches, in world units (the plane is 3 across).
-const REACH = 3.7;
+// How high above the photo the lamp hangs, in world units (the plane is 3
+// across).
+const LAMP_HEIGHT = 1.8;
 
 const vertexShader = /* glsl */ `
-  uniform sampler2D uDepth;
-  uniform float uDepthScale;
-  varying vec2 vUv;
   varying vec3 vPos;
 
   void main() {
-    // Sample a slightly smaller centre of the photo: a gentle zoom.
-    vUv = (uv - 0.5) / ${ZOOM.toFixed(2)} + 0.5;
-    vec3 pos = position;
-    pos.z += texture2D(uDepth, vUv).r * uDepthScale;
-    vPos = pos;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+    vPos = position;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
   }
 `;
 
 const fragmentShader = /* glsl */ `
-  uniform sampler2D uColor;     // the photo as shot, for the grayscale
-  uniform sampler2D uColorLit;  // the same photo on a warm backdrop, for the colour
+  uniform sampler2D uColor;
   uniform sampler2D uNormal;
   uniform sampler2D uDepth;
-  uniform vec2 uLight;       // pointer position in world units
-  uniform float uStrength;   // 0 when the pointer is away, 1 when it is here
-  varying vec2 vUv;
+  uniform float uExtent;     // width of the plane in world units
+  uniform vec3 uLight;       // the lamp, in world units, z above the plane
+  uniform float uStrength;   // 0 when the pointer is off the photo, 1 when on it
+  uniform float uTime;
   varying vec3 vPos;
 
-  // How far the face stands out for lighting, and how high above the plane
-  // the light floats. A low light rakes across the face, so the surfaces
-  // that turn towards it light up and the ones that turn away stay gray.
-  const float RELIEF = 0.55;
-  // const float LIGHT_HEIGHT = 0.45;
-  const float GRAY_CURVE = 0.8;
-  const float LIGHT_HEIGHT = 0.55;
-  // Distance at which the light has faded to nothing.
-  const float REACH = ${REACH.toFixed(2)};
+  // How far the person stands out from the wall for light and shadow.
+  // Exaggerated: true to scale, the nose's shadow would be a pixel long.
+  const float RELIEF = 0.9;
+  // How much of the photo's own light survives where the lamp doesn't reach.
+  // Kept fairly high: the photo's shading is what keeps it reading as a
+  // photo rather than a 3D render.
+  const float AMBIENT = 0.28;
+  // Lets the light creep a little past the point where a surface turns away,
+  // as it does on skin, instead of ending on a hard line.
+  const float WRAP = 0.4;
+  // A warm lamp.
+  const vec3 LAMP = vec3(1.0, 0.95, 0.87);
+
+  vec2 toUv(vec2 xy) { return xy / (uExtent * ${ZOOM.toFixed(2)}) + 0.5; }
+  vec2 toXY(vec2 uv) { return (uv - 0.5) * uExtent * ${ZOOM.toFixed(2)}; }
+  float depthAt(vec2 uv) { return texture2D(uDepth, uv).r; }
+  // 0 on the backdrop, 1 on the person.
+  float subjectAt(float d) { return smoothstep(0.2, 0.55, d); }
+  float hash(vec2 p) { return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453); }
+
+  // Normals are stored with green pointing up, as three.js expects. The
+  // backdrop is treated as flat: the depth map's soft edge would otherwise
+  // give it steep slopes all round the head. The face is flattened a little
+  // too, as the depth map is smoother than a real face and full-strength
+  // slopes make it look sculpted.
+  vec3 normalAt(vec2 uv) {
+    vec3 n = normalize(texture2D(uNormal, uv).rgb * 2.0 - 1.0);
+    return normalize(mix(vec3(0.0, 0.0, 1.0), n, 0.75 * subjectAt(depthAt(uv))));
+  }
+
+  // A ring lying flat on the surface under the pointer, with four ticks and a
+  // needle along the surface normal. Seen from the front, the ring squashes
+  // into an ellipse wherever the surface turns away, which shows its shape.
+  float reticle(vec3 P) {
+    vec2 cuv = toUv(uLight.xy);
+    vec3 C = vec3(uLight.xy, depthAt(cuv) * RELIEF);
+    vec3 N = normalAt(cuv);
+    vec3 v = P - C;
+    float h = dot(v, N);
+    vec3 vt = v - h * N;
+    // Only the part of the face close to the ring's plane carries it.
+    float onPlane = 1.0 - smoothstep(0.015, 0.05, abs(h));
+
+    const float R = 0.13;
+    float r = length(vt);
+    float w = max(fwidth(r), 0.004);
+    float ring = 1.0 - smoothstep(w * 0.6, w * 1.6, abs(r - R));
+
+    vec3 T = normalize(vec3(1.0, 0.0, 0.0) - N.x * N);
+    vec3 B = cross(N, T);
+    float a = abs(dot(vt, T));
+    float b = abs(dot(vt, B));
+    float inTick = step(R * 1.25, r) * step(r, R * 1.7);
+    float ticks = inTick * max(1.0 - smoothstep(w * 0.5, w * 1.5, a),
+                               1.0 - smoothstep(w * 0.5, w * 1.5, b));
+    float dot0 = 1.0 - smoothstep(0.012, 0.012 + w, r);
+
+    // The needle is drawn on screen: from the centre towards where the
+    // normal points, longer the more the surface tilts.
+    vec2 tip = C.xy + N.xy * 0.45;
+    vec2 pa = P.xy - C.xy, ba = tip - C.xy;
+    float k = clamp(dot(pa, ba) / max(dot(ba, ba), 1e-5), 0.0, 1.0);
+    float needle = 1.0 - smoothstep(w * 0.5, w * 1.5, length(pa - ba * k));
+
+    return max(onPlane * max(max(ring, ticks), dot0), needle * 0.8);
+  }
 
   void main() {
-    vec3 base = texture2D(uColor, vUv).rgb;
-    float lum = dot(base, vec3(0.299, 0.587, 0.114));
+    vec2 uv = toUv(vPos.xy);
+    vec3 col = texture2D(uColor, uv).rgb;
+    float lum = dot(col, vec3(0.299, 0.587, 0.114));
+    float d = depthAt(uv);
+    float subject = subjectAt(d);
+    vec3 n = normalAt(uv);
+    vec3 P = vec3(toXY(uv), d * RELIEF);
 
-    // Normals are stored with green pointing up, as three.js expects.
-    // (portrait_normal.png is derived from the depth map, which comes from
-    // Depth Anything V2.)
-    vec3 n = normalize(texture2D(uNormal, vUv).rgb * 2.0 - 1.0);
+    vec3 toL = uLight - P;
+    float dist = length(toL);
+    vec3 L = toL / dist;
+    float diffuse = clamp((dot(n, L) + WRAP) / (1.0 + WRAP), 0.0, 1.0);
+    float atten = 1.0 / (1.0 + dist * dist * 0.45);
 
-    // The surface point, raised by the depth map: nose and cheeks sit
-    // nearer the light than the background does.
-    vec3 surface = vec3(vPos.xy, texture2D(uDepth, vUv).r * RELIEF);
-    vec3 toLight = vec3(uLight, LIGHT_HEIGHT) - surface;
-    float dist = length(toLight);
+    // Cast shadows: walk from this point towards the lamp. If the surface
+    // rises above the path, something stands in the way. The further away
+    // the blocker, the softer the shadow's edge. Each pixel starts its walk
+    // at a slightly different step (a cheap dither), which turns the banding
+    // of a coarse walk into fine grain.
+    float shadow = 1.0;
+    float tMax = min(dist, (RELIEF - P.z) / max(L.z, 0.08));
+    float jitter = hash(gl_FragCoord.xy);
+    for (int i = 0; i < 40; i++) {
+      float f = (float(i) + jitter) / 40.0;
+      float t = tMax * f * f + 0.003;
+      vec3 Q = P + L * t;
+      float hq = depthAt(toUv(Q.xy)) * RELIEF;
+      shadow = min(shadow, 1.0 - smoothstep(0.0, 0.01 + 0.35 * t, hq - Q.z - 0.004));
+    }
+    // Shadows on the wall stay faint: it's lit from the room as well.
+    shadow = mix(mix(1.0, shadow, 0.6), shadow, subject);
 
-    // The backdrop is flat, so it faces the light fully. Without this the
-    // steep normals along the silhouette read as facing away, stayed gray
-    // (white there) and drew a pale outline round the head.
-    float subject = smoothstep(0.2, 0.55, texture2D(uDepth, vUv).r);
-    float facing = mix(1.0, max(dot(n, toLight / dist), 0.0), subject);
-    float falloff = pow(clamp(1.0 - dist / REACH, 0.0, 1.0), 2.0);
-    float amount = clamp(uStrength * facing * falloff * 2.4, 0.0, 1.0);
+    // A broad, faint sheen on skin, not on hair, beard or suit (the darker
+    // parts). A tight, bright one looks like plastic.
+    vec3 H = normalize(L + vec3(0.0, 0.0, 1.0));
+    float skin = subject * smoothstep(0.2, 0.5, lum);
+    float sheen = pow(max(dot(n, H), 0.0), 16.0) * skin * shadow * atten;
 
-    // Brighten the midtones (below 1 lifts them), leaving pure white and
-    // black where they are, so the grayscale reads lighter and clearer.
-    vec3 gray = vec3(pow(lum, GRAY_CURVE));
-    vec3 lit = texture2D(uColorLit, vUv).rgb * (0.9 + 0.35 * facing * falloff);
-    gl_FragColor = vec4(mix(gray, lit, amount), 1.0);
+    vec3 lit = col * (AMBIENT + 1.5 * diffuse * atten * shadow * LAMP);
+    lit += sheen * 0.12 * LAMP;
+    // A touch of film grain, so the dimmed photo keeps a photo's texture.
+    lit += (hash(gl_FragCoord.xy + fract(uTime) * 100.0) - 0.5) * 0.03;
+    lit = mix(lit, vec3(0.94, 0.27, 0.27), reticle(P) * 0.9);
+
+    gl_FragColor = vec4(mix(col, lit, uStrength), 1.0);
   }
 `;
 
 function Portrait() {
-  const [colorMap, depthMap, normalMap, colorLitMap] = useLoader(TextureLoader, [
+  const [colorMap, depthMap, normalMap] = useLoader(TextureLoader, [
     "/portrait.jpg",
     "/portrait_depth.png",
     "/portrait_normal.png",
-    "/portrait_color.jpg",
   ]);
   const { gl, size } = useThree();
+
+  // The plane fills the square canvas: 300px at zoom 100 is 3 world units.
+  const extent = Math.min(size.width, size.height) * UNITS_PER_PX;
 
   const uniforms = useMemo(
     () => ({
       uColor: { value: colorMap },
-      uColorLit: { value: colorLitMap },
       uNormal: { value: normalMap },
       uDepth: { value: depthMap },
-      uDepthScale: { value: 0.1 },
-      uLight: { value: new THREE.Vector2(0, 0) },
+      uExtent: { value: extent },
+      uLight: { value: new THREE.Vector3(0, 0, LAMP_HEIGHT) },
       uStrength: { value: 0 },
+      uTime: { value: 0 },
     }),
-    [colorMap, normalMap, depthMap, colorLitMap]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [colorMap, normalMap, depthMap]
   );
+  uniforms.uExtent.value = extent;
 
   // Where the pointer is (world units), and whether it has moved recently.
   const pointer = useRef({ x: 0, y: 0, seen: false });
-  // A finger on the photo steers the light until this time (ms), then the
-  // drift takes over again.
+  // A finger on the photo steers the lamp until this time (ms).
   const touchUntil = useRef(0);
 
   useEffect(() => {
@@ -141,7 +216,7 @@ function Portrait() {
       pointer.current = { ...toWorld(ev), seen: true };
     };
     // Touch only counts on the photo itself, so scrolling elsewhere doesn't
-    // move the light.
+    // move the lamp.
     const onTouch = (ev: PointerEvent) => {
       if (ev.pointerType !== "touch") return;
       pointer.current = { ...toWorld(ev), seen: true };
@@ -156,6 +231,8 @@ function Portrait() {
     document.addEventListener("pointerleave", onLeave);
     // Vertical swipes still scroll the page; taps and sideways drags steer.
     canvas.style.touchAction = "pan-y";
+    // The ring on the face is the cursor here.
+    canvas.style.cursor = "none";
     return () => {
       window.removeEventListener("pointermove", onMove);
       canvas.removeEventListener("pointerdown", onTouch);
@@ -164,43 +241,32 @@ function Portrait() {
     };
   }, [gl]);
 
-  // Touch screens get a light that drifts slowly across the face when no
-  // finger is on it, so the effect is never invisible.
   const hasMouse = useMemo(
     () => typeof window !== "undefined" && window.matchMedia("(pointer: fine)").matches,
     []
   );
 
   useFrame(({ clock }, delta) => {
-    const t = clock.getElapsedTime();
-    const target = new THREE.Vector2();
-    let strength: number;
-
+    uniforms.uTime.value = clock.getElapsedTime();
+    const { x, y, seen } = pointer.current;
     const touching = performance.now() < touchUntil.current;
+    // The photo is shown in a circle, so "on the photo" means inside it.
+    const onPhoto = (touching || (hasMouse && seen)) && Math.hypot(x, y) < extent / 2;
 
-    if (touching || (hasMouse && pointer.current.seen)) {
-      target.set(pointer.current.x, pointer.current.y);
-      strength = 1;
-    } else if (!hasMouse) {
-      target.set(Math.sin(t * 0.45) * 0.9, Math.sin(t * 0.7) * 0.6);
-      strength = 0.85;
-    } else {
-      target.copy(uniforms.uLight.value);
-      strength = 0;
+    const light = uniforms.uLight.value;
+    if (onPhoto) {
+      // Coming onto the photo, the lamp starts where the pointer is, rather
+      // than gliding over from wherever it was left.
+      const ease = uniforms.uStrength.value < 0.05 ? 1 : 1 - Math.exp(-delta * 14);
+      light.x += (x - light.x) * ease;
+      light.y += (y - light.y) * ease;
     }
-
-    // Ease rather than snap, so the light glides after the pointer.
-    const ease = 1 - Math.exp(-delta * 10);
-    uniforms.uLight.value.lerp(target, ease);
-    uniforms.uStrength.value += (strength - uniforms.uStrength.value) * (1 - Math.exp(-delta * 4));
+    uniforms.uStrength.value += ((onPhoto ? 1 : 0) - uniforms.uStrength.value) * (1 - Math.exp(-delta * 6));
   });
-
-  // The plane fills the square canvas: 300px at zoom 100 is 3 world units.
-  const extent = Math.min(size.width, size.height) * UNITS_PER_PX;
 
   return (
     <mesh>
-      <planeGeometry args={[extent, extent, 100, 100]} />
+      <planeGeometry args={[extent, extent, 1, 1]} />
       <shaderMaterial
         uniforms={uniforms}
         vertexShader={vertexShader}

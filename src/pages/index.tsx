@@ -103,7 +103,7 @@ export default function Home() {
             <div className="relative group h-full w-full">
               {/* Tapping the portrait reveals a line at a time about how it works. */}
               <PortraitQuips>
-                <div className="relative rounded-full overflow-hidden z-10 border-2 border-primary-500 h-full w-full cursor-bulb">
+                <div className="relative rounded-full overflow-hidden z-10 border-2 border-primary-500 h-full w-full">
                   <ThreeJSPicture />
                 </div>
               </PortraitQuips>

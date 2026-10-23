@@ -8,7 +8,7 @@ import React, { ReactNode, useRef, useState } from "react";
 const QUIPS: string[][] = [
   ["It's a depth map!"],
   ["I just added a depth map to this image…", "then a normal map…", "then a shader.", "I got carried away."],
-  ["Your cursor is the light.", "Only what faces it gets its colour back."],
+  ["Your cursor is the lamp.", "The shadows are worked out live, from the depth map."],
   ["An AI model estimated the depth from a single photo,", "right on my laptop."],
   ["You like clicking things.", "I like building them.", "We'd get along."],
   ["Seriously,", "the projects are just below ↓"],

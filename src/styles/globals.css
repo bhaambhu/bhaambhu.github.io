@@ -210,14 +210,6 @@ button:not(:disabled),
   }
 }
 
-/* Over the portrait the pointer is the light, so it becomes a lightbulb; the
-   hotspot (16 12) is the centre of the glass. Crosshair where SVG cursors
-   aren't supported. */
-.cursor-bulb {
-  cursor: url("/cursors/bulb.svg") 16 12, crosshair;
-}
-
-
 /* The navbar's section breadcrumb slides in when the section changes. */
 .crumb-in {
   animation: crumb-in 0.25s ease-out;
