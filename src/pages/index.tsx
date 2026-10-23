@@ -43,8 +43,8 @@ export default function Home() {
         />
         <P>
           Senior software engineer: React Native, React and TypeScript, and
-          Laravel. For 10 years I&apos;ve shipped production apps, games and
-          platforms. Today I own the apps at Parag Parikh Mutual Fund, whose
+          Laravel. For 10 years I&apos;ve built apps, games and platforms.
+          Today I own the mobile apps at Parag Parikh Mutual Fund, whose
           investor app serves 300,000+ people. Open to roles in Europe or
           remote.
         </P>
@@ -405,19 +405,19 @@ export default function Home() {
               <div className="font-mono text-primary-500 font-bold inline-flex">
                 &gt;
               </div>
-              <div>Own the investor and corporate apps end to end in React Native (Expo), Next.js and Remix: I set the architecture and standards, review code, and mentor a junior developer and our QA tester.</div>
+              <div>Own all of PPFAS&apos;s mobile apps end to end in React Native (Expo): I set the architecture and standards, review code, and mentor a junior developer and our QA tester.</div>
             </div>
             <div className="flex gap-2 items-start">
               <div className="font-mono text-primary-500 font-bold inline-flex">
                 &gt;
               </div>
-              <div>Built and maintain SelfInvest, the React Native app 300,000+ investors use to buy, redeem and track mutual fund investments.</div>
+              <div>Co-developed SelfInvest with our CEO, led its App Store and Google Play launch, and have owned it since: the React Native app 300,000+ investors use to buy, redeem and track mutual fund investments.</div>
             </div>
             <div className="flex gap-2 items-start">
               <div className="font-mono text-primary-500 font-bold inline-flex">
                 &gt;
               </div>
-              <div>Built a helpdesk that replaced the Salesforce helpdesk (a licence of about ₹90 lakh a year) and the corporate investor portal app, both on my own.</div>
+              <div>Built a self-hosted helpdesk that is now replacing our Salesforce helpdesk (a licence of about ₹90 lakh a year), and built and shipped the corporate investor portal app (Remix), both on my own.</div>
             </div>
             <div className="flex gap-2 items-start">
               <div className="font-mono text-primary-500 font-bold inline-flex">
@@ -440,9 +440,9 @@ export default function Home() {
           </div>
         </WorkCard>
         <WorkCard
-          jobTitle="Senior Research Fellow"
+          jobTitle="Junior → Senior Research Fellow"
           organization="Chaudhary Devi Lal University"
-          period={"October 2018 to January 2023"}
+          period={"October 2018 to October 2022"}
         >
           <div className="tracking-wide text-sm font-mono mt-1 flex flex-col gap-1">
             <div className="flex gap-2 items-start">
