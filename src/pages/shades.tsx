@@ -13,7 +13,7 @@ export default function Shades() {
         <P>A top down shooter game I made for the android platform. This game is not open-source yet but I plan to make it.
         </P>
         <Video autoPlay loop muted src={"/shades/MainMenu.mp4"} />
-        <P>The game was loved by the people, and was an instant hit with over <b>1.5 million</b> players and an average
+        <P>The game was loved by the people, and was an instant hit with over <b>1.5 million</b> downloads and an average
           rating of <b>4.5/5 stars</b> from <b>21K</b> reviews on the Google Play Store.
         </P>
         <ScreenshotContainer>

@@ -10,8 +10,8 @@ import { EM, H1, H2, P } from "../components/TextComponents";
 
 // Figures as of October 2026; update them with each portfolio refresh.
 const stats = [
-  ["260+", "job & exam notices live"],
-  ["184", "recruiting bodies tracked"],
+  ["~300", "job & exam notices live"],
+  ["~200", "recruiting bodies tracked"],
   ["3", "clients on one backend"],
   ["~1,200", "automated tests"],
 ];
@@ -60,6 +60,21 @@ export default function SarkariAcademy() {
           each notice into structured data, and tells a candidate which jobs
           they are actually eligible for, from their qualifications, date of
           birth, category and other details.
+        </P>
+        <P>
+          Each recruitment keeps its whole history in one place, from the
+          first notification through admit cards and answer keys to the
+          result, alongside preparation resources such as the syllabus and
+          previous years&apos; papers. Candidates follow the ones they care
+          about and get alerts on the web and in the app.
+        </P>
+        <P>
+          The data pipeline that keeps it current is private. I&apos;m happy
+          to walk through how it works in an interview:{" "}
+          <a className="underline" href="mailto:sanjay@bhaambhu.com">
+            sanjay@bhaambhu.com
+          </a>
+          .
         </P>
         <P>
           It is a solo project, live at sarkariacademy.com since September

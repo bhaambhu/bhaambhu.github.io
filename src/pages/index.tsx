@@ -158,7 +158,7 @@ export default function Home() {
             "/sarkari-academy/app-browse.jpg",
             "/sarkari-academy/app-for-you.jpg",
           ]}
-          about="A government job platform for India, live since September 2026. Candidates build a profile once and get the jobs they're actually eligible for, with alerts by email and push before every deadline. One Laravel service layer serves the website, the staff tools and an Expo Android app (now in Play testing) with OTA release channels and a server-controlled forced-update gate."
+          about="A government job platform for India, live since September 2026. Every recruitment is followed from notification to result in one place, with its syllabus and previous papers. Candidates build a profile once and get a dashboard of the jobs they're actually eligible for, with alerts by email and push before every deadline. One Laravel service layer serves the website, the staff tools and an Expo Android app (now in Play testing) with OTA release channels and a server-controlled forced-update gate."
         >
           <Button href="/sarkari-academy">MORE INFO</Button>
           <Button newTab outline href="https://sarkariacademy.com" iconExternal>
@@ -212,7 +212,7 @@ export default function Home() {
             "/shades/card-menu.jpg",
             "/shades/card-gameplay.jpg",
           ]}
-          about="A 3D shooter game for the android platform – 1.5M players, 4.5/5 avg rating from 21K reviews. The biggest learning was real-time concurrency control – managing multiple players that are accessing and manipulating the same resources, in both peer-to-peer (LAN) and client-server (Online Multiplayer) environments."
+          about="A 3D top-down shooter for Android that I built alone in 2017, with online and local multiplayer and single-player against AI: 1.5M downloads and a 4.5/5 rating from 21K reviews. The biggest learning was real-time concurrency control – managing multiple players that are accessing and manipulating the same resources, in both peer-to-peer (LAN) and client-server (Online Multiplayer) environments."
         >
           <Button href="/shades">MORE INFO</Button>
           <Button outline href="/shades/shades.apk" iconDownload>
