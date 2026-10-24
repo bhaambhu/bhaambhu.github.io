@@ -10,6 +10,10 @@ import { TextureLoader } from "three/src/loaders/TextureLoader";
  * soft sheen on the skin, and a small ring lies on the face under the pointer,
  * tilting with it.
  *
+ * So that nobody scrolls past without knowing, the lamp tours the face once
+ * on its own when the portrait first comes into view, and a cursor coming
+ * near draws the lamp's light out towards it before it even reaches the photo.
+ *
  * All of it comes from one photo: the depth map (Depth Anything V2) gives each
  * pixel a height, and the normal map, derived from it, gives the slope. On
  * touch screens the lamp follows a finger on the photo for a moment.
@@ -35,6 +39,15 @@ const ZOOM = 1.12;
 // How high above the photo the lamp hangs, in world units (the plane is 3
 // across).
 const LAMP_HEIGHT = 1.8;
+// The lamp's tour when the portrait first comes into view: how long after it
+// appears the tour starts, so the eye has landed on it first, and how long the
+// tour lasts (ms).
+const DEMO_DELAY_MS = 800;
+const DEMO_MS = 2600;
+// How far outside the photo the cursor starts drawing the light out, in world
+// units (100px each), and how strong the light gets at the edge.
+const TEASE_REACH = 1.5;
+const TEASE_STRENGTH = 0.6;
 
 const vertexShader = /* glsl */ `
   varying vec3 vPos;
@@ -52,6 +65,7 @@ const fragmentShader = /* glsl */ `
   uniform float uExtent;     // width of the plane in world units
   uniform vec3 uLight;       // the lamp, in world units, z above the plane
   uniform float uStrength;   // 0 when the pointer is off the photo, 1 when on it
+  uniform float uRing;       // the ring under the pointer: shown only on the photo
   uniform float uTime;
   varying vec3 vPos;
 
@@ -165,7 +179,7 @@ const fragmentShader = /* glsl */ `
     lit += sheen * 0.12 * LAMP;
     // A touch of film grain, so the dimmed photo keeps a photo's texture.
     lit += (hash(gl_FragCoord.xy + fract(uTime) * 100.0) - 0.5) * 0.03;
-    lit = mix(lit, vec3(0.94, 0.27, 0.27), reticle(P) * 0.9);
+    lit = mix(lit, vec3(0.94, 0.27, 0.27), reticle(P) * 0.9 * uRing);
 
     gl_FragColor = vec4(mix(col, lit, uStrength), 1.0);
   }
@@ -190,6 +204,7 @@ function Portrait() {
       uExtent: { value: extent },
       uLight: { value: new THREE.Vector3(0, 0, LAMP_HEIGHT) },
       uStrength: { value: 0 },
+      uRing: { value: 0 },
       uTime: { value: 0 },
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -201,6 +216,10 @@ function Portrait() {
   const pointer = useRef({ x: 0, y: 0, seen: false });
   // A finger on the photo steers the lamp until this time (ms).
   const touchUntil = useRef(0);
+  // When the lamp's tour started (ms), and whether the visitor has put the
+  // pointer on the photo themselves, after which it isn't needed.
+  const demoStart = useRef<number | null>(null);
+  const interacted = useRef(false);
 
   useEffect(() => {
     const canvas = gl.domElement;
@@ -233,7 +252,20 @@ function Portrait() {
     canvas.style.touchAction = "pan-y";
     // The ring on the face is the cursor here.
     canvas.style.cursor = "none";
+
+    // The tour starts once most of the portrait is on screen, once per visit.
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const inView = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        if (!reducedMotion && !interacted.current) demoStart.current = performance.now() + DEMO_DELAY_MS;
+        inView.disconnect();
+      },
+      { threshold: 0.6 }
+    );
+    inView.observe(canvas);
     return () => {
+      inView.disconnect();
       window.removeEventListener("pointermove", onMove);
       canvas.removeEventListener("pointerdown", onTouch);
       canvas.removeEventListener("pointermove", onTouch);
@@ -249,19 +281,53 @@ function Portrait() {
   useFrame(({ clock }, delta) => {
     uniforms.uTime.value = clock.getElapsedTime();
     const { x, y, seen } = pointer.current;
-    const touching = performance.now() < touchUntil.current;
+    const now = performance.now();
+    const touching = now < touchUntil.current;
     // The photo is shown in a circle, so "on the photo" means inside it.
-    const onPhoto = (touching || (hasMouse && seen)) && Math.hypot(x, y) < extent / 2;
+    const radius = extent / 2;
+    const fromCentre = Math.hypot(x, y);
+    const onPhoto = (touching || (hasMouse && seen)) && fromCentre < radius;
+    if (onPhoto) interacted.current = true;
+    const demo = demoStart.current === null ? 1 : (now - demoStart.current) / DEMO_MS;
+    const strength = uniforms.uStrength.value;
 
-    const light = uniforms.uLight.value;
+    // Where the lamp should be, how bright the effect, and whether the lamp
+    // jumps there rather than gliding.
+    let lamp: [number, number] | null = null;
+    let target = 0;
+    let snap = false;
     if (onPhoto) {
       // Coming onto the photo, the lamp starts where the pointer is, rather
       // than gliding over from wherever it was left.
-      const ease = uniforms.uStrength.value < 0.05 ? 1 : 1 - Math.exp(-delta * 14);
-      light.x += (x - light.x) * ease;
-      light.y += (y - light.y) * ease;
+      lamp = [x, y];
+      target = 1;
+      snap = strength < 0.05;
+    } else if (!interacted.current && demo >= 0 && demo < 1) {
+      // The tour: left to right across the upper face in a gentle arc,
+      // fading in and out at the ends.
+      const s = demo * demo * (3 - 2 * demo);
+      lamp = [(-0.8 + 1.6 * s) * radius, (0.3 + 0.25 * Math.sin(demo * Math.PI)) * radius];
+      target = Math.min(1, demo / 0.15, (1 - demo) / 0.25);
+      snap = true;
+    } else if (hasMouse && seen && fromCentre < radius + TEASE_REACH) {
+      // Near the photo: the lamp waits at the photo's edge nearest the
+      // pointer, and the room dims a little, more the closer it gets.
+      const k = 1 - (fromCentre - radius) / TEASE_REACH;
+      const toEdge = (radius * 0.95) / fromCentre;
+      lamp = [x * toEdge, y * toEdge];
+      target = TEASE_STRENGTH * k;
+      snap = strength < 0.02;
     }
-    uniforms.uStrength.value += ((onPhoto ? 1 : 0) - uniforms.uStrength.value) * (1 - Math.exp(-delta * 6));
+
+    const light = uniforms.uLight.value;
+    if (lamp) {
+      const ease = snap ? 1 : 1 - Math.exp(-delta * 14);
+      light.x += (lamp[0] - light.x) * ease;
+      light.y += (lamp[1] - light.y) * ease;
+    }
+    const fade = 1 - Math.exp(-delta * 6);
+    uniforms.uStrength.value += (target - strength) * fade;
+    uniforms.uRing.value += ((onPhoto ? 1 : 0) - uniforms.uRing.value) * fade;
   });
 
   return (
