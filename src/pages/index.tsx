@@ -435,7 +435,7 @@ export default function Home() {
               <div className="font-mono text-primary-500 font-bold inline-flex">
                 &gt;
               </div>
-              <div>Defined the team&apos;s documentation, testing and release standards; translate SEBI circulars into delivery plans.</div>
+              <div>Defined the team&apos;s documentation, testing and release standards; translate regulatory circulars into delivery plans.</div>
             </div>
           </div>
         </WorkCard>
