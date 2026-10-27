@@ -19,8 +19,12 @@ export default function SEO({ pageTitle = 'Sanjay Bhaambhu', pageDesc = "Sanjay 
       <meta property="og:site_name" content="Sanjay Bhaambhu" />
       <meta property="og:title" content={pageTitle} />
       <meta property="og:description" content={pageDesc} />
-      <meta property="og:image" content="https://www.bhaambhu.com/og-image-2026.jpg" />
-      <meta name="twitter:card" content="summary" />
+      {/* A 1200×630 card (logo, name, portrait) fills link previews on LinkedIn, WhatsApp and Slack. */}
+      <meta property="og:image" content="https://bhaambhu.com/og-card.jpg" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content="Sanjay Bhaambhu, Senior Full-stack Engineer and React Native developer" />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta property="og:url" content="https://www.bhaambhu.com/" />
 
       <link rel="canonical" href="https://www.bhaambhu.com/" />
