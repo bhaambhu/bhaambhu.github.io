@@ -83,9 +83,12 @@
   animation: splash-shine 0.9s ease-in-out 0.35s forwards;
 }
 
-/* Page content rises in as the splash leaves */
+/* Page content rises in as the splash leaves. Filled backwards only: an
+   animation still holding its transform afterwards would make <main> a
+   containing block, trapping the project cards' fixed dimming layer inside
+   it so it only dims the content column on a first visit. */
 html:not(.splash-seen) main {
-  animation: splash-page-in 0.6s ease-out 1.6s both;
+  animation: splash-page-in 0.6s ease-out 1.6s backwards;
 }
 
 /* Repeat visit in this session, or reduced motion: no splash at all */
