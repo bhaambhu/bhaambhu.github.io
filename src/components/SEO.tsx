@@ -19,7 +19,7 @@ export default function SEO({ pageTitle = 'Sanjay Bhaambhu', pageDesc = "Sanjay 
       <meta property="og:site_name" content="Sanjay Bhaambhu" />
       <meta property="og:title" content={pageTitle} />
       <meta property="og:description" content={pageDesc} />
-      <meta property="og:image" content="https://www.bhaambhu.com/og-image.jpg" />
+      <meta property="og:image" content="https://www.bhaambhu.com/og-image-2026.jpg" />
       <meta name="twitter:card" content="summary" />
       <meta property="og:url" content="https://www.bhaambhu.com/" />
 
