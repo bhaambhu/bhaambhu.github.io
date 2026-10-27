@@ -77,7 +77,7 @@ export default function SarkariAcademy() {
           .
         </P>
         <P>
-          It is a solo project, live at sarkariacademy.com since September
+          It is a solo project, live at sarkari.academy since September
           2026, with an Android app in Google Play testing.
         </P>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 my-6">
