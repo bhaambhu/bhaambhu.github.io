@@ -11,13 +11,14 @@ import ThreeJSPicture from "../components/ThreeJSPicture";
 import Typewriter from "../components/Typewriter";
 import PortraitQuips from "../components/PortraitQuips";
 import EmailCopy from "../components/EmailCopy";
+import ScrollCue from "../components/ScrollCue";
 
 export default function Home() {
   return (
     <Page links={["about", "projects", "work", "contact"]}>
       {/* Home Section */}
       <Section
-        className="min-h-screen flex flex-col justify-center"
+        className="relative min-h-screen flex flex-col justify-center"
         navbarGap={false}
       >
         <p className="font-mono font-bold tracking-widest text-primary-500 mb-4">
@@ -48,6 +49,7 @@ export default function Home() {
           investor app serves 300,000+ people. Open to roles in Europe or
           remote.
         </P>
+        <ScrollCue href="#about" />
       </Section>
 
       {/* About Section */}
