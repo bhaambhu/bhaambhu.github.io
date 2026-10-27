@@ -1,5 +1,5 @@
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
-import { useEffect, useMemo, useRef } from "react";
+import { Component, ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 
@@ -19,17 +19,61 @@ import { TextureLoader } from "three/src/loaders/TextureLoader";
  * touch screens the lamp follows a finger on the photo for a moment.
  */
 export default function ThreeJSPicture() {
+  // Without WebGL (hardware acceleration off, as on many company laptops, or
+  // an old phone) the canvas throws and takes the whole page down with it, so
+  // those visitors get the plain photo. It is also what the static HTML
+  // shows until the check runs.
+  const [webgl, setWebgl] = useState(false);
+  useEffect(() => setWebgl(hasWebGL()), []);
+
+  if (!webgl) return <PlainPortrait />;
   return (
     <div className="h-full w-full">
-      <Canvas
-        orthographic
-        camera={{ position: [0, 0, 5], zoom: 100 }}
-        style={{ width: "100%", height: "100%" }}
-      >
-        <Portrait />
-      </Canvas>
+      <CanvasErrorBoundary fallback={<PlainPortrait />}>
+        <Canvas
+          orthographic
+          camera={{ position: [0, 0, 5], zoom: 100 }}
+          style={{ width: "100%", height: "100%" }}
+        >
+          <Portrait />
+        </Canvas>
+      </CanvasErrorBoundary>
     </div>
   );
+}
+
+function hasWebGL() {
+  try {
+    const canvas = document.createElement("canvas");
+    return !!(canvas.getContext("webgl2") || canvas.getContext("webgl"));
+  } catch {
+    return false;
+  }
+}
+
+// The photo as the lamp's resting state shows it: same image, same zoom.
+function PlainPortrait() {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/portrait.jpg"
+      alt="Sanjay Bhaambhu"
+      className="h-full w-full object-cover"
+      style={{ transform: `scale(${ZOOM})` }}
+    />
+  );
+}
+
+// A WebGL context can still fail after the check (a lost context, a shader the
+// GPU rejects); this keeps that failure to the portrait.
+class CanvasErrorBoundary extends Component<{ fallback: ReactNode; children: ReactNode }, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+  render() {
+    return this.state.failed ? this.props.fallback : this.props.children;
+  }
 }
 
 // World units per CSS pixel, from the camera's zoom of 100.
