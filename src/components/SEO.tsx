@@ -2,7 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import { SEOProps } from '../config/interfaces'
 
-export default function SEO({ pageTitle = 'Sanjay Bhaambhu', pageDesc = "Sanjay Bhaambhu: software engineer building React Native apps, full-stack products and games.", keywords=[] }: SEOProps) {
+export default function SEO({ pageTitle = 'Sanjay Bhaambhu', pageDesc = "Sanjay Bhaambhu: senior full-stack engineer building React Native apps used by 300,000+ investors, full-stack products, and a game with 1.5M downloads.", keywords=[] }: SEOProps) {
   const defaultKeywords = ['sanjay bhaambhu', 'sanjay bhambhu', 'bhambhu', 'bhaambhu', 'kuk', 'cdlu', 'sirsa', 'sarjit']
   if (pageTitle == '') pageTitle = 'Sanjay Bhaambhu'
   return (
