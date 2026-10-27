@@ -49,11 +49,16 @@ export default function Home() {
           investor app serves 300,000+ people. Open to roles in Europe or
           remote.
         </P>
-        <ScrollCue href="#about" />
+        <ScrollCue href="#about" label="Scroll down to About me" />
       </Section>
 
       {/* About Section */}
-      <Section id="about" className="min-h-screen flex flex-col justify-start">
+      {/* Centred on large screens, where it is shorter than the viewport; the
+          bottom padding keeps the scroll cue clear of the content. */}
+      <Section
+        id="about"
+        className="relative min-h-screen flex flex-col justify-start lg:justify-center lg:pb-24"
+      >
         <div className="md:w-[60%]">
           <H1>About Me</H1>
         </div>
@@ -135,6 +140,7 @@ export default function Home() {
             </picture>
           </div> */}
         </div>
+        <ScrollCue href="#projects" label="Scroll down to Projects" />
       </Section>
 
       {/* Projects Section */}
