@@ -37,7 +37,7 @@ export default function Home() {
             "build things.",
             "ship apps.",
             "design interfaces.",
-            "lead teams.",
+            "mentor developers.",
             "make games.",
             "teach machines.",
           ]}
