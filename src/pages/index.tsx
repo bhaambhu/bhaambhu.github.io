@@ -44,7 +44,8 @@ export default function Home() {
         />
         <P>
           Senior software engineer: React Native, React and TypeScript, and
-          Laravel. For 10 years I&apos;ve built apps, games and platforms.
+          Laravel. I taught myself to code in 2009 and haven&apos;t stopped
+          building since: apps, games and platforms.
           Today I own the mobile apps at Parag Parikh Mutual Fund, whose
           investor app serves 300,000+ people. Open to roles in Europe or
           remote.
